@@ -8,7 +8,7 @@ function syn.buildMenu()
 		type = "panel",
 		name = syn.name,
 		displayName = "|cd7f442S|rynergy",
-		author = "Wheel5",
+		author = "Wheel5, modified by BjörnTheBurr",
 		version = ""..syn.version,
 		registerForRefresh = true,
 	}
