@@ -100,7 +100,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Grave Robber",
+			name = "Disable Grave Robber",
 			tooltip = "Enabling this will prevent you from being able to take the Grave Robber synergy from the Boneyard skill.",
 			default = false,
 			width = "half",
@@ -115,7 +115,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Hidden Refresh",
+			name = "Disable Hidden Refresh",
 			tooltip = "Enabling this will prevent you from being able to take the Hidden Refresh synergy from the Consuming Darkness skill.",
 			default = false,
 			width = "half",
@@ -124,7 +124,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Soul Leech",
+			name = "Disable Soul Leech",
 			tooltip = "Enabling this will prevent you from being able to take the Soul Leech synergy from the Soul Shred skill.",
 			default = false,
 			width = "half",
@@ -139,7 +139,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Charged Lightning",
+			name = "Disable Charged Lightning",
 			tooltip = "Enabling this will prevent you from being able to take the Charged Lightning synergy from the Summon Storm Atronach skill.",
 			default = false,
 			width = "half",
@@ -148,7 +148,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Conduit",
+			name = "Disable Conduit",
 			tooltip = "Enabling this will prevent you from being able to take the Conduit synergy from the Lightning Splash skill.",
 			default = false,
 			width = "half",
@@ -181,7 +181,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Purify",
+			name = "Disable Purify",
 			tooltip = "Enabling this will prevent you from being able to take the Purify synergy from the Cleansing Ritual skill.",
 			default = false,
 			width = "half",
@@ -196,7 +196,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Harvest",
+			name = "Disable Harvest",
 			tooltip = "Enabling this will prevent you from being able to take the Harvest synergy from the Healing Seed skill.",
 			default = false,
 			width = "half",
@@ -205,7 +205,7 @@ function syn.buildMenu()
 		},
 		{
 			type = "checkbox",
-			name = "Icy Escape",
+			name = "Disable Icy Escape",
 			tooltip = "Enabling this will prevent you from being able to take the Icy Escape synergy from the Frozen Retreat skill.",
 			default = false,
 			width = "half",

@@ -331,41 +331,19 @@ end
 
 local function buildTables()
 	-- Synergy blacklist for all DDs
-	syn.dpsSynergyBL = {
-		[GetString(SI_SYNERGY_ABILITY_CONDUIT)] = true,
-		[GetString(SI_SYNERGY_ABILITY_HARVEST)] = true,
-		[GetString(SI_SYNERGY_ABILITY_SPINAL_SURGE)] = true,
-		[GetString(SI_SYNERGY_ABILITY_BONE_WALL)] = true,
-	}
+	syn.dpsSynergyBL = {}
 
 	-- Synergy blacklist for mag DDs
-	syn.magDpsSynergyBL = {
-		[GetString(SI_SYNERGY_ABILITY_BLACK_WIDOWS)] = true,
-	}
+	syn.magDpsSynergyBL = {}
 
 	-- Lokkestiiz Whitelist
-	syn.lokkeWL = {
-		[GetString(SI_SYNERGY_ABILITY_BLACK_WIDOWS)] = true,
-		[GetString(SI_SYNERGY_ABILITY_CHARGED_LIGHTNING)] = true,
-	}
+	syn.lokkeWL = {}
 	
 	-- Synergy blacklist for tanks
-	syn.tankSynergyBL = {
-		[GetString(SI_SYNERGY_ABILITY_CHARGED_LIGHTNING)] = true,
-		[GetString(SI_SYNERGY_ABILITY_IMPALE)] = true,
-		[GetString(SI_SYNERGY_ABILITY_GRAVITY_CRUSH)] = true,
-		[GetString(SI_SYNERGY_ABILITY_BLACK_WIDOWS)] = true,
-	}
+	syn.tankSynergyBL = {}
 	
 	-- Synergy blacklist for healers
-	syn.healSynergyBL = {
-		[GetString(SI_SYNERGY_ABILITY_CHARGED_LIGHTNING)] = true,
-		[GetString(SI_SYNERGY_ABILITY_IMPALE)] = true,
-		[GetString(SI_SYNERGY_ABILITY_GRAVITY_CRUSH)] = true,
-		[GetString(SI_SYNERGY_ABILITY_CONDUIT)] = true,
-		[GetString(SI_SYNERGY_ABILITY_BLACK_WIDOWS)] = true,
-		[GetString(SI_SYNERGY_ABILITY_BONEYARD)] = true,
-	}
+	syn.healSynergyBL = {}
 
 	-- Blackrose sigils
 	syn.blackrose = {
