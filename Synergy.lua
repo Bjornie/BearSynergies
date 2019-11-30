@@ -9,19 +9,55 @@ syn.version = "1.19.1"
 local isMagDD
 
 local defaults = {
+	-- General
 	["ExtremeBlocking"] = false,
-	["portalDisable"] = false,
 	["maSynDisable"] = false,
 	["brpSynDisable"] = false,
 	["trialsOnly"] = true,
 	["frontBarOnly"] = false,
 	["lokkeMode"] = false,
 	["alkoshMode"] = false,
-	["disableGraveRobber"] = false,
-	["disableHarvest"] = true,
-	["disableBoneWall"] = true,
 	["showSynergyAlert"] = true,
 	["advancedLokkeMode"] = false,
+
+	-- Dragonknight
+	["disableShackle"] = false,
+	["disableIgnite"] = false,
+
+	-- Necromancer
+	["disableGraveRobber"] = false,
+
+	-- Nightblade
+	["disableHiddenRefresh"] = false,
+	["disableSoulLeech"] = false,
+
+	-- Sorcerer
+	["disableChargedLightning"] = false,
+	["disableConduit"] = false,
+
+	-- Templar
+	["disableShards"] = false,
+	["disableNova"] = false,
+	["disablePurify"] = false,
+
+	-- Warden
+	["disableHarvest"] = true,
+	["disableIcyEscape"] = false,
+
+	-- Werewolf
+	["disableFeedingFrenzy"] = false,
+
+	-- Undaunted
+	["disableBloodFunnel"] = false,
+	["disableSpawnBroodlings"] = false,
+	["disableRadiate"] = false,
+	["disableBoneWall"] = true,
+	["disableCombustion"] = false,
+
+	-- Raid
+	["disableDestructiveOutbreak"] = false,
+	["portalDisable"] = false,
+	["disableTimeBreach"] = false,
 }
 
 syn.CustomAbilityName = {
@@ -147,13 +183,52 @@ local function forceRefresh(e, didChange, shouldUpdate, category)
 end
 
 function syn.SynergyOverride()
-
+	-- General
 	local onSynAbChng = SYNERGY.OnSynergyAbilityChanged
+	local gate = GetString(SI_SYNERGY_ABILITY_GATEWAY)
+	local dOutbreak = GetString(SI_SYNERGY_ABILITY_DESTRUCTIVE_OUTBREAK)
+	local tBreach = GetString(SI_SYNERGY_ABILITY_TIME_BREACH)
+
+	-- Dragonknight
+	local shackle = GetString(SI_SYNERGY_ABILITY_SHACKLE)
+	local ignite = GetString(SI_SYNERGY_ABILITY_IGNITE)
+
+	-- Necromancer
 	local gRobber = GetString(SI_SYNERGY_ABILITY_BONEYARD)
+
+	-- Nightblade
+	local hiddenRefresh = GetString(SI_SYNERGY_ABILITY_HIDDEN_REFRESH)
+	local soulLeech = GetString(SI_SYNERGY_ABILITY_SOUL_LEECH)
+
+	-- Sorcerer
+	local chargedLightning = GetString(SI_SYNERGY_ABILITY_CHARGED_LIGHTNING)
+	local conduit = GetString(SI_SYNERGY_ABILITY_CONDUIT)
+
+	-- Templar
+	local blessedShards = GetString(SI_SYNERGY_ABILITY_BLESSED_SHARDS)
+	local holyShards = GetString(SI_SYNERGY_ABILITY_HOLY_SHARDS)
+	local supernova = GetString(SI_SYNERGY_ABILITY_SUPERNOVA)
+	local gravityCrush = GetString(SI_SYNERGY_ABILITY_GRAVITY_CRUSH)
+	local purify = GetString(SI_SYNERGY_ABILItY_PURIFY)
+
+	-- Warden
 	local harvest = GetString(SI_SYNERGY_ABILITY_HARVEST)
+	local icyEscape = GetString(SI_SYNERGY_ABILITY_ICY_ESCAPE)
+
+	-- Werewolf
+	local feedingFrenzy = GetString(SI_SYNERGY_ABILITY_FEEDING_FRENZY)
+
+	-- Undaunted
+	local bloodFunnel = GetString(SI_SYNERGY_ABILITY_BLOOD_FUNNEL)
+	local bloodFeast = GetString(SI_SYNERGY_ABILITY_BLOOD_FEAST)
+	local spawnBroodlings = GetString(SI_SYNERGY_ABILITY_SPAWN_BROODLINGS)
+	local blackWidows = GetString(SI_SYNERGY_ABILITY_BLACK_WIDOWS)
+	local arachnophobia = GetString(SI_SYNERGY_ABILITY_ARACHNOPHOBIA)
+	local radiate = GetString(SI_SYNERGY_ABILITY_RADIATE)
 	local boneWall = GetString(SI_SYNERGY_ABILITY_BONE_WALL)
 	local spinalSurge = GetString(SI_SYNERGY_ABILITY_SPINAL_SURGE)
-	local gate = GetString(SI_SYNERGY_ABILITY_GATEWAY)
+	local combustion = GetString(SI_SYNERGY_ABILITY_COMBUSTION)
+	local healingCombustion = GetString(SI_SYNERGY_ABILITY_HEALING_COMBUSTION)
 	
 	function SYNERGY:OnSynergyAbilityChanged()
 		local n, texture = GetSynergyInfo()
@@ -170,13 +245,57 @@ function syn.SynergyOverride()
 			return
 		end
 		if n and syn.savedVariables.advancedLokkeMode and blockForSlayer() and not syn.lokkeWL[n] then return end
+		
+		-- Dragonknight
+		if n and syn.savedVariables.disableShackle and n == shackle then return end
+		if n and syn.savedVariables.disableIgnite and n == ignite then return end
+
+		-- Necromancer
 		if n and syn.savedVariables.disableGraveRobber and n == gRobber then return end
+
+		-- Nightblade
+		if n and syn.savedVariables.disableHiddenRefresh and n == hiddenRefresh then return end
+		if n and syn.savedVariables.disableSoulLeech and n == soulLeech then return end
+
+		-- Sorcerer
+		if n and syn.savedVariables.disableChargedLightning and n == chargedLightning then return end
+		if n and syn.savedVariables.disableConduit and n == conduit then return end
+
+		-- Templar
+		if n and syn.savedVariables.disableShards and n == blessedShards then return end
+		if n and syn.savedVariables.disableShards and n == holyShards then return end
+		if n and syn.savedVariables.disableNova and n == supernova then return end
+		if n and syn.savedVariables.disableNova and n == gravityCrush then return end
+		if n and syn.savedVariables.disablePurify and n == purify then return end
+
+		-- Warden
 		if n and syn.savedVariables.disableHarvest and n == harvest then return end
+		if n and syn.savedVariables.disableIcyEscape and n == icyEscape then return end
+
+		-- Werewolf
+		if n and syn.savedVariables.disableFeedingFrenzy and n == feedingFrenzy then return end
+
+		-- Undaunted
+		if n and syn.savedVariables.disableBloodFunnel and n == bloodFunnel then return end
+		if n and syn.savedVariables.disableBloodFunnel and n == bloodFeast then return end
+		if n and syn.savedVariables.disableSpawnBroodlings and n == spawnBroodlings then return end
+		if n and syn.savedVariables.disableSpawnBroodlings and n == blackWidows then return end
+		if n and syn.savedVariables.disableSpawnBroodlings and n == arachnophobia then return end
+		if n and syn.savedVariables.disableRadiate and n == radiate then return end
 		if n and syn.savedVariables.disableBoneWall and n == boneWall then return end
 		if n and syn.savedVariables.disableBoneWall and n == spinalSurge then return end
+		if n and syn.savedVariables.disableCombustion and n == combustion then return end
+		if n and syn.savedVariables.disableCombustion and n == healingCombustion then return end
+
+		-- Trial
+		if n and syn.savedVariables.portalDisable and n == gate then return end
+		if n and syn.savedVariables.disableDestructiveOutbreak and n == dOutbreak then return end
+		if n and syn.savedVariables.disableTimeBreach and n == tBreach then return end
+
+		-- Arena
 		if n and syn.savedVariables.brpSynDisable and syn.blackrose[n] then return end
 		if n and syn.savedVariables.maSynDisable and syn.maelstrom[n] then return end
-		if n and syn.savedVariables.portalDisable and n == gate then return end
+
 		if dd then
 			if n and isMagDD and syn.magDpsSynergyBL[n] then return end
 			if n and syn.dpsSynergyBL[n] then return end
