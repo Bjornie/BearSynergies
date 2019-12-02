@@ -20,7 +20,8 @@ function BS.BuildMenu()
             type = "checkbox",
             name = "Shackle",
             tooltip = "Disabling this will prevent you from being able to activate the Shackle synergy, provided by the Dragonknight Standard skill.",
-            getFunc = function() return 
-        }
+            getFunc = function() return end,
+            setFunc = function(value) end,
+        },
     }
 end
