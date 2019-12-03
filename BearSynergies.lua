@@ -1,20 +1,31 @@
 BearSynergies = {
-    name = "BearSynergies",
+    Name = "BearSynergies",
+    Version = "0.1",
+    Author = "BjörnTheBurr",
 
     defaultSettings = {
         -- Dragonknight
-        shackle = true,
-        ignite = true,
+        DK_SHACKLE = true,
+        DK_IGNITE = true,
 
         -- Necromancer
-        graveRobber = true,
+        NM_GRAVE_ROBBER = true,
 
         -- Nightblade
-        hiddenRefresh = true,
-        soulLeech = true,
+        NB_HIDDEN_REFRESH = true,
+        NB_SOUL_LEECH = true,
 
         -- Sorcerer
-        chargedLightning = -- TODO
-        conduit = true,
-    }
+        SORC_CHARGED_LIGHTNING = true,
+        SORC_CONDUIT = true,
+    },
 }
+
+local BS = BearSynergies
+local EM = EVENT_MANAGER
+
+function BearSynergies.init()
+    if addon ~= BS.Name then return end
+end
+
+EM:RegisterForEvent(BearSynergies.Name, EVENT_ADD_ON_LOADED, BearSynergies.init)

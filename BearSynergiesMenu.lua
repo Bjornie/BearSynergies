@@ -12,6 +12,7 @@ function BS.BuildMenu()
     }
 
     local optionsTable = {
+        -- Dragonknight Settings
         {
             type = "header",
             name = "Dragonknight",

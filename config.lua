@@ -10,10 +10,11 @@ hiddenRefresh = 37729,
 soulLeech = 25170,
 
 -- Sorcerer
-chargedLightning = -- TODO
+-- chargedLightning = TODO
 conduit = 23196,
 
 -- Templar
+blessedShards = 
 
 -- Warden
 harvest = 85572,
