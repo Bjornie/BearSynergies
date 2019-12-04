@@ -1,20 +1,22 @@
--- Dragonknight
-shackle = 32905,
-ignite = 32974,
+BearSynergies = {
+    -- Dragonknight
+    shackle = 32905,
+    ignite = 32974,
 
--- Necromancer
-graveRobber = 115548,
+    -- Necromancer
+    graveRobber = 115548,
 
--- Nightblade
-hiddenRefresh = 37729,
-soulLeech = 25170,
+    -- Nightblade
+    hiddenRefresh = 37729,
+    soulLeech = 25170,
 
--- Sorcerer
--- chargedLightning = TODO
-conduit = 23196,
+    -- Sorcerer
+    -- chargedLightning = TODO
+    conduit = 23196,
 
--- Templar
-blessedShards = 
+    -- Templar
+    blessedShards = 
 
--- Warden
-harvest = 85572,
+    -- Warden
+    harvest = 85572,
+}

@@ -24,7 +24,15 @@ BearSynergies = {
 local BS = BearSynergies
 local EM = EVENT_MANAGER
 
-function BearSynergies.init()
+function BS.PreHook()
+    ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
+        local synergyName, iconFilename = GetSynergyInfo()
+
+        if synergyName == 
+    end)
+end
+
+function BS.init()
     if addon ~= BS.Name then return end
 end
 
