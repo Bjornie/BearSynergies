@@ -70,6 +70,7 @@ BearSynergies = {
 }
 
 local BS = BearSynergies
+local EM = EVENT_MANAGER
 
 -- This function runs before synergy prompt on screen and determines whether the prompt appears or not
 function BS.PreHook()
@@ -91,6 +92,8 @@ function BS.PreHook()
     end)
 end
 
+-- GetItemLinkSetInfo(string itemLink, boolean equipped)
+
 function BS.Initialize(event, addonName)
     BS.savedVariables = ZO_SavedVars:NewAccountWide("BearSynergiesSV", BS.svVersion, nil, BS.default)
 
@@ -98,9 +101,9 @@ function BS.Initialize(event, addonName)
     BS.PreHook()
 end
 
-EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, function(_, name)
+EM:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, function(_, name)
     if name == BS.name then
         BS.Initialize()
-        EVENT_MANAGER:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
+        EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
     end
 end)
