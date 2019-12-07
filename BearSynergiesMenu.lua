@@ -7,22 +7,42 @@ function BS.BuildMenu()
         name = "Bear Synergies",
         displayName = "Bear Synergies",
         author = "|c00BFFFBjörnTheBurr|r",
-        version = "0.1",
+        version = "0.2",
         registerForRefresh = true,
     }
 
     local optionsTable = {
+        -- General Settings
+        {
+            type = "header",
+            name = "|cFFFACDGeneral|r",
+        },
+        {
+            type = "checkbox",
+            name = "Lokke Mode",
+            tooltip = "Enabling this will prevent you from being able to use synergies if less than five pieces of Lokkestiiz is active. If no Lokke pieces equipped this setting will be ignored.",
+            getFunc = function() return BS.savedVariables.isLokke end,
+            setFunc = function(value) BS.savedVariables.isLokke = value end,
+        },
+        {
+            type = "checkbox",
+            name = "Alkosh Mode",
+            tooltip = "Enabling this will prevent you from being able to use synergies if less than five pieces of Alkosh is active. If no Alkosh pieces equipped this setting will be ignored.",
+            getFunc = function() return BS.savedVariables.isAlkosh end,
+            setFunc = function(value) BS.savedVariables.isAlkosh = value end,
+        },
+
         -- Class Settings
-        [1] = {
+        {
             type = "submenu",
             name = "|cFFFACDClass Synergies|r",
             controls = {
                 -- Dragonknight Settings
-                [1] = {
+                {
                     type = "header",
                     name = "|cFFFACDDragonknight|",
                 },
-                [2] = {
+                {
                     type = "checkbox",
                     name = "Shackle",
                     width = "half",
@@ -30,7 +50,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Shackle"] end,
                     setFunc = function(value) BS.savedVariables["Shackle"] = value end,
                 },
-                [3] = {
+                {
                     type = "checkbox",
                     name = "Ignite",
                     width = "half",
@@ -40,11 +60,11 @@ function BS.BuildMenu()
                 },
 
                 -- Necromancer Settings
-                [4] = {
+                {
                     type = "header",
                     name = "|cFFFACDNecromancer|r",
                 },
-                [5] = {
+                {
                     type = "checkbox",
                     name = "Grave Robber",
                     width = "half",
@@ -52,7 +72,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Grave Robber"] end,
                     setFunc = function(value) BS.savedVariables["Grave Robber"] = value end,
                 },
-                [6] = {
+                {
                     type = "checkbox",
                     name = "Pure Agony",
                     width = "half",
@@ -62,11 +82,11 @@ function BS.BuildMenu()
                 },
 
                 -- Nightblade Settings
-                [7] = {
+                {
                     type = "header",
                     name = "|cFFFACDNightblade|r",
                 },
-                [8] = {
+                {
                     type = "checkbox",
                     name = "Hidden Refresh",
                     width = "half",
@@ -74,7 +94,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Hidden Refresh"] end,
                     setFunc = function(value) BS.savedVariables["Hidden Refresh"] = value end,
                 },
-                [9] = {
+                {
                     type = "checkbox",
                     name = "Soul Leech",
                     width = "half",
@@ -84,11 +104,11 @@ function BS.BuildMenu()
                 },
 
                 -- Sorcerer Settings
-                [10] = {
+                {
                     type = "header",
                     name = "|cFFFACDSorcerer|r",
                 },
-                [11] = {
+                {
                     type = "checkbox",
                     name = "Charged Lightning",
                     width = "half",
@@ -96,7 +116,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Charged Lightning"] end,
                     setFunc = function(value) BS.savedVariables["Charged Lightning"] = value end,
                 },
-                [12] = {
+                {
                     type = "checkbox",
                     name = "Conduit",
                     width = "half",
@@ -106,11 +126,11 @@ function BS.BuildMenu()
                 },
 
                 -- Templar Settings
-                [13] = {
+                {
                     type = "header",
                     name = "|cFFFACDTemplar|r",
                 },
-                [14] = {
+                {
                     type = "checkbox",
                     name = "Spear Shards",
                     width = "half",
@@ -118,7 +138,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Blessed Shards"] end,
                     setFunc = function(value) BS.savedVariables["Blessed Shards"] = value end,
                 },
-                [15] = {
+                {
                     type = "checkbox",
                     name = "Luminous Shards",
                     width = "half",
@@ -126,7 +146,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Holy Shards"] end,
                     setFunc = function(value) BS.savedVariables["Holy Shards"] = value end,
                 },
-                [16] = {
+                {
                     type = "checkbox",
                     name = "Supernova",
                     width = "half",
@@ -134,7 +154,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Supernova"] end,
                     setFunc = function(value) BS.savedVariables["Supernova"] = value end,
                 },
-                [17] = {
+                {
                     type = "checkbox",
                     name = "Gravity Crush",
                     width = "half",
@@ -142,7 +162,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Gravity Crush"] end,
                     setFunc = function(value) BS.savedVariables["Gravity Crush"] = value end,
                 },
-                [18] = {
+                {
                     type = "checkbox",
                     name = "Purify",
                     width = "half",
@@ -152,11 +172,11 @@ function BS.BuildMenu()
                 },
 
                 -- Warden Settings
-                [19] = {
+                {
                     type = "header",
                     name = "|cFFFACDWarden|r",
                 },
-                [20] = {
+                {
                     type = "checkbox",
                     name = "Harvest",
                     width = "half",
@@ -164,7 +184,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Harvest"] end,
                     setFunc = function(value) BS.savedVariables["Harvest"] = value end,
                 },
-                [21] = {
+                {
                     type = "checkbox",
                     name = "Icy Escape",
                     width = "half",
@@ -175,12 +195,13 @@ function BS.BuildMenu()
 
             },
         },
+
         -- Undaunted Settings
-        [2] = {
+        {
             type = "submenu",
             name = "|cFFFACDUndaunted Synergies|r",
             controls = {
-                [1] = {
+                {
                     type = "checkbox",
                     name = "Blood Funnel",
                     width = "half",
@@ -188,7 +209,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Blood Funnel"] end,
                     setFunc = function(value) BS.savedVariables["Blood Funnel"] = value end,
                 },
-                [2] = {
+                {
                     type = "checkbox",
                     name = "Blood Feast",
                     width = "half",
@@ -196,7 +217,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Blood Feast"] end,
                     setFunc = function(value) BS.savedVariables["Blood Feast"] = value end,
                 },
-                [3] = {
+                {
                     type = "checkbox",
                     name = "Spawn Broodlings",
                     width = "half",
@@ -204,7 +225,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Spawn Broodlings"] end,
                     setFunc = function(value) BS.savedVariables["Spawn Broodlings"] = value end,
                 },
-                [4] = {
+                {
                     type = "checkbox",
                     name = "Black Widows",
                     width = "half",
@@ -212,7 +233,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Black Widows"] end,
                     setFunc = function(value) BS.savedVariables["Black Widows"] = value end,
                 },
-                [5] = {
+                {
                     type = "checkbox",
                     name = "Arachnophobia",
                     width = "half",
@@ -220,7 +241,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Arachnophobia"] end,
                     setFunc = function(value) BS.savedVariables["Arachnophobia"] = value end,
                 },
-                [6] = {
+                {
                     type = "checkbox",
                     name = "Radiate",
                     width = "half",
@@ -228,7 +249,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Radiate"] end,
                     setFunc = function(value) BS.savedVariables["Radiate"] = value end,
                 },
-                [7] = {
+                {
                     type = "checkbox",
                     name = "Bone Wall",
                     width = "half",
@@ -236,7 +257,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Bone Wall"] end,
                     setFunc = function(value) BS.savedVariables["Bone Wall"] = value end,
                 },
-                [8] = {
+                {
                     type = "checkbox",
                     name = "Spinal Surge",
                     width = "half",
@@ -244,7 +265,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Spinal Surge"] end,
                     setFunc = function(value) BS.savedVariables["Spinal Surge"] = value end,
                 },
-                [9] = {
+                {
                     type = "checkbox",
                     name = "Combustion",
                     width = "half",
@@ -252,7 +273,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Combustion"] end,
                     setFunc = function(value) BS.savedVariables["Combustion"] = value end,
                 },
-                [10] = {
+                {
                     type = "checkbox",
                     name = "Healing Combustion",
                     width = "half",
@@ -264,11 +285,11 @@ function BS.BuildMenu()
         },
 
         -- Arena Settings
-        [3] = {
+        {
             type = "submenu",
             name = "|cFFFACDArena Synergies|r",
             controls = {
-                [1] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Defense",
                     width = "half",
@@ -276,7 +297,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Sigil of Defense"] end,
                     setFunc = function(value) BS.savedVariables["Sigil of Defense"] = value end,
                 },
-                [2] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Haste",
                     width = "half",
@@ -284,7 +305,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Sigil of Haste"] end,
                     setFunc = function(value) BS.savedVariables["Sigil of Haste"] = value end,
                 },
-                [3] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Healing",
                     width = "half",
@@ -292,7 +313,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Sigil of Healing"] end,
                     setFunc = function(value) BS.savedVariables["Sigil of Healing"] = value end,
                 },
-                [4] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Power",
                     width = "half",
@@ -300,7 +321,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Sigil of Power"] end,
                     setFunc = function(value) BS.savedVariables["Sigil of Power"] = value end,
                 },
-                [5] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Resurrection",
                     width = "half",
@@ -308,7 +329,7 @@ function BS.BuildMenu()
                     getFunc = function() return BS.savedVariables["Sigil of Resurrection"] end,
                     setFunc = function(value) BS.savedVariables["Sigil of Resurrection"] = value end,
                 },
-                [6] = {
+                {
                     type = "checkbox",
                     name = "Sigil of Sustain",
                     width = "half",
@@ -320,16 +341,16 @@ function BS.BuildMenu()
         },
 
         -- Trial Settings
-        [4] = {
+        {
             type = "submenu",
             name = "|cFFFACDTrial Synergies|r",
             controls = {
                 -- Craglorn Settings
-                [1] = {
+                {
                     type = "header",
                     name = "|cFFFACDCraglorn Trials|r",
                 },
-                [2] = {
+                {
                     type = "checkbox",
                     name = "Destructive Outbreak",
                     tooltip = "Disabling this will prevent you from being able to use the Destructive Outbreak synergy, provided from the fossilize mechanic during the fight with The Warrior in Hel Ra Citadel.",
@@ -338,11 +359,11 @@ function BS.BuildMenu()
                 },
 
                 -- Cloudrest Settings
-                [3] = {
+                {
                     type = "header",
                     name = "|cFFFACDCloudrest|r",
                 },
-                [4] = {
+                {
                     type = "checkbox",
                     name = "Gateway",
                     tooltip = "Disabling this will prevent you from being able to use the portal synergy.",
@@ -351,11 +372,11 @@ function BS.BuildMenu()
                 },
 
                 -- Sunspire Settings
-                [5] = {
+                {
                     type = "header",
                     name = "|cFFFACDSunspire|r",
                 },
-                [6] = {
+                {
                     type = "checkbox",
                     name = "Time Breach",
                     tooltip = "Disabling this will prevent you from being able to use the portal synergy.",
