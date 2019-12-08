@@ -1,11 +1,13 @@
 BearSynergies = {
     name = "BearSynergies",
 
-    svVersion = 2,
+    svVersion = 3,
 
     default = {
         isLokke = false,
         isAlkosh = false,
+        isResource = false,
+        resourceThreshold = 50,
 
         -- Dragonknight
         ["Shackle"] = true,
@@ -97,17 +99,23 @@ function BS.PreHook()
                 return false --Run original code
             end
 
-            -- Block if Lokke mode is activated
-            if BS.GetLokke() then
+            -- Check lokke pieces active if lokke mode enabled
+            if not BS.GetLokke() then
                 SYNERGY:SetHidden(true)
                 return true -- Do not run original code
             end
 
-            -- Block if Alkosh mode is activated
-            if BS.GetAlkosh() then
+            -- Check alkosh pieces active if alkosh mode enabled
+            if not BS.GetAlkosh() then
                 SYNERGY:SetHidden(true)
                 return true -- Do not run original code
             end
+
+            -- Check current resource if resource check enabled
+            if not BS.IsResourceLow() then
+                SYNERGY:SetHidden(true)
+                return true -- Do not run original code
+            end 
         else
             SYNERGY:SetHidden(true)
         end
@@ -116,39 +124,60 @@ end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
 function BS.GetLokke()
-    if BS.savedVariables.isLokke == false then return false end
+    -- If disabled always return true
+    if BS.savedVariables.isLokke == false then return true end
     
     local imperfEquipped, perfEquipped = 0
     local _, _, _, imperfEquipped = GetItemLinkSetInfo(IL, true)
     local _, _, _, perfEquipped = GetItemLinkSetInfo(PL, true)
     
     -- If lokke mode is enabled but no lokke pieces equipped don't block synergies
-    if (imperfEquipped == 0) and (perfEquipped == 0) then return false end
+    if (imperfEquipped == 0) and (perfEquipped == 0) then return true end
 
-    if ((imperfEquipped <= 4) and (imperfEquipped >= 1)) then return true end
-    if ((perfEquipped <= 4) and (perfEquipped >= 1)) then return true end
-    if ((imperfEquipped == 5) or (perfEquipped == 5)) then return false end
+    if ((imperfEquipped >= 1) and (imperfEquipped <= 4)) then return false end
+    if ((perfEquipped >= 1) and (perfEquipped <= 4)) then return false end
+    if ((imperfEquipped == 5) or (perfEquipped == 5)) then return true end
 end
 
 -- Checks whether or not Roar of Alkosh is equipped.
 function BS.GetAlkosh()
-    if BS.savedVariables.isAlkosh == false then return false end
+    -- If disabled always return true
+    if BS.savedVariables.isAlkosh == false then return true end
 
     local alkoshEquipped = 0
     local _, _, _, alkoshEquipped = GetItemLinkSetInfo(Alkosh, true)
 
     -- If alkosh mode is enabled but no alkosh pieces equipped don't block synergies
-    if alkoshEquipped == 0 then return false end
+    if alkoshEquipped == 0 then return true end
     
-    if alkoshEquipped <= 4 then return true end
-    if alkoshEquipped == 5 then return false end
+    if alkoshEquipped <= 4 then return false end
+    if alkoshEquipped == 5 then return true end
+end
+
+-- Checks resource percentage and compares with defined options value
+function BS.IsResourceLow()
+    -- If disabled always return false
+    if BS.savedVariables.isResource == false then return true end
+
+    local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)
+    local magCurrent, magMax = GetUnitPower("player", POWERTYPE_MAGICKA)
+    local percentage = 100
+
+    if stamMax > magMax then
+        percentage = stamCurrent / stamMax * 100
+    else
+        percentage = magCurrent / magMax * 100
+    end
+
+    if percentage <= BS.savedVariables.resourceThreshold then return true end
 end
 
 -- Unhide synergy prompt and run PreHook again
 function BS.BarswapRefresh(_, didBarswap)
     if didBarswap then
         SYNERGY:SetHidden(false)
-        SYNERGY:OnSynergyAbilityChanged()
+        -- SYNERGY:OnSynergyAbilityChanged()
+        BS.PreHook()
     end
 end
 

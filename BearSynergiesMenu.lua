@@ -31,6 +31,23 @@ function BS.BuildMenu()
             getFunc = function() return BS.savedVariables.isAlkosh end,
             setFunc = function(value) BS.savedVariables.isAlkosh = value end,
         },
+        {
+            type = "checkbox",
+            name = "Resource Check",
+            tooltip = "Enabling this will prevent you from being able to use synergies if your current main resource is higher than the threshold.",
+            getFunc = function() return BS.savedVariables.isResource end,
+            setFunc = function(value) BS.savedVariables.isResource = value end,
+        },
+        {
+            type = "slider",
+            name = "Resource Check Threshold",
+            min = 0,
+            max = 100,
+            step = 1,
+            getFunc = function() return BS.savedVariables.resourceThreshold end,
+            setFunc = function(value) BS.savedVariables.resourceThreshold = value end,
+            disabled = function() return not BS.savedVariables.isResource end,
+        },
 
         -- Class Settings
         {
