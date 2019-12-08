@@ -115,7 +115,7 @@ function BS.PreHook()
             if not BS.IsResourceLow() then
                 SYNERGY:SetHidden(true)
                 return true -- Do not run original code
-            end 
+            end
         else
             SYNERGY:SetHidden(true)
         end
@@ -176,8 +176,7 @@ end
 function BS.BarswapRefresh(_, didBarswap)
     if didBarswap then
         SYNERGY:SetHidden(false)
-        -- SYNERGY:OnSynergyAbilityChanged()
-        BS.PreHook()
+        SYNERGY:OnSynergyAbilityChanged()
     end
 end
 
