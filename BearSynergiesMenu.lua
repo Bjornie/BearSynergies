@@ -20,6 +20,7 @@ function BS.BuildMenu()
         {
             type = "checkbox",
             name = "Lokke Mode",
+            width = "half",
             tooltip = "Enabling this will prevent you from being able to use synergies if less than five pieces of Lokkestiiz is active. If no Lokke pieces equipped this setting will be ignored.",
             getFunc = function() return BS.savedVariables.isLokke end,
             setFunc = function(value) BS.savedVariables.isLokke = value end,
@@ -27,6 +28,7 @@ function BS.BuildMenu()
         {
             type = "checkbox",
             name = "Alkosh Mode",
+            width = "half",
             tooltip = "Enabling this will prevent you from being able to use synergies if less than five pieces of Alkosh is active. If no Alkosh pieces equipped this setting will be ignored.",
             getFunc = function() return BS.savedVariables.isAlkosh end,
             setFunc = function(value) BS.savedVariables.isAlkosh = value end,
