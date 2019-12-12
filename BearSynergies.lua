@@ -134,9 +134,8 @@ function BS.GetLokke()
     -- If lokke mode is enabled but no lokke pieces equipped don't block synergies
     if (imperfEquipped == 0) and (perfEquipped == 0) then return true end
 
-    if ((imperfEquipped >= 1) and (imperfEquipped <= 4)) then return false end
-    if ((perfEquipped >= 1) and (perfEquipped <= 4)) then return false end
-    if ((imperfEquipped == 5) or (perfEquipped == 5)) then return true end
+    if (imperfEquipped == 5) or (perfEquipped == 5) then return true
+    else return false end
 end
 
 -- Checks whether or not Roar of Alkosh is equipped.
@@ -150,8 +149,8 @@ function BS.GetAlkosh()
     -- If alkosh mode is enabled but no alkosh pieces equipped don't block synergies
     if alkoshEquipped == 0 then return true end
     
-    if alkoshEquipped <= 4 then return false end
-    if alkoshEquipped == 5 then return true end
+    if alkoshEquipped == 5 then return true
+    else return false end
 end
 
 -- Checks resource percentage and compares with defined options value
