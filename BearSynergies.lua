@@ -85,7 +85,7 @@ local Alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 function BS.PreHook()
     ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
         local synergyName, iconFilename = GetSynergyInfo()
-        
+
         if synergyName and iconFilename then
             -- Check if synergy is disabled
             if BS.savedVariables[synergyName] ~= nil then
@@ -130,13 +130,12 @@ function BS.GetLokke()
     local imperfEquipped, perfEquipped = 0
     local _, _, _, imperfEquipped = GetItemLinkSetInfo(IL, true)
     local _, _, _, perfEquipped = GetItemLinkSetInfo(PL, true)
-    
+
     -- If lokke mode is enabled but no lokke pieces equipped don't block synergies
     if (imperfEquipped == 0) and (perfEquipped == 0) then return true end
 
-    if ((imperfEquipped >= 1) and (imperfEquipped <= 4)) then return false end
-    if ((perfEquipped >= 1) and (perfEquipped <= 4)) then return false end
-    if ((imperfEquipped == 5) or (perfEquipped == 5)) then return true end
+    if (imperfEquipped == 5) or (perfEquipped == 5) then return true
+    else return false end
 end
 
 -- Checks whether or not Roar of Alkosh is equipped.
@@ -150,8 +149,8 @@ function BS.GetAlkosh()
     -- If alkosh mode is enabled but no alkosh pieces equipped don't block synergies
     if alkoshEquipped == 0 then return true end
     
-    if alkoshEquipped <= 4 then return false end
-    if alkoshEquipped == 5 then return true end
+    if alkoshEquipped == 5 then return true
+    else return false end
 end
 
 -- Checks resource percentage and compares with defined options value
@@ -169,7 +168,8 @@ function BS.IsResourceLow()
         percentage = magCurrent / magMax * 100
     end
 
-    if percentage <= BS.savedVariables.resourceThreshold then return true end
+    if percentage <= BS.savedVariables.resourceThreshold then return true
+    else return false end
 end
 
 -- Unhide synergy prompt and run PreHook again
