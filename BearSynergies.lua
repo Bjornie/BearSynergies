@@ -96,7 +96,7 @@ function BS.PreHook()
             else
                 -- Always allow unknown synergy
                 SYNERGY:SetHidden(false)
-                return false --Run original code
+                return false -- Run original code
             end
 
             -- Check lokke pieces active if lokke mode enabled
