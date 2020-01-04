@@ -7,7 +7,7 @@ function BS.BuildMenu()
         name = "Bear Synergies",
         displayName = "Bear Synergies",
         author = "|c00BFFFBjörnTheBurr|r",
-        version = "0.2",
+        version = "1.0",
         registerForRefresh = true,
     }
 
