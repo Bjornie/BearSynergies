@@ -5,5 +5,5 @@
 ## SavedVariables: BearSynergiesSV
 ## DependsOn: LibAddonMenu-2.0
 
-BearSynergies.lua
 BearSynergiesMenu.lua
+SynergyBlock.lua
