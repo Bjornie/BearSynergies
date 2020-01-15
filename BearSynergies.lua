@@ -5,7 +5,8 @@ BearSynergies = {
     svVersion = 4,
 
     default = {
-        ["Blocker"] = true,
+        isBlock = true,
+        isTrack = true,
     },
 }
 
@@ -22,7 +23,8 @@ end
 function BS.Initialize()
     BS.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.default)
 
-    if BS.savedVariables["Blocker"] then BS.Block.Initialize() end
+    if BS.savedVariables.isBlock then BS.Block.Initialize() end
+    if BS.savedVariables.isTrack then BS.Track.Initialize() end
 
     BS.BuildMenu()
 end

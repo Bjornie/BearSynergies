@@ -8,5 +8,8 @@
 BearSynergies.lua
 BearSynergiesMenu.lua
 
-Modules/Blocker/Main.lua
-Modules/Blocker/Menu.lua
+Modules/Block/Main.lua
+Modules/Block/Menu.lua
+
+Modules/Track/Main.lua
+Modules/Track/Menu.lua

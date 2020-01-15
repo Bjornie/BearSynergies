@@ -12,11 +12,25 @@ function BS.BuildMenu()
         {
             type = "checkbox",
             name = "Synergy Block",
-            width = "half",
-            getFunc = function() return BS.savedVariables["Blocker"] end,
-            setFunc = function(value) BS.savedVariables["Blocker"] = value end,
+            getFunc = function() return BS.savedVariables.isBlock end,
+            setFunc = function(value) BS.savedVariables.isBlock = value end,
             requiresReload = true,
         },
+        {
+            type = "description",
+            text = "" -- TODO
+        },
+        {
+            type = "checkbox",
+            name = "Synergy Tracker",
+            getFunc = function() return BS.savedVariables.isTrack end,
+            setFunc = function(value) BS.savedVariables.isTrack = value end,
+            requiresReload = true,
+        },
+        {
+            type = "description",
+            text = "" -- TODO
+        }
     }
 
     LAM:RegisterAddonPanel(BS.name .. "Main", panelData)

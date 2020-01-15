@@ -138,7 +138,7 @@ function B.GetLokke()
     local _, _, _, imperfEquipped = GetItemLinkSetInfo(IL, true)
     local _, _, _, perfEquipped = GetItemLinkSetInfo(PL, true)
 
-    -- If lokke mode is enabled but no lokke pieces equipped don't block synergies
+    -- If lokke mode is enabled but no lokke pieces are equipped don't block synergies
     if (imperfEquipped == 0) and (perfEquipped == 0) then return true end
 
     if (imperfEquipped == 5) or (perfEquipped == 5) then return true
@@ -153,7 +153,7 @@ function B.GetAlkosh()
     local alkoshEquipped = 0
     local _, _, _, alkoshEquipped = GetItemLinkSetInfo(Alkosh, true)
 
-    -- If alkosh mode is enabled but no alkosh pieces equipped don't block synergies
+    -- If alkosh mode is enabled but no alkosh pieces are equipped don't block synergies
     if alkoshEquipped == 0 then return true end
     
     if alkoshEquipped == 5 then return true
