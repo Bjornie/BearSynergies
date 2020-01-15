@@ -81,18 +81,6 @@ local IL = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local PL = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local Alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 
-function BS.Initialize(_, addonName)
-    if addonName ~= BS.name then return end
-    EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
-
-    BS.savedVariables = ZO_SavedVars:NewAccountWide("BearSynergiesSV", BS.svVersion, nil, BS.default)
-
-    BS.BuildMenu()
-    BS.PreHook()
-
-    EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BS.BarswapRefresh)
-end
-
 -- This function runs before synergy prompt on screen and determines whether the prompt appears or not
 function BS.PreHook()
     ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
@@ -190,6 +178,18 @@ function BS.BarswapRefresh(_, didBarswap)
         SYNERGY:SetHidden(false)
         SYNERGY:OnSynergyAbilityChanged()
     end
+end
+
+function BS.Initialize(_, addonName)
+    if addonName ~= BS.name then return end
+    EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
+
+    BS.savedVariables = ZO_SavedVars:NewAccountWide("BearSynergiesSV", BS.svVersion, nil, BS.default)
+
+    BS.BuildMenu()
+    BS.PreHook()
+
+    EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BS.BarswapRefresh)
 end
 
 EM:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, BS.Initialize)
