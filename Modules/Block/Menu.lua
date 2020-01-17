@@ -147,33 +147,23 @@ function B.BuildMenu()
           type = "checkbox",
           name = "Spear Shards",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Blessed Shards synergy, provided by the Spear Shards skill.",
-          getFunc = function() return B.savedVariables["Blessed Shards"] end,
-          setFunc = function(value) B.savedVariables["Blessed Shards"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Blessed Shards and Holy Shards synergies, provided by the Spear Shards and morphs skills.",
+          getFunc = function() return B.savedVariables["Blessed Shards"], B.savedVariables["Holy Shards"] end,
+          setFunc = function(value)
+            B.savedVariables["Blessed Shards"] = value
+            B.savedVariables["Holy Shards"] = value
+          end,
         },
         {
           type = "checkbox",
-          name = "Luminous Shards",
+          name = "Nova",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Holy Shards synergy, provided by the Luminous Shards skill.",
-          getFunc = function() return B.savedVariables["Holy Shards"] end,
-          setFunc = function(value) B.savedVariables["Holy Shards"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Supernova",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Supernova synergy, provided by the Nova skill.",
-          getFunc = function() return B.savedVariables["Supernova"] end,
-          setFunc = function(value) B.savedVariables["Supernova"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Gravity Crush",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Gravity Crush synergy, provided by the Solar Prison skill.",
-          getFunc = function() return B.savedVariables["Gravity Crush"] end,
-          setFunc = function(value) B.savedVariables["Gravity Crush"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Supernova and Gravity Crush synergies, provided by the Nova and morphs skills.",
+          getFunc = function() return B.savedVariables["Supernova"], B.savedVariables["Gravity Crush"] end,
+          setFunc = function(value)
+            B.savedVariables["Supernova"] = value
+            B.savedVariables["Gravity Crush"] = value
+          end,
         },
         {
           type = "checkbox",
@@ -215,43 +205,26 @@ function B.BuildMenu()
       controls = {
         {
           type = "checkbox",
-          name = "Blood Funnel",
+          name = "Blood Altar",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Blood Funnel synergy, provided by the Blood Altar skill.",
-          getFunc = function() return B.savedVariables["Blood Funnel"] end,
-          setFunc = function(value) B.savedVariables["Blood Funnel"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Blood Funnel and Blood Feast synergies, provided by the Blood Altar and morphs skills.",
+          getFunc = function() return B.savedVariables["Blood Funnel"], B.savedVariables["Blood Feast"] end,
+          setFunc = function(value)
+            B.savedVariables["Blood Funnel"] = value
+            B.savedVariables["Blood Feast"] = value
+          end,
         },
         {
           type = "checkbox",
-          name = "Blood Feast",
+          name = "Spiders",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Blood Feast synergy, provided by the Overflowing Altar skill.",
-          getFunc = function() return B.savedVariables["Blood Feast"] end,
-          setFunc = function(value) B.savedVariables["Blood Feast"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Spawn Broodlings",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Spawn Broodlings synergy, provided by the Trapping Webs skill.",
-          getFunc = function() return B.savedVariables["Spawn Broodlings"] end,
-          setFunc = function(value) B.savedVariables["Spawn Broodlings"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Black Widows",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Black Widows synergy, provided by the Shadow Silk skill.",
-          getFunc = function() return B.savedVariables["Black Widows"] end,
-          setFunc = function(value) B.savedVariables["Black Widows"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Arachnophobia",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Arachnophobia synergy, provided by the Tangling Webs skill.",
-          getFunc = function() return B.savedVariables["Arachnophobia"] end,
-          setFunc = function(value) B.savedVariables["Arachnophobia"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Spawn Broodlings, Black Widows and Arachnophobia synergies, provided by the Trapping Webs and morphs skills.",
+          getFunc = function() return B.savedVariables["Spawn Broodlings"], B.savedVariables["Black Widows"], B.savedVariables["Arachnophobia"] end,
+          setFunc = function(value)
+            B.savedVariables["Spawn Broodlings"] = value
+            B.savedVariables["Black Widows"] = value
+            B.savedVariables["Arachnophobia"] = value
+          end,
         },
         {
           type = "checkbox",
@@ -263,35 +236,25 @@ function B.BuildMenu()
         },
         {
           type = "checkbox",
-          name = "Bone Wall",
+          name = "Bone Shield",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Bone Wall synergy, provided by the Bone Sield skill.",
-          getFunc = function() return B.savedVariables["Bone Wall"] end,
-          setFunc = function(value) B.savedVariables["Bone Wall"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Spinal Surge",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Spinal Surge synergy, provided by the Bone Surge skill.",
-          getFunc = function() return B.savedVariables["Spinal Surge"] end,
-          setFunc = function(value) B.savedVariables["Spinal Surge"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Bone Wall and Spinal Surge synergies, provided by the Bone Shield and morphs skills.",
+          getFunc = function() return B.savedVariables["Bone Wall"], B.savedVariables["Spinal Surge"] end,
+          setFunc = function(value)
+            B.savedVariables["Bone Wall"] = value
+            B.savedVariables["Spinal Surge"] = value
+          end,
         },
         {
           type = "checkbox",
           name = "Combustion",
           width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Combustion synergy, provided by the Necrotic Orb skill.",
-          getFunc = function() return B.savedVariables["Combustion"] end,
-          setFunc = function(value) B.savedVariables["Combustion"] = value end,
-        },
-        {
-          type = "checkbox",
-          name = "Healing Combustion",
-          width = "half",
-          tooltip = "Toggling this off will prevent you from being able to use the Healing Combustion synergy, provided by the Energy Orb skill.",
-          getFunc = function() return B.savedVariables["Healing Combustion"] end,
-          setFunc = function(value) B.savedVariables["Healing Combustion"] = value end,
+          tooltip = "Toggling this off will prevent you from being able to use the Combustion and Healing Combustion synergies, provided by the Necrotic Orb and morphs skills.",
+          getFunc = function() return B.savedVariables["Combustion"], B.savedVariables["Healing Combustion"] end,
+          setFunc = function(value)
+            B.savedVariables["Combustion"] = value
+            B.savedVariables["Healing Combustion"] = value
+          end,
         },
       },
     },

@@ -18,7 +18,7 @@ function BS.BuildMenu()
     },
     {
       type = "description",
-      text = "" -- TODO
+      text = "This setting enables the possibility of blocking specific synergies and blocking all synergies in defined scenarios."
     },
     {
       type = "checkbox",
