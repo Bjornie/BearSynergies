@@ -2,12 +2,9 @@
 <GuiXml>
   <Controls>
     <TopLevelControl name="BearSynergies_Track_Cooldown" mouseEnabled="true" movable="true" clampedToScreen="true">
-      <!--TODO-->
-      <Dimensions x="" y="" />
+      <Dimensions x="" y="" /> <!--TODO-->
       <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
-      <OnMoveStop>
-        BearSynergies.Track.TrackOnMoveStop()
-      </OnMoveStop>
+      <OnMoveStop>BearSynergies.Track.TrackOnMoveStop()</OnMoveStop>
       <Controls>
         <Label name="$(parent)_Label" width="200" height="25" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
           wrapmode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="Test">

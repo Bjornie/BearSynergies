@@ -7,29 +7,31 @@ function BS.BuildMenu()
   local optionsTable = {
     {
       type = "header",
-      name = "|cFFFACDModule Settings|r"
+      name = "|cFFFACDModule Settings|r",
     },
     {
       type = "checkbox",
       name = "Synergy Block",
+      width = "half",
       getFunc = function() return BS.savedVariables.isBlock end,
       setFunc = function(value) BS.savedVariables.isBlock = value end,
-      requiresReload = true
+      requiresReload = true,
     },
     {
       type = "description",
-      text = "This setting enables the possibility of blocking specific synergies and blocking all synergies in defined scenarios."
+      text = "This setting enables the possibility of blocking specific synergies or all synergies in defined scenarios.",
     },
     {
       type = "checkbox",
       name = "Synergy Tracker",
+      width = "half",
       getFunc = function() return BS.savedVariables.isTrack end,
       setFunc = function(value) BS.savedVariables.isTrack = value end,
-      requiresReload = true
+      requiresReload = true,
     },
     {
       type = "description",
-      text = "" -- TODO
+      text = "", -- TODO
     }
   }
 

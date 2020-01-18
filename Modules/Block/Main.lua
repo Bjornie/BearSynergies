@@ -74,7 +74,7 @@ local BS = BearSynergies
 local B = BS.Block
 local EM = EVENT_MANAGER
 
--- Item ID's
+-- Item IDs for Lokke and Alkosh
 local IL = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local PL = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local Alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -82,56 +82,41 @@ local Alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 function B.Initialize()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
   
+  B.SynergyBlock()
   B.BuildMenu()
-  B.PreHook()
 
   EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
 -- This function runs before synergy prompt on screen and determines whether the prompt appears or not
-function B.PreHook()
-  ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
+function B.SynergyBlock() -- Does returning true/false work?
+  function SYNERGY:OnSynergyAbilityChanged()
     local synergyName, iconFilename = GetSynergyInfo()
-    
+
     if synergyName and iconFilename then
       -- Check if synergy is disabled
       if B.savedVariables[synergyName] ~= nil then
-        if B.savedVariables[synergyName] == false then
-          SYNERGY:SetHidden(true)
-          return true -- Do not run original code
-        end
+        if B.savedVariables[synergyName] == false then return end
+      --[[
       else
         -- Always allow unknown synergy
         SYNERGY:SetHidden(false)
         return false -- Run original code
       end
+      --]]
       
-      -- Check lokke pieces active if lokke mode enabled
-      if not B.GetLokke() then
-        SYNERGY:SetHidden(true)
-        return true -- Do not run original code
-      end
-      
-      -- Check alkosh pieces active if alkosh mode enabled
-      if not B.GetAlkosh() then
-        SYNERGY:SetHidden(true)
-        return true -- Do not run original code
-      end
-      
-      -- Check current resource if resource check enabled
-      if not B.IsResourceLow() then
-        SYNERGY:SetHidden(true)
-        return true -- Do not run original code
-      end
-    else
-      SYNERGY:SetHidden(true)
-    end
-  end)
+      -- Check lokke pieces active
+      if not B.GetLokke() then return end
+      -- Check alkosh pieces active
+      if not B.GetAlkosh() then return end
+      -- Check current resource
+      if not B.IsResourceLow() then return end
+  end
 end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
 function B.GetLokke()
-  -- If disabled always return true
+  -- If disabled return true
   if B.savedVariables.isLokke == false then return true end
   
   local imperfEquipped, perfEquipped = 0
@@ -146,7 +131,7 @@ end
 
 -- Checks whether or not Roar of Alkosh is equipped.
 function B.GetAlkosh()
-  -- If disabled always return true
+  -- If disabled return true
   if B.savedVariables.isAlkosh == false then return true end
   
   local alkoshEquipped = 0
@@ -160,7 +145,7 @@ end
 
 -- Checks resource percentage and compares with defined options value
 function B.IsResourceLow()
-  -- If disabled always return false
+  -- If disabled return false
   if B.savedVariables.isResource == false then return true end
   
   local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)
@@ -177,10 +162,6 @@ function B.IsResourceLow()
   else return false end
 end
 
--- Unhide synergy prompt and run PreHook again
 function B.BarswapRefresh(_, didBarswap)
-  if didBarswap then
-    SYNERGY:SetHidden(false)
-    SYNERGY:OnSynergyAbilityChanged()
-  end
+  if didBarswap then SYNERGY:OnSynergyAbilityChanged() end
 end
