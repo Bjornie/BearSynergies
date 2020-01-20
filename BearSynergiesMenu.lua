@@ -19,6 +19,7 @@ function BS.BuildMenu()
     },
     {
       type = "description",
+      width = "half",
       text = "This setting enables the possibility of blocking specific synergies or all synergies in defined scenarios.",
     },
     {
@@ -31,6 +32,7 @@ function BS.BuildMenu()
     },
     {
       type = "description",
+      width = "half",
       text = "", -- TODO
     }
   }

@@ -1,9 +1,9 @@
 ## Title: Bear Synergies
-## Version: 1.0.2
+## Version: 1.1.0
 ## APIVersion: 100029
 ## Author: BjørnTheBurr
 ## SavedVariables: BearSynergiesSV
-## DependsOn: LibAddonMenu-2.0
+## DependsOn: LibAddonMenu-2.0 LibDialog
 
 BearSynergies.lua
 BearSynergiesMenu.lua
@@ -13,3 +13,4 @@ Modules/Block/Menu.lua
 
 Modules/Track/Main.lua
 Modules/Track/Menu.lua
+Modules/Track/UI.xml

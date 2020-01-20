@@ -4,6 +4,7 @@ BearSynergies.Block = {
     isAlkosh = false,
     isResource = false,
     resourceThreshold = 50,
+    blockDO = true,
 
     -- Dragonknight
     ["Shackle"] = true,
@@ -73,14 +74,20 @@ BearSynergies.Block = {
 local BS = BearSynergies
 local B = BS.Block
 local EM = EVENT_MANAGER
+local LD = LibDialog
 
+local allowDO = false
 -- Item IDs for Lokke and Alkosh
-local IL = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
-local PL = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
-local Alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 
 function B.Initialize()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
+
+  -- Build confirmation dialog for Destructive Outbreak
+  LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r",
+                    "Destructive Outbreak can kill the group! Press Confirm to continue.", callbackYes)
   
   B.SynergyBlock()
   B.BuildMenu()
@@ -88,30 +95,41 @@ function B.Initialize()
   EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
--- This function runs before synergy prompt on screen and determines whether the prompt appears or not
-function B.SynergyBlock() -- Does returning true/false work?
+-- This function determines whether the synergy prompt on-screen appears or not
+function B.SynergyBlock()
+  local onSynAbChng = SYNERGY.OnSynergyAbilityChanged
+
   function SYNERGY:OnSynergyAbilityChanged()
     local synergyName, iconFilename = GetSynergyInfo()
 
     if synergyName and iconFilename then
       -- Check if synergy is disabled
       if B.savedVariables[synergyName] ~= nil then
-        if B.savedVariables[synergyName] == false then return end
-      --[[
-      else
-        -- Always allow unknown synergy
-        SYNERGY:SetHidden(false)
-        return false -- Run original code
-      end
-      --]]
+        if B.savedVariables[synergyName] == false then return false end
+      else return true end -- Always allow unknown synergy
+
+      if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO and not allowDO then
+        B.DODialog()
+      else allowDO = false end
       
-      -- Check lokke pieces active
-      if not B.GetLokke() then return end
-      -- Check alkosh pieces active
-      if not B.GetAlkosh() then return end
+      -- Check Lokke pieces active
+      if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
+      -- Check Alkosh pieces active
+      if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
       -- Check current resource
-      if not B.IsResourceLow() then return end
+      if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
+    end
+
+    onSynAbChng(self) -- No idea why this is needed but it is
   end
+end
+
+function B.DODialog()
+  LD:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+end
+
+function callbackYes()
+  allowDO = true
 end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
@@ -120,10 +138,10 @@ function B.GetLokke()
   if B.savedVariables.isLokke == false then return true end
   
   local imperfEquipped, perfEquipped = 0
-  local _, _, _, imperfEquipped = GetItemLinkSetInfo(IL, true)
-  local _, _, _, perfEquipped = GetItemLinkSetInfo(PL, true)
+  local _, _, _, imperfEquipped = GetItemLinkSetInfo(imperfLokke, true)
+  local _, _, _, perfEquipped = GetItemLinkSetInfo(perfLokke, true)
 
-  -- If lokke mode is enabled but no lokke pieces are equipped don't block synergies
+  -- If Lokke Mode is enabled but no Lokke pieces are equipped don't block synergies
   if (imperfEquipped == 0) and (perfEquipped == 0) then return true end
   if (imperfEquipped == 5) or (perfEquipped == 5) then return true
   else return false end
@@ -135,9 +153,9 @@ function B.GetAlkosh()
   if B.savedVariables.isAlkosh == false then return true end
   
   local alkoshEquipped = 0
-  local _, _, _, alkoshEquipped = GetItemLinkSetInfo(Alkosh, true)
+  local _, _, _, alkoshEquipped = GetItemLinkSetInfo(alkosh, true)
   
-  -- If alkosh mode is enabled but no alkosh pieces are equipped don't block synergies
+  -- If Alkosh Mode is enabled but no Alkosh pieces are equipped don't block synergies
   if alkoshEquipped == 0 then return true end
   if alkoshEquipped == 5 then return true 
   else return false end

@@ -327,10 +327,10 @@ function B.BuildMenu()
         },
         {
           type = "checkbox",
-          name = "Destructive Outbreak",
-          tooltip = "Toggling this off will prevent you from being able to use the Destructive Outbreak synergy, provided from the fossilize mechanic during the fight with The Warrior in Hel Ra Citadel.",
-          getFunc = function() return B.savedVariables["Destructive Outbreak"] end,
-          setFunc = function(value) B.savedVariables["Destructive Outbreak"] = value end,
+          name = "Destructive Outbreak Dialog",
+          tooltip = "Toggling this on will prompt a message on-screen whenever you get the fossilize mechanic, warning you of the danger it poses.",
+          getFunc = function() return B.savedVariables.blockDO end,
+          setFunc = function(value) B.savedVariables.blockDO = value end,
         },
 
         -- Cloudrest Settings
