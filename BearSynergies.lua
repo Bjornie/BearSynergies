@@ -9,6 +9,7 @@ BearSynergies = {
 	}
 }
 
+
 local BS = BearSynergies
 local EM = EVENT_MANAGER
 
