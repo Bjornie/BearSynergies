@@ -85,7 +85,7 @@ local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 function B.Initialize()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
 
-  -- Build confirmation dialog for Destructive Outbreak
+  -- Confirmation dialog for Destructive Outbreak
   LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r",
                     "Destructive Outbreak can kill the group! Press Confirm to continue.", callbackYes)
   
