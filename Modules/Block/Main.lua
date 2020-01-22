@@ -77,7 +77,6 @@ local EM = EVENT_MANAGER
 local LD = LibDialog
 
 local allowDO = false
--- Item IDs for Lokke and Alkosh
 local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -95,33 +94,26 @@ function B.Initialize()
   EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
--- This function determines whether the synergy prompt on-screen appears or not
+-- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 function B.SynergyBlock()
-  local onSynAbChng = SYNERGY.OnSynergyAbilityChanged
-
-  function SYNERGY:OnSynergyAbilityChanged()
+  -- If the intercept function returns true the target function won't run
+  ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
     local synergyName, iconFilename = GetSynergyInfo()
 
     if synergyName and iconFilename then
-      -- Check if synergy is disabled
       if B.savedVariables[synergyName] ~= nil then
-        if B.savedVariables[synergyName] == false then return false end
-      else return true end -- Always allow unknown synergy
+        if B.savedVariables[synergyName] == false then return true end
+      else return false end -- Always allow unknown synergy
+
+      if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+      if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+      if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 
       if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO and not allowDO then
         B.DODialog()
       else allowDO = false end
-      
-      -- Check Lokke pieces active
-      if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
-      -- Check Alkosh pieces active
-      if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
-      -- Check current resource
-      if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(self, true) return false end
     end
-
-    onSynAbChng(self) -- No idea why this is needed but it is
-  end
+  end)
 end
 
 function B.DODialog()
