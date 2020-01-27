@@ -40,7 +40,7 @@ BearSynergies.Block = {
     ["Blood Funnel"] = true,
     ["Blood Feast"] = true,
     ["Spawn Broodlings"] = true,
-    ["Black Widows"] = true,
+    ["Black Widow"] = true,
     ["Arachnophobia"] = true,
     ["Radiate"] = true,
     ["Bone Wall"] = true,
@@ -76,7 +76,6 @@ local B = BS.Block
 local EM = EVENT_MANAGER
 local LD = LibDialog
 
-local allowDO = false
 local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -85,8 +84,7 @@ function B.Initialize()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
 
   -- Confirmation dialog for Destructive Outbreak
-  LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r",
-                    "Destructive Outbreak can kill the group! Press Confirm to continue.", callbackYes)
+  LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
   
   B.SynergyBlock()
   B.BuildMenu()
@@ -105,23 +103,20 @@ function B.SynergyBlock()
         if B.savedVariables[synergyName] == false then return true end
       else return false end -- Always allow unknown synergy
 
+      if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO then
+        B.DODialog()
+        return false
+      end
+
       if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
       if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
       if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-
-      if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO and not allowDO then
-        B.DODialog()
-      else allowDO = false end
     end
   end)
 end
 
 function B.DODialog()
   LD:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
-end
-
-function callbackYes()
-  allowDO = true
 end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
