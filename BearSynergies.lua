@@ -15,15 +15,15 @@ local EM = EVENT_MANAGER
 function BS.OnAddonLoaded(_, addonName)
 	if addonName == BS.name then
 		EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
-		BS.Initialize()
+		BS.Initialise()
 	end
 end
 
-function BS.Initialize()
+function BS.Initialise()
 	BS.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.default)
 
-  if BS.savedVariables.isBlock then BS.Block.Initialize() end
-  if BS.savedVariables.isTrack then BS.Track.Initialize() end
+  if BS.savedVariables.isBlock then BS.Block.Initialise() end
+  if BS.savedVariables.isTrack then BS.Track.Initialise() end
 
 	BS.BuildMenu()
 end
@@ -35,7 +35,7 @@ function BS.GetModulePanelData(name)
 		displayname = name and string.format("Bear Synergies - %s",	name) or "Bear Synergies",
 		author = "|c00BFFFBjørnTheBurr|r",
 		version = BS.version,
-		registerForRefresh = true
+		registerForRefresh = true,
 	}
 end
 

@@ -80,39 +80,37 @@ local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|
 local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 
-function B.Initialize()
+function B.Initialise()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
 
   -- Confirmation dialog for Destructive Outbreak
   LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
   
-  B.SynergyBlock()
+  ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", B.Intercept)
   B.BuildMenu()
 
   EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
-function B.SynergyBlock()
-  -- If the intercept function returns true the target function won't run
-  ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", function()
-    local synergyName, iconFilename = GetSynergyInfo()
+-- If the intercept function returns true the target function won't run
+function B.Intercept()
+  local synergyName, iconFilename = GetSynergyInfo()
 
-    if synergyName and iconFilename then
-      if B.savedVariables[synergyName] ~= nil then
-        if B.savedVariables[synergyName] == false then return true end
-      else return false end -- Always allow unknown synergy
+  if synergyName and iconFilename then
+    if B.savedVariables[synergyName] ~= nil then
+      if B.savedVariables[synergyName] == false then return true end
+    else return false end -- Always allow unknown synergy
 
-      if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO then
-        B.DODialog()
-        return false
-      end
-
-      if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-      if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-      if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO then
+      B.DODialog()
+      return false
     end
-  end)
+
+    if not B.GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if not B.GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if not B.IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+  end
 end
 
 function B.DODialog()
@@ -121,7 +119,6 @@ end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
 function B.GetLokke()
-  -- If disabled return true
   if B.savedVariables.isLokke == false then return true end
   
   local imperfEquipped, perfEquipped = 0
@@ -136,7 +133,6 @@ end
 
 -- Checks whether or not Roar of Alkosh is equipped.
 function B.GetAlkosh()
-  -- If disabled return true
   if B.savedVariables.isAlkosh == false then return true end
   
   local alkoshEquipped = 0
@@ -150,7 +146,6 @@ end
 
 -- Checks resource percentage and compares with defined options value
 function B.IsResourceLow()
-  -- If disabled return false
   if B.savedVariables.isResource == false then return true end
   
   local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)

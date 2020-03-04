@@ -1,16 +1,19 @@
-<!--BASIC -->
 <GuiXml>
   <Controls>
-    <TopLevelControl name="BearSynergies_Track_Cooldown" mouseEnabled="true" movable="true" clampedToScreen="true">
-      <Dimensions x="" y="" /> <!--TODO-->
-      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
-      <OnMoveStop>BearSynergies.Track.TrackOnMoveStop()</OnMoveStop>
-      <Controls>
-        <Label name="$(parent)_Label" width="200" height="25" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
-          wrapmode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="Test">
-          <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
-        </Label>
-      </Controls>
+    <TopLevelControl name="BearSynergiesTrackUI" mouseEnabled="true" movable="true" clampedToScreen="true" resizeToFitDescendents="true">
+      <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" />
+      <OnMoveStop>
+        BearSynergies.Track.OnUIMoveStop()
+      </OnMoveStop>
     </TopLevelControl>
+
+    <Texture name="SynergyIcon" textureFile="esoui/art/icons/ability_undaunted_004.dds" virtual="true">
+      <Dimensions x="48" y="48" />
+      <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$(grandparent)" />
+    </Texture>
+
+    <Label name="SynergyTimer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_26)|thick-outline" color="FF0000" text="19.5" virtual="true">
+      <Anchor point="CENTER" relativePoint="CENTER" relativeTo="$(grandparent)" />
+    </Label>
   </Controls>
 </GuiXml>
