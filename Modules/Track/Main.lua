@@ -4,51 +4,53 @@ BearSynergies.Track = {
     top = 0,
 
     synergies = {
-      shackle = false,
-      ignite = false,
-      graveRobber = false,
-      pureAgony = false,
-      hiddenRefresh = false,
-      soulLeech = false,
-      chargedLightning = false,
-      conduit = false,
-      nova = false,
-      purify = false,
-      harvest = false,
-      icyEscape = false,
-      feedingFrenzy = false,
-      bloodAltar = false,
-      spiders = false,
-      radiate = false,
-      boneShield = false,
-      orb = false,
+      1 = false, -- Shackle
+      2 = false, -- Ignite
+      3 = false, -- Grave Robber
+      4 = false, -- Pure Agony
+      5 = false, -- Hidden Refresh
+      6 = false, -- Soul Leech
+      7 = false, -- Charged Lightning
+      8 = false, -- Conduit
+      9 = false, -- Nova
+      10 = false, -- Purify
+      11 = false, -- Harvest
+      12 = false, -- Icy Escape
+      13 = false, -- Feeding Frenzy
+      14 = false, -- Blood Altar
+      15 = false, -- Spiders
+      16 = false, -- Radiate
+      17 = false, -- Bone Shield
+      18 = false, -- Orb
     },
   },
 
   icons = {
-    shackle = "esoui/art/icons/ability_dragonknight_006.dds",
-    ignite = "esoui/art/icons/ability_dragonknight_010.dds",
-    graveRobber = "esoui/art/icons/ability_necromancer_004.dds",
-    pureAgony = "esoui/art/icons/ability_necromancer_010_b.dds",
-    hiddenRefresh = "esoui/art/icons/ability_nightblade_015.dds",
-    soulLeech = "esoui/art/icons/ability_nightblade_018.dds",
-    chargedLightning = "esoui/art/icons/ability_sorcerer_storm_atronach.dds",
-    conduit = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
-    nova = "esoui/art/icons/ability_templar_nova.dds",
-    purify = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
-    harvest = "esoui/art/icons/ability_warden_007.dds",
-    icyEscape = "esoui/art/icons/ability_warden_005_b.dds",
-    feedingFrenzy = "esoui/art/icons/ability_werewolf_005_b.dds",
-    bloodAltar = "esoui/art/icons/ability_undaunted_001.dds",
-    spiders = "esoui/art/icons/ability_undaunted_003.dds",
-    radiate = "esoui/art/icons/ability_undaunted_002.dds",
-    boneShield = "esoui/art/icons/ability_undaunted_005.dds",
-    orb = "esoui/art/icons/ability_undaunted_004.dds",
+    1 = "esoui/art/icons/ability_dragonknight_006.dds",
+    2 = "esoui/art/icons/ability_dragonknight_010.dds",
+    3 = "esoui/art/icons/ability_necromancer_004.dds",
+    4 = "esoui/art/icons/ability_necromancer_010_b.dds",
+    5 = "esoui/art/icons/ability_nightblade_015.dds",
+    6 = "esoui/art/icons/ability_nightblade_018.dds",
+    7 = "esoui/art/icons/ability_sorcerer_storm_atronach.dds",
+    8 = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
+    9 = "esoui/art/icons/ability_templar_nova.dds",
+    10 = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
+    11 = "esoui/art/icons/ability_warden_007.dds",
+    12 = "esoui/art/icons/ability_warden_005_b.dds",
+    13 = "esoui/art/icons/ability_werewolf_005_b.dds",
+    14 = "esoui/art/icons/ability_undaunted_001.dds",
+    15 = "esoui/art/icons/ability_undaunted_003.dds",
+    16 = "esoui/art/icons/ability_undaunted_002.dds",
+    17 = "esoui/art/icons/ability_undaunted_005.dds",
+    18 = "esoui/art/icons/ability_undaunted_004.dds",
   },
 }
 
 local BS = BearSynergies
 local T = BS.Track
+local offsetX = 48
+local offsetY = 48
 
 function T.Initialise()
   T.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.default)
@@ -56,22 +58,32 @@ function T.Initialise()
   T.CreateControls()
   T.RestorePosition()
   T.BuildMenu()
+
+  --EVENT_ABILITY_COOLDOWN_UPDATED (number eventCode, number abilityId)
 end
 
 function T.CreateControls()
-  for k, v in pairs(T.savedVariables.synergies) do
-    if v == true then
-      local SynergyIcon = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)" .. k, BearSynergiesTrackUI, "SynergyIcon")
-      SynergyIcon:SetTexture(T.icons[k])
-      SynergyIcon:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, 0, 0)
+  local counter = 1
 
-      local SynergyTimer = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)" .. k, SynergyIcon, "SynergyTimer")
+  for i, v in ipairs(T.savedVariables.synergies) do
+    if v == true then
+      local IconControl = WINDOW_MANAGER:CreateControlFromVirtual("IconControl", BearSynergiesTrackUI, "SynergyIcon", i)
+      IconControl:SetTexture(T.icons[i])
+
+      local TimerControl = WINDOW_MANAGER:CreateControlFromVirtual("TimerControl", SynergyIcon, "SynergyTimer", i)
+
+      T.SetPositions(IconControl, TimerControl, counter)
+      counter + 1
     end
   end
 end
 
+function T.SetPositions(IconControl, TimerControl, counter)
+  IconControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, counter * offsetX, counter * offsetY)
+  TimerControl:SetAnchor(CENTER, IconControl, CENTER)
+end
+
 function T.RestorePosition()
-  BearSynergiesTrackUI:ClearAnchors()
   BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
 end
 
