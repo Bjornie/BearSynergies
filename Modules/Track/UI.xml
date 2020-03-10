@@ -8,12 +8,12 @@
     </TopLevelControl>
 
     <Texture name="SynergyIcon" textureFile="esoui/art/icons/ability_undaunted_004.dds" virtual="true">
+      <Anchor point="TOPLEFT" relativeTo="BearSynergiesTrackUI" relativePoint="TOPLEFT" />
       <Dimensions x="48" y="48" />
-      <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$(grandparent)" />
     </Texture>
 
-    <Label name="SynergyTimer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_26)|thick-outline" color="FF0000" text="19.5" virtual="true">
-      <Anchor point="CENTER" relativePoint="CENTER" relativeTo="$(grandparent)" />
+    <Label name="SynergyTimer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_26)|thick-outline" color="FFFFFF" text="0" virtual="true">
+      <Anchor point="CENTER" relativeTo="SynergyIcon" relativePoint="CENTER" />
     </Label>
   </Controls>
 </GuiXml>

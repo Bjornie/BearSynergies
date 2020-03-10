@@ -54,6 +54,7 @@ function T.Initialise()
   T.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.default)
 
   T.CreateControls()
+  T.SetPositions()
   T.RestorePosition()
   T.BuildMenu()
 end
@@ -61,11 +62,17 @@ end
 function T.CreateControls()
   for k, v in pairs(T.savedVariables.synergies) do
     if v == true then
-      local SynergyIcon = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)" .. k, BearSynergiesTrackUI, "SynergyIcon")
-      SynergyIcon:SetTexture(T.icons[k])
-      SynergyIcon:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, 0, 0)
+      local IconControl = WINDOW_MANAGER:CreateControlFromVirtual("IconControl", BearSynergiesTrackUI, "SynergyIcon", k)
+      IconControl:SetTexture(T.icons[k])
 
-      local SynergyTimer = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)" .. k, SynergyIcon, "SynergyTimer")
+      local TimerControl = WINDOW_MANAGER:CreateControlFromVirtual("TimerControl", IconControl, "SynergyTimer", k)
+    end
+  end
+end
+
+function T.SetPositions()
+  for k, v in pairs(T.savedVariables.synergies) do
+    if v == true then
     end
   end
 end
