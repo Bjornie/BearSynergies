@@ -1,6 +1,5 @@
 local BS = BearSynergies
 local T = BS.Track
-local LAM = LibAddonMenu2
 
 function T.BuildMenu()
   local panelData = BS.GetModulePanelData("Track")
@@ -15,7 +14,10 @@ function T.BuildMenu()
           name = "Shackle",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[1] end,
-          setFunc = function(value) T.savedVariables.synergies[1] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[1] = value
+                      T.CreateControls()
+                    end,
         },
         {
           type = "texture",
@@ -29,7 +31,10 @@ function T.BuildMenu()
           name = "Ignite",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[2] end,
-          setFunc = function(value) T.savedVariables.synergies[2] = value end,
+          setFunc = function(value) 
+                      T.savedVariables.synergies[2] = value
+                      T.CreateControls()
+                    end,
         },
         {
           type = "texture",
@@ -43,7 +48,10 @@ function T.BuildMenu()
           name = "Grave Robber",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[3] end,
-          setFunc = function(value) T.savedVariables.synergies[3] = value end,
+          setFunc = function(value) 
+                      T.savedVariables.synergies[3] = value
+                      T.CreateControls()
+                    end,
         },
         {
           type = "texture",
@@ -266,6 +274,6 @@ function T.BuildMenu()
     },
   }
 
-  LAM:RegisterAddonPanel(BS.name .. "Track", panelData)
-  LAM:RegisterOptionControls(BS.name .. "Track", optionsTable)
+  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Track", panelData)
+  LibAddonMenu2:RegisterOptionControls(BS.name .. "Track", optionsTable)
 end

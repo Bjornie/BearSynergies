@@ -1,5 +1,4 @@
 local BS = BearSynergies
-local LAM = LibAddonMenu2
 
 function BS.BuildMenu()
   local panelData = BS.GetModulePanelData()
@@ -37,6 +36,6 @@ function BS.BuildMenu()
     }
   }
 
-  LAM:RegisterAddonPanel(BS.name .. "Main", panelData)
-  LAM:RegisterOptionControls(BS.name .. "Main", optionsTable)
+  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Main", panelData)
+  LibAddonMenu2:RegisterOptionControls(BS.name .. "Main", optionsTable)
 end

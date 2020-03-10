@@ -6,48 +6,46 @@ BearSynergies.Block = {
     resourceThreshold = 50,
     blockDO = true,
 
-    -- TODO edit synergyName to iconFileName
+    -- Use icon instead of name to easily support every language
     -- Dragonknight
-    ["Shackle"] = true,
-    ["Ignite"] = true,
+    ["/esoui/art/icons/ability_dragonknight_006.dds"] = true, -- Shackle
+    ["/esoui/art/icons/ability_dragonknight_010.dds"] = true, -- Ignite
 
     -- Necromancer
-    ["Grave Robber"] = true,
-    ["Pure Agony"] = true,
+    ["/esoui/art/icons/ability_necromancer_004.dds"] = true, -- Grave Robber
+    ["/esoui/art/icons/ability_necromancer_010_b.dds"] = true, -- Pure Agony
 
     -- Nightblade
-    ["Hidden Refresh"] = true,
-    ["Soul Leech"] = true,
+    ["/esoui/art/icons/ability_nightblade_015.dds"] = true, -- Hidden Refresh
+    ["/esoui/art/icons/ability_nightblade_018.dds"] = true, -- Soul Leech
 
     -- Sorcerer
-    ["Charged Lightning"] = true,
-    ["Conduit"] = true,
+    ["/esoui/art/icons/ability_sorcerer_storm_atronach.dds"] = true, -- Charged Lightning
+    ["/esoui/art/icons/ability_sorcerer_lightning_splash.dds"] = true, -- Conduit
 
     -- Templar
-    ["Blessed Shards"] = true,
-    ["Holy Shards"] = true,
-    ["Supernova"] = true,
-    ["Gravity Crush"] = true,
-    ["Purify"] = true,
+    ["/esoui/art/icons/ability_templar_sun_strike.dds"] = true, -- Blessed Shards & Holy Shards
+    ["/esoui/art/icons/ability_templar_nova.dds"] = true, -- Supernova
+    ["/esoui/art/icons/ability_templar_solar_prison.dds"] = true, -- Gravity Crush
+    ["/esoui/art/icons/ability_templar_cleansing_ritual.dds"] = true, -- Purify
 
     -- Warden
-    ["Harvest"] = true,
-    ["Icy Escape"] = true,
+    ["/esoui/art/icons/ability_warden_007.dds"] = true, -- Harvest
+    ["/esoui/art/icons/ability_warden_005_b.dds"] = true, -- Icy Escape
 
     -- Werewolf
     ["Feeding Frenzy"] = true,
 
     -- Undaunted
-    ["Blood Funnel"] = true,
-    ["Blood Feast"] = true,
-    ["Spawn Broodlings"] = true,
-    ["Black Widow"] = true,
-    ["Arachnophobia"] = true,
-    ["Radiate"] = true,
-    ["Bone Wall"] = true,
-    ["Spinal Surge"] = true,
-    ["Combustion"] = true,
-    ["Healing Combustion"] = true,
+    ["/esoui/art/icons/ability_undaunted_001.dds"] = true, -- Blood Funnel
+    ["/esoui/art/icons/ability_undaunted_001_a.dds"] = true, -- Blood Feast
+    ["/esoui/art/icons/ability_undaunted_003.dds"] = true, -- Spawn Broodlings & Black Widows
+    ["/esoui/art/icons/crafting_light_armor_standard_f_005.dds"] = true, -- Arachnophobia
+    ["/esoui/art/icons/ability_undaunted_002.dds"] = true, -- Radiate
+    ["/esoui/art/icons/ability_undaunted_005.dds"] = true, -- Bone Wall
+    ["/esoui/art/icons/ability_undaunted_005a.dds"] = true, -- Spinal Surge
+    ["/esoui/art/icons/ability_undaunted_004.dds"] = true, -- Combustion
+    ["/esoui/art/icons/ability_undaunted_004b.dds"] = true, -- Healing Combustion
 
     -- Arena
     ["Sigil of Defense"] = true,
@@ -74,8 +72,6 @@ BearSynergies.Block = {
 
 local BS = BearSynergies
 local B = BS.Block
-local EM = EVENT_MANAGER
-local LD = LibDialog
 
 local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -85,12 +81,12 @@ function B.Initialise()
   B.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.default)
 
   -- Confirmation dialog for Destructive Outbreak
-  LD:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
+  LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
   
   ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", B.Intercept)
   B.BuildMenu()
 
-  EM:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
+  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
@@ -99,8 +95,8 @@ function B.Intercept()
   local synergyName, iconFilename = GetSynergyInfo()
 
   if synergyName and iconFilename then
-    if B.savedVariables[synergyName] ~= nil then
-      if B.savedVariables[synergyName] == false then return true end
+    if B.savedVariables[iconFilename] ~= nil then
+      if B.savedVariables[iconFilename] == false then return true end
     else return false end -- Always allow unknown synergy
 
     if synergyName == "Destructive Outbreak" and B.savedVariables.blockDO then
@@ -115,7 +111,7 @@ function B.Intercept()
 end
 
 function B.DODialog()
-  LD:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+  LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
 end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.

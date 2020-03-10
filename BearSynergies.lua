@@ -2,19 +2,19 @@ BearSynergies = {
 	name = "BearSynergies",
 	version = "1.1.0",
 	svName = "BearSynergiesSV",
-	svVersion = 4,
+  svVersion = 4,
+  
 	default = {
     isBlock = true,
     isTrack = true,
-	}
+	},
 }
 
 local BS = BearSynergies
-local EM = EVENT_MANAGER
 
 function BS.OnAddonLoaded(_, addonName)
 	if addonName == BS.name then
-		EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
+		EVENT_MANAGER:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
 		BS.Initialise()
 	end
 end
@@ -39,4 +39,4 @@ function BS.GetModulePanelData(name)
 	}
 end
 
-EM:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, BS.OnAddonLoaded)
+EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, BS.OnAddonLoaded)
