@@ -6,6 +6,7 @@ BearSynergies.Block = {
     resourceThreshold = 50,
     blockDO = true,
 
+    -- TODO edit synergyName to iconFileName
     -- Dragonknight
     ["Shackle"] = true,
     ["Ignite"] = true,
