@@ -16,7 +16,7 @@ function T.BuildMenu()
           getFunc = function() return T.savedVariables.synergies[1] end,
           setFunc = function(value)
                       T.savedVariables.synergies[1] = value
-                      T.CreateControls()
+                      T.SetPosition()
                     end,
         },
         {
@@ -33,7 +33,7 @@ function T.BuildMenu()
           getFunc = function() return T.savedVariables.synergies[2] end,
           setFunc = function(value) 
                       T.savedVariables.synergies[2] = value
-                      T.CreateControls()
+                      T.SetPosition()
                     end,
         },
         {
@@ -50,7 +50,7 @@ function T.BuildMenu()
           getFunc = function() return T.savedVariables.synergies[3] end,
           setFunc = function(value) 
                       T.savedVariables.synergies[3] = value
-                      T.CreateControls()
+                      T.SetPosition()
                     end,
         },
         {
@@ -65,7 +65,10 @@ function T.BuildMenu()
           name = "Pure Agony",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[4] end,
-          setFunc = function(value) T.savedVariables.synergies[4] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[4] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -79,7 +82,10 @@ function T.BuildMenu()
           name = "Hidden Refresh",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[5] end,
-          setFunc = function(value) T.savedVariables.synergies[5] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[5] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -93,7 +99,10 @@ function T.BuildMenu()
           name = "Soul Leech",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[6] end,
-          setFunc = function(value) T.savedVariables.synergies[6] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[6] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -107,7 +116,10 @@ function T.BuildMenu()
           name = "Charged Lightning",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[7] end,
-          setFunc = function(value) T.savedVariables.synergies[7] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[7] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -121,7 +133,10 @@ function T.BuildMenu()
           name = "Conduit",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[8] end,
-          setFunc = function(value) T.savedVariables.synergies[8] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[8] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -135,7 +150,10 @@ function T.BuildMenu()
           name = "Nova",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[9] end,
-          setFunc = function(value) T.savedVariables.synergies[9] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[9] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -149,7 +167,10 @@ function T.BuildMenu()
           name = "Purify",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[10] end,
-          setFunc = function(value) T.savedVariables.synergies[10] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[10] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -163,7 +184,10 @@ function T.BuildMenu()
           name = "Harvest",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[11] end,
-          setFunc = function(value) T.savedVariables.synergies[11] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[11] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -177,7 +201,10 @@ function T.BuildMenu()
           name = "Icy Escape",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[12] end,
-          setFunc = function(value) T.savedVariables.synergies[12] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[12] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -191,7 +218,10 @@ function T.BuildMenu()
           name = "Feeding Frenzy",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[13] end,
-          setFunc = function(value) T.savedVariables.synergies[13] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[13] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -205,7 +235,10 @@ function T.BuildMenu()
           name = "Blood Altar",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[14] end,
-          setFunc = function(value) T.savedVariables.synergies[14] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[14] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -219,7 +252,10 @@ function T.BuildMenu()
           name = "Spiders",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[15] end,
-          setFunc = function(value) T.savedVariables.synergies[15] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[15] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -233,7 +269,10 @@ function T.BuildMenu()
           name = "Radiate",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[16] end,
-          setFunc = function(value) T.savedVariables.synergies[16] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[16] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -247,7 +286,10 @@ function T.BuildMenu()
           name = "Bone Shield",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[17] end,
-          setFunc = function(value) T.savedVariables.synergies[17] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[17] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",
@@ -261,7 +303,10 @@ function T.BuildMenu()
           name = "Spear Shards/Combustion",
           width = "half",
           getFunc = function() return T.savedVariables.synergies[18] end,
-          setFunc = function(value) T.savedVariables.synergies[18] = value end,
+          setFunc = function(value)
+                      T.savedVariables.synergies[18] = value
+                      T.SetPosition()
+                    end,
         },
         {
           type = "texture",

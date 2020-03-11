@@ -52,14 +52,13 @@ local icons = {
   [18] = "esoui/art/icons/ability_undaunted_004.dds",
 }
 
-local iconControl = nil
-local timerControl = nil
-local counter = 0
+local cooldownControl = nil
 
 function T.Initialise()
   T.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.default)
 
   T.CreateControls()
+  T.SetPosition()
   T.RestorePosition()
   T.BuildMenu()
 
@@ -67,36 +66,30 @@ function T.Initialise()
 end
 
 function T.CreateControls()
-  counter = 0
-
   for i, v in ipairs(T.savedVariables.synergies) do
-    if v == false then
-      iconControl = WINDOW_MANAGER:GetControlByName("IconControl", i)
-      if iconControl ~= nil then iconControl:Clear() end
-      d(zo_strformat(iconcontrol))
-    else
-      iconControl = WINDOW_MANAGER:CreateControlFromVirtual("IconControl", BearSynergiesTrackUI, "SynergyIcon", i)
-      iconControl:SetTexture(icons[i])
-
-      timerControl = WINDOW_MANAGER:CreateControlFromVirtual("TimerControl", iconControl, "SynergyTimer", i)
-
-      T.SetPositions()
-      counter = counter + 1
-    end
+    cooldownControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)", BearSynergiesTrackBackdrop, "BearSynergiesTrackCooldown", i)
+    cooldownControl:GetNamedChild("$(parent)Icon"):SetTexture(icons[i])
   end
 end
 
-function T.SetPositions()
-  iconControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, counter * T.savedVariables.offsetX)
-  timerControl:SetAnchor(CENTER, iconControl, CENTER)
+function T.SetPosition()
+  local counter = 0
+  for i, v in ipairs(T.savedVariables.synergies) do
+    if v then
+      cooldownControl = BearSynergiesTrackBackdrop:GetNamedChild("$(parent)" .. i)
+      cooldownControl:SetHidden(false)
+      cooldownControl:SetAnchor(TOPLEFT, BearSynergiesTrackBackdrop, TOPLEFT, 5 + counter * 48, 5)
+      counter = counter + 1
+    else BearSynergiesTrackBackdrop:GetNamedChild("$(parent)" .. i):SetHidden(true) end
+  end
 end
 
 function T.RestorePosition()
-  BearSynergiesTrackUI:ClearAnchors()
-  BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
+  BearSynergiesTrackBackdrop:ClearAnchors()
+  BearSynergiesTrackBackdrop:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
 end
 
-function T.OnUIMoveStop()
-  T.savedVariables.left = BearSynergiesTrackUI:GetLeft()
-  T.savedVariables.top = BearSynergiesTrackUI:GetTop()
+function T.OnMoveStop()
+  T.savedVariables.left = BearSynergiesTrackBackdrop:GetLeft()
+  T.savedVariables.top = BearSynergiesTrackBackdrop:GetTop()
 end
