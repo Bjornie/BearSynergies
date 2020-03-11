@@ -70,7 +70,11 @@ function T.CreateControls()
   counter = 0
 
   for i, v in ipairs(T.savedVariables.synergies) do
-    if v == true then
+    if v == false then
+      iconControl = WINDOW_MANAGER:GetControlByName("IconControl", i)
+      if iconControl ~= nil then iconControl:Clear() end
+      d(zo_strformat(iconcontrol))
+    else
       iconControl = WINDOW_MANAGER:CreateControlFromVirtual("IconControl", BearSynergiesTrackUI, "SynergyIcon", i)
       iconControl:SetTexture(icons[i])
 
