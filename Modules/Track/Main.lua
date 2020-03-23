@@ -52,7 +52,8 @@ local icons = {
   [18] = "esoui/art/icons/ability_undaunted_004.dds",
 }
 
-local cooldownControl = nil
+local iconControl = nil
+local timerControl = nil
 
 function T.Initialise()
   T.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.default)
@@ -62,13 +63,18 @@ function T.Initialise()
   T.RestorePosition()
   T.BuildMenu()
 
+  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_LAYER_POPPED, T.Hide)
+  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_LAYER_PUSHED, T.Unhide)
+
   --EVENT_ABILITY_COOLDOWN_UPDATED (number eventCode, number abilityId)
 end
 
 function T.CreateControls()
   for i, v in ipairs(T.savedVariables.synergies) do
-    cooldownControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)", BearSynergiesTrackBackdrop, "BearSynergiesTrackCooldown", i)
-    cooldownControl:GetNamedChild("$(parent)Icon"):SetTexture(icons[i])
+    iconControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
+    iconControl:SetTexture(icons[i])
+
+    timerControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TimerControl", BearSynergiesTrackUI, "BearSynergiesTrackTimer", i)
   end
 end
 
@@ -76,20 +82,44 @@ function T.SetPosition()
   local counter = 0
   for i, v in ipairs(T.savedVariables.synergies) do
     if v then
-      cooldownControl = BearSynergiesTrackBackdrop:GetNamedChild("$(parent)" .. i)
-      cooldownControl:SetHidden(false)
-      cooldownControl:SetAnchor(TOPLEFT, BearSynergiesTrackBackdrop, TOPLEFT, 5 + counter * 48, 5)
+      iconControl = BearSynergiesTrackUI:GetNamedChild("IconControl" .. i)
+      iconControl:SetHidden(false)
+      iconControl:ClearAnchors()
+      iconControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, 5 + counter * 53, 5)
+
+      timerControl = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i)
+      timerControl:SetHidden(false)
+      timerControl:SetAnchor(CENTER, iconControl, CENTER)
+
       counter = counter + 1
-    else BearSynergiesTrackBackdrop:GetNamedChild("$(parent)" .. i):SetHidden(true) end
+    else
+      BearSynergiesTrackUI:GetNamedChild("IconControl" .. i):SetHidden(true)
+      BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i):SetHidden(true)
+    end
+  end
+
+  if counter ~= 0 then
+    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(false)
+    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetDimensions( 5 + counter * 53, 58)
+  else
+    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(true)
   end
 end
 
 function T.RestorePosition()
-  BearSynergiesTrackBackdrop:ClearAnchors()
-  BearSynergiesTrackBackdrop:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
+  BearSynergiesTrackUI:ClearAnchors()
+  BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
 end
 
 function T.OnMoveStop()
-  T.savedVariables.left = BearSynergiesTrackBackdrop:GetLeft()
-  T.savedVariables.top = BearSynergiesTrackBackdrop:GetTop()
+  T.savedVariables.left = BearSynergiesTrackUI:GetLeft()
+  T.savedVariables.top = BearSynergiesTrackUI:GetTop()
+end
+
+function T.Hide()
+  BearSynergiesTrackUI:SetHidden(false)
+end
+
+function T.Unhide()
+  BearSynergiesTrackUI:SetHidden(true)
 end
