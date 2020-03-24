@@ -86,7 +86,7 @@ function B.Initialise()
   ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", B.Intercept)
   B.BuildMenu()
 
-  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
+  EVENT_MANAGER:RegisterForEvent(BS.name .. "Block", EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, B.BarswapRefresh)
 end
 
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
