@@ -63,12 +63,11 @@ function T.Initialise()
   T.RestorePosition()
   T.BuildMenu()
 
-  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_LAYER_POPPED, T.Hide)
-  EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ACTION_LAYER_PUSHED, T.Unhide)
-
-  --EVENT_ABILITY_COOLDOWN_UPDATED (number eventCode, number abilityId)
+  SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", T.ToggleUI)
+  SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", T.ToggleUI)
 end
 
+-- Creates the UI for each synergy
 function T.CreateControls()
   for i, v in ipairs(T.savedVariables.synergies) do
     iconControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
@@ -78,6 +77,7 @@ function T.CreateControls()
   end
 end
 
+-- Hides UI for disabled synergies, unhides UI for enabled synergies and positions them 
 function T.SetPosition()
   local counter = 0
   for i, v in ipairs(T.savedVariables.synergies) do
@@ -106,6 +106,15 @@ function T.SetPosition()
   end
 end
 
+-- Hides/unhides the UI when a mnu is opened/closed
+function T.ToggleUI(oldState, newState)
+  if newState == SCENE_SHOWN then
+    BearSynergiesTrackUI:SetHidden(false)
+  elseif newState == SCENE_HIDDEN then
+    BearSynergiesTrackUI:SetHidden(true)
+  end
+end
+
 function T.RestorePosition()
   BearSynergiesTrackUI:ClearAnchors()
   BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
@@ -114,12 +123,4 @@ end
 function T.OnMoveStop()
   T.savedVariables.left = BearSynergiesTrackUI:GetLeft()
   T.savedVariables.top = BearSynergiesTrackUI:GetTop()
-end
-
-function T.Hide()
-  BearSynergiesTrackUI:SetHidden(false)
-end
-
-function T.Unhide()
-  BearSynergiesTrackUI:SetHidden(true)
 end
