@@ -39,4 +39,8 @@ function BS.GetModulePanelData(name)
 	}
 end
 
+function BS.GetSynergyId(abilityName)
+  return BS.Data.SynergyIdByName.abilityName
+end
+
 EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, BS.OnAddonLoaded)
