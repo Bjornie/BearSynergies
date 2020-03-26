@@ -91,7 +91,7 @@ end
 
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 -- If the intercept function returns true the target function won't run
-function B.Intercept()
+local function B.Intercept()
   local synergyName, iconFilename = GetSynergyInfo()
 
   if synergyName and iconFilename then
@@ -110,12 +110,12 @@ function B.Intercept()
   end
 end
 
-function B.DODialog()
+local function B.DODialog()
   LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
 end
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
-function B.GetLokke()
+local function B.GetLokke()
   if B.savedVariables.isLokke == false then return true end
   
   local imperfEquipped, perfEquipped = 0
@@ -129,7 +129,7 @@ function B.GetLokke()
 end
 
 -- Checks whether or not Roar of Alkosh is equipped.
-function B.GetAlkosh()
+local function B.GetAlkosh()
   if B.savedVariables.isAlkosh == false then return true end
   
   local alkoshEquipped = 0
@@ -142,7 +142,7 @@ function B.GetAlkosh()
 end
 
 -- Checks resource percentage and compares with defined options value
-function B.IsResourceLow()
+local function B.IsResourceLow()
   if B.savedVariables.isResource == false then return true end
   
   local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)
@@ -159,6 +159,6 @@ function B.IsResourceLow()
   else return false end
 end
 
-function B.BarswapRefresh(_, didBarswap)
+local function B.BarswapRefresh(_, didBarswap)
   if didBarswap then SYNERGY:OnSynergyAbilityChanged() end
 end
