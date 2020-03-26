@@ -6,6 +6,7 @@
 ## DependsOn: LibAddonMenu-2.0 LibDialog
 
 BearSynergies.lua
+BearSynergiesData.lua
 BearSynergiesMenu.lua
 
 Modules/Block/Main.lua
