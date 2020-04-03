@@ -17,7 +17,7 @@
       <Dimensions x="48" y="48" />
     </Texture>
 
-    <Label name="BearSynergiesTrackTimer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_26)|thick-outline" color="FFFFFF" text="0" virtual="true">
+    <Label name="BearSynergiesTrackTimer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_26)|thick-outline" color="00FF00" text="0.0" virtual="true">
       <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
     </Label>
   </Controls>
