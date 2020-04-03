@@ -1,9 +1,9 @@
 local BS = BearSynergies
 
 function BS.BuildMenu()
-  local panelData = BS.GetModulePanelData()
+  local PanelData = BS.GetModulePanelData()
 
-  local optionsTable = {
+  local OptionsTable = {
     {
       type = "header",
       name = "|cFFFACDModule Settings|r",
@@ -12,8 +12,8 @@ function BS.BuildMenu()
       type = "checkbox",
       name = "Synergy Block",
       width = "half",
-      getFunc = function() return BS.savedVariables.isBlock end,
-      setFunc = function(value) BS.savedVariables.isBlock = value end,
+      getFunc = function() return BS.SavedVariables.isBlock end,
+      setFunc = function(value) BS.SavedVariables.isBlock = value end,
       requiresReload = true,
     },
     {
@@ -25,8 +25,8 @@ function BS.BuildMenu()
       type = "checkbox",
       name = "Synergy Tracker",
       width = "half",
-      getFunc = function() return BS.savedVariables.isTrack end,
-      setFunc = function(value) BS.savedVariables.isTrack = value end,
+      getFunc = function() return BS.SavedVariables.isTrack end,
+      setFunc = function(value) BS.SavedVariables.isTrack = value end,
       requiresReload = true,
     },
     {
@@ -36,6 +36,6 @@ function BS.BuildMenu()
     }
   }
 
-  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Main", panelData)
-  LibAddonMenu2:RegisterOptionControls(BS.name .. "Main", optionsTable)
+  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Main", PanelData)
+  LibAddonMenu2:RegisterOptionControls(BS.name .. "Main", OptionsTable)
 end

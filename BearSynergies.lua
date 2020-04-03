@@ -4,29 +4,13 @@ BearSynergies = {
 	svName = "BearSynergiesSV",
   svVersion = 4,
   
-	default = {
+	Default = {
     isBlock = true,
     isTrack = true,
 	},
 }
 
 local BS = BearSynergies
-
-function BS.OnAddonLoaded(_, addonName)
-	if addonName == BS.name then
-		EVENT_MANAGER:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
-		BS.Initialise()
-	end
-end
-
-function BS.Initialise()
-	BS.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.default)
-
-  if BS.savedVariables.isBlock then BS.Block.Initialise() end
-  if BS.savedVariables.isTrack then BS.Track.Initialise() end
-
-	BS.BuildMenu()
-end
 
 function BS.GetModulePanelData(name)
 	return {
@@ -40,7 +24,25 @@ function BS.GetModulePanelData(name)
 end
 
 function BS.GetSynergyId(abilityName)
-  return BS.Data.SynergyIdByName.abilityName
+  for k, v in pairs(BS.Data.SynergyData) do
+    if v == abilityName then return k end
+  end
 end
 
-EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, BS.OnAddonLoaded)
+local function Initialise()
+	BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Default)
+
+  if BS.SavedVariables.isBlock then BS.Block.Initialise() end
+  if BS.SavedVariables.isTrack then BS.Track.Initialise() end
+
+	BS.BuildMenu()
+end
+
+local function OnAddonLoaded(_, addonName)
+	if addonName == BS.name then
+		EVENT_MANAGER:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
+		Initialise()
+	end
+end
+
+EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, OnAddonLoaded)
