@@ -24,8 +24,8 @@ function BS.GetModulePanelData(name)
 end
 
 function BS.GetSynergyId(abilityName)
-  for k, v in pairs(BS.Data.SynergyData) do
-    if v == abilityName then return k end
+  for k, v in pairs(BS.Data) do
+    if v.name == abilityName then return k end
   end
 end
 

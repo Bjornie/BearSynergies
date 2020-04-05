@@ -1,11 +1,9 @@
 BearSynergies.Track = {
-  default = {
+  Default = {
     left = 0,
     top = 0,
-    offsetX = 48,
-    offsetY = 48,
 
-    synergies = {
+    Synergies = {
       [1] = false, -- Shackle
       [2] = false, -- Ignite
       [3] = false, -- Grave Robber
@@ -23,7 +21,7 @@ BearSynergies.Track = {
       [15] = false, -- Spiders
       [16] = false, -- Radiate
       [17] = false, -- Bone Shield
-      [18] = false, -- Orb
+      [18] = false, -- Orb & Shards
     },
   },
 }
@@ -32,55 +30,100 @@ local BS = BearSynergies
 local T = BS.Track
 
 local icons = {
-  [1] = "esoui/art/icons/ability_dragonknight_006.dds",
-  [2] = "esoui/art/icons/ability_dragonknight_010.dds",
-  [3] = "esoui/art/icons/ability_necromancer_004.dds",
-  [4] = "esoui/art/icons/ability_necromancer_010_b.dds",
-  [5] = "esoui/art/icons/ability_nightblade_015.dds",
-  [6] = "esoui/art/icons/ability_nightblade_018.dds",
-  [7] = "esoui/art/icons/ability_sorcerer_storm_atronach.dds",
-  [8] = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
-  [9] = "esoui/art/icons/ability_templar_nova.dds",
-  [10] = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
-  [11] = "esoui/art/icons/ability_warden_007.dds",
-  [12] = "esoui/art/icons/ability_warden_005_b.dds",
-  [13] = "esoui/art/icons/ability_werewolf_005_b.dds",
-  [14] = "esoui/art/icons/ability_undaunted_001.dds",
-  [15] = "esoui/art/icons/ability_undaunted_003.dds",
-  [16] = "esoui/art/icons/ability_undaunted_002.dds",
-  [17] = "esoui/art/icons/ability_undaunted_005.dds",
-  [18] = "esoui/art/icons/ability_undaunted_004.dds",
+  [1] = {
+    ready = "esoui/art/icons/ability_dragonknight_006.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Standard.dds",
+  },
+  [2] = {
+    ready = "esoui/art/icons/ability_dragonknight_010.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Talons.dds",
+  },
+  [3] = {
+    ready = "esoui/art/icons/ability_necromancer_004.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Boneyard.dds",
+  },
+  [4] = {
+    ready = "esoui/art/icons/ability_necromancer_010_b.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Totem.dds",
+  },
+  [5] = {
+    ready = "esoui/art/icons/ability_nightblade_015.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Refresh.dds",
+  },
+  [6] = {
+    ready = "esoui/art/icons/ability_nightblade_018.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Leech.dds",
+  },
+  [7] = {
+    ready = "esoui/art/icons/ability_sorcerer_storm_atronach.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Atronach.dds",
+  },
+  [8] = {
+    ready = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Conduit.dds",
+  },
+  [9] = {
+    ready = "esoui/art/icons/ability_templar_nova.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Nova.dds",
+  },
+  [10] = {
+    ready = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Ritual.dds",
+  },
+  [11] = {
+    ready = "esoui/art/icons/ability_warden_007.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Harvest.dds",
+  },
+  [12] = {
+    ready = "esoui/art/icons/ability_warden_005_b.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Escape.dds",
+  },
+  [13] = {
+    ready = "esoui/art/icons/ability_werewolf_005_b.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Howl.dds",
+  },
+  [14] = {
+    ready = "esoui/art/icons/ability_undaunted_001.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Altar.dds",
+  },
+  [15] = {
+    ready = "esoui/art/icons/ability_undaunted_003.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Spider.dds",
+  },
+  [16] = {
+    ready = "esoui/art/icons/ability_undaunted_002.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Radiate.dds",
+  },
+  [17] = {
+    ready = "esoui/art/icons/ability_undaunted_005.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Shield.dds",
+  },
+  [18] = {
+    ready = "esoui/art/icons/ability_undaunted_004.dds",
+    cooldown = "BearSynergies/Modules/Track/Images/Orb.dds",
+  },
 }
 
 local iconControl = nil
 local timerControl = nil
-
-function T.Initialise()
-  T.savedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.default)
-
-  T.CreateControls()
-  T.SetPosition()
-  T.RestorePosition()
-  T.BuildMenu()
-
-  SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", T.ToggleUI)
-  SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", T.ToggleUI)
-end
+local iconControlCD = nil
+local timerControlCD = nil
 
 -- Creates the UI for each synergy
-function T.CreateControls()
-  for i, v in ipairs(T.savedVariables.synergies) do
-    iconControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
-    iconControl:SetTexture(icons[i])
+local function CreateControls()
+  for i, _ in ipairs(T.SavedVariables.Synergies) do
+    WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
+    BearSynergiesTrackUI:GetNamedChild("IconControl" .. i):SetTexture(icons[i].ready)
 
-    timerControl = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TimerControl", BearSynergiesTrackUI, "BearSynergiesTrackTimer", i)
+    WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TimerControl", BearSynergiesTrackUI, "BearSynergiesTrackTimer", i)
   end
 end
 
 -- Hides UI for disabled synergies, unhides UI for enabled synergies and positions them 
 function T.SetPosition()
   local counter = 0
-  for i, v in ipairs(T.savedVariables.synergies) do
+  
+  for i, v in ipairs(T.SavedVariables.Synergies) do
     if v then
       iconControl = BearSynergiesTrackUI:GetNamedChild("IconControl" .. i)
       iconControl:SetHidden(false)
@@ -89,6 +132,7 @@ function T.SetPosition()
 
       timerControl = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i)
       timerControl:SetHidden(false)
+      timerControl:ClearAnchors()
       timerControl:SetAnchor(CENTER, iconControl, CENTER)
 
       counter = counter + 1
@@ -106,8 +150,38 @@ function T.SetPosition()
   end
 end
 
--- Hides/unhides the UI when a mnu is opened/closed
-function T.ToggleUI(oldState, newState)
+-- Updates the timer for synergies on cooldown
+local function UpdateCooldown(abilityId)
+  iconControlCD = BearSynergiesTrackUI:GetNamedChild("IconControl" .. BS.Data[abilityId].trackingNumber)
+  timerControlCD = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber)
+
+  if timerControlCD:GetText() ~= "0.0" then
+    timerControlCD:SetText(string.format("%.1f", (tonumber(timerControlCD:GetText()) - 0.1)))
+  end
+
+  if timerControlCD:GetText() == "0.0" then
+    iconControlCD:SetTexture(icons[BS.Data[abilityId].trackingNumber].ready)
+    timerControlCD:SetColor(0, 255, 0, 1)
+    EVENT_MANAGER:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. BS.Data[abilityId].trackingNumber)
+  end
+end
+
+-- Initiates cooldown for synergies
+local function StartCooldown(_, _, _, _, _, _, _, sourceType, _, _, _, _, _, _, _, _, abilityId)
+  if sourceType == COMBAT_UNIT_TYPE_GROUP or sourceType == COMBAT_UNIT_TYPE_PLAYER then
+    if BS.Data[abilityId] then
+      if BS.Data[abilityId].trackingNumber then
+        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber):SetText("20")
+        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber):SetColor(255, 0, 0, 1)
+        BearSynergiesTrackUI:GetNamedChild("IconControl" .. BS.Data[abilityId].trackingNumber):SetTexture(icons[BS.Data[abilityId].trackingNumber].cooldown)
+        EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. BS.Data[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
+      end
+    end
+  end
+end
+
+-- Hides/unhides the UI when a menu is opened/closed
+local function ToggleUI(oldState, newState)
   if newState == SCENE_SHOWN then
     BearSynergiesTrackUI:SetHidden(false)
   elseif newState == SCENE_HIDDEN then
@@ -115,12 +189,26 @@ function T.ToggleUI(oldState, newState)
   end
 end
 
-function T.RestorePosition()
+local function RestorePosition()
   BearSynergiesTrackUI:ClearAnchors()
-  BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.savedVariables.left, T.savedVariables.top)
+  BearSynergiesTrackUI:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, T.SavedVariables.left, T.SavedVariables.top)
 end
 
 function T.OnMoveStop()
-  T.savedVariables.left = BearSynergiesTrackUI:GetLeft()
-  T.savedVariables.top = BearSynergiesTrackUI:GetTop()
+  T.SavedVariables.left = BearSynergiesTrackUI:GetLeft()
+  T.SavedVariables.top = BearSynergiesTrackUI:GetTop()
+end
+
+function T.Initialise()
+  T.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.Default)
+
+  CreateControls()
+  RestorePosition()
+  T.SetPosition()
+  T.BuildMenu()
+
+  SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", ToggleUI)
+  SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", ToggleUI)
+
+  EVENT_MANAGER:RegisterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, StartCooldown)
 end

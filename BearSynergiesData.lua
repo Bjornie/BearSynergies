@@ -1,70 +1,217 @@
-BearSynergies.Data = {}
-
-local BS = BearSynergies
-local D = BS.Data
-
-D.SynergyIdByName = {
-  -- Dragonknight
-  ["Shackle"] = 
-  ["Ignite"] = 
-
-  -- Necromancer
-  ["Grave Robber"] = 115567,
-  ["Grave Robber"] = 115571,
-  ["Pure Agony"] = 
-
-  -- Nightblade
-  ["Hidden Refresh"] = 
-  ["Soul Leech"] = 
-
-  -- Sorcerer
-  ["Charged Lightning"] = 
-  ["Conduit"] = 
-
-  -- Templar
-  ["Blessed Shards"] = 
-  ["Holy Shards"] = 
-  ["Supernova"] = 
-  ["Gravity Crush"] = 
-  ["Purify"] = 
-
-  -- Warden
-  ["Harvest"] = 
-  ["Icy Escape"] = 
-
-  -- Werewolf
-  ["Feeding Frenzy"] = 
-
-  -- Undaunted
-  ["Blood Funnel"] = 
-  ["Blood Feast"] = 
-  ["Spawn Broodlings"] = 
-  ["Black Widow"] = 
-  ["Arachnophobia"] = 
-  ["Radiate"] = 
-  ["Bone Wall"] = 
-  ["Spinal Surge"] = 
-  ["Combustion"] = 
-  ["Healing Combustion"] = 
-
-  -- Arena
-  ["Sigil of Defense"] = 
-  ["Sigil of Haste"] = 
-  ["Sigil of Healing"] = 
-  ["Sigil of Power"] = 
-  ["Sigil of Resurrection"] = 
-  ["Sigil of Sustain"] = 
-
-  -- Trial
-  ["Destructive Outbreak"] =  -- HRC fossilize break
-  ["Remove Bolt"] =  -- SO and SS remove pin
-  ["Celestial Purge"] =  -- MoL lunar phase
-  ["Levitate"] =  -- HoF 2. boss upstairs
-  ["Power Switch"] =  --HoF 2. boss upstairs button
-  ["Gateway"] =  -- CR portal
-  ["Malevolent Core"] =  -- CR downstairs orbs
-  ["Shed Hoarfrost"] =  -- CR drop hoarfrost
-  ["Welkynar's Light"] =  -- CR spears
-  ["Wind of the Welkynar"] =  -- CR downstairs jump pad
-  ["Time Breach"] =  -- SS portal
+BearSynergies.Data = {
+  -- Shackle
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 1,
+  },
+  -- Ignite
+  [32974] = {
+    name = GetAbilityName(32974),
+    trackingNumber = 2,
+  },
+  -- Grave Robber
+  [115567] = {
+    name = GetAbilityName(115567),
+    trackingNumber = 3,
+  },
+  -- Pure Agony
+  [118614] = {
+    name = GetAbilityName(118614),
+    trackingNumber = 4,
+  },
+  -- Hidden Refresh
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 5,
+  },
+  -- Soul Leech
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 6,
+  },
+  -- Charged Lightning
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 7,
+  },
+  -- Conduit
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 8,
+  },
+  -- Blessed Shards
+  [26832] = {
+    name = GetAbilityName(26832),
+    trackingNumber = 18,
+  },
+  -- Holy Shards
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 18,
+  },
+  --Supernova
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 9,
+  },
+  -- Gravity Crush
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 9,
+  },
+  -- Purify
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 10,
+  },
+  -- Harvest
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 11,
+  },
+  -- Icy Escape
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 12,
+  },
+  -- Feeding Frenzy
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 13,
+  },
+  -- Blood Funnel
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 14,
+  },
+  -- Blood Feast
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 14,
+  },
+  -- Spawn Broodling
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 15,
+  },
+  -- Black Widow
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 15,
+  },
+  -- Arachnophobia
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 15,
+  },
+  -- Radiate
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 16,
+  },
+  -- Bone Wall
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 17,
+  },
+  -- Spinal Surge
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 17,
+  },
+  -- Combustion
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 18,
+  },
+  -- Healing Combustion
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = 18,
+  },
+  -- Sigil of Defense
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Sigil of Haste
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Sigil of Healing
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Sigil of Power
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Sigil of Resurrection
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Sigil of Sustain
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Destructive Outbreak, HRC break fossilize
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Remove Bolt, SO Ozara & SS portal
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Celestial Purge, MoL lunar phase
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Levitate, HoF 2nd boss upstairs
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Power Switch, HoF 2nd boss button
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Gateway, CR portal
+  [103489] = {
+    name = GetAbilityName(103489),
+    trackingNumber = nil,
+  },
+  -- Malevolent Core, CR downstairs orbs
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Shed Hoarfrost
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
+  -- Welkynar's Light, CR spears
+  [104036] = {
+    name = GetAbilityName(104036),
+    trackingNumber = nil,
+  },
+  -- Wind of the Welkynar, CR downstairs jump pad
+  [104111] = {
+    name = GetAbilityName(104111),
+    trackingNumber = nil,
+  },
+  -- Time Breach, SS portal
+  [1] = {
+    name = GetAbilityName(1),
+    trackingNumber = nil,
+  },
 }
