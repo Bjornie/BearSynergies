@@ -27,6 +27,7 @@ BearSynergies.Track = {
 }
 
 local BS = BearSynergies
+local D = BS.Data
 local T = BS.Track
 
 local icons = {
@@ -152,29 +153,29 @@ end
 
 -- Updates the timer for synergies on cooldown
 local function UpdateCooldown(abilityId)
-  iconControlCD = BearSynergiesTrackUI:GetNamedChild("IconControl" .. BS.Data[abilityId].trackingNumber)
-  timerControlCD = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber)
+  iconControlCD = BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber)
+  timerControlCD = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber)
 
   if timerControlCD:GetText() ~= "0.0" then
     timerControlCD:SetText(string.format("%.1f", (tonumber(timerControlCD:GetText()) - 0.1)))
   end
 
   if timerControlCD:GetText() == "0.0" then
-    iconControlCD:SetTexture(icons[BS.Data[abilityId].trackingNumber].ready)
+    iconControlCD:SetTexture(icons[D[abilityId].trackingNumber].ready)
     timerControlCD:SetColor(0, 255, 0, 1)
-    EVENT_MANAGER:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. BS.Data[abilityId].trackingNumber)
+    EVENT_MANAGER:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber)
   end
 end
 
 -- Initiates cooldown for synergies
 local function StartCooldown(_, _, _, _, _, _, _, sourceType, _, _, _, _, _, _, _, _, abilityId)
   if sourceType == COMBAT_UNIT_TYPE_GROUP or sourceType == COMBAT_UNIT_TYPE_PLAYER then
-    if BS.Data[abilityId] then
-      if BS.Data[abilityId].trackingNumber then
-        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber):SetText("20")
-        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. BS.Data[abilityId].trackingNumber):SetColor(255, 0, 0, 1)
-        BearSynergiesTrackUI:GetNamedChild("IconControl" .. BS.Data[abilityId].trackingNumber):SetTexture(icons[BS.Data[abilityId].trackingNumber].cooldown)
-        EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. BS.Data[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
+    if D[abilityId] then
+      if D[abilityId].trackingNumber then
+        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber):SetText("20")
+        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber):SetColor(255, 0, 0, 1)
+        BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber):SetTexture(icons[D[abilityId].trackingNumber].cooldown)
+        EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
       end
     end
   end
