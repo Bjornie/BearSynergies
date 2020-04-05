@@ -19,7 +19,7 @@ function BS.BuildMenu()
     {
       type = "description",
       width = "half",
-      text = "This setting enables the possibility of blocking specific synergies or all synergies in defined scenarios.",
+      text = "Enables the possibility of blocking specific synergies or all synergies in defined scenarios.",
     },
     {
       type = "checkbox",
@@ -32,7 +32,7 @@ function BS.BuildMenu()
     {
       type = "description",
       width = "half",
-      text = "", -- TODO
+      text = "Enables the possibility of tracking the cooldown of synergies.",
     }
   }
 
