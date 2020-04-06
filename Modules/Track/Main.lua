@@ -201,7 +201,7 @@ function T.OnMoveStop()
 end
 
 function T.Initialise()
-  if BS.isAccountWide then
+  if BS.SavedVariables.isAccountWide then
     T.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.Defaults)
   else
     T.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Track", T.Defaults)

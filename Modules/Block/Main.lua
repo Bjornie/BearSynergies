@@ -131,7 +131,7 @@ local function BarswapRefresh(_, didBarswap)
 end
 
 function B.Initialise()
-  if BS.isAccountWide then
+  if BS.SavedVariables.isAccountWide then
     B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Defaults)
   else
     B.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Block", B.Defaults)
