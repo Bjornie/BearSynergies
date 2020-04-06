@@ -31,9 +31,9 @@ function BS.GetSynergyId(abilityName)
 end
 
 local function Initialise()
-  if isAccountWide then
-    BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Defaults)
-  else
+  BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Defaults)
+  
+  if not BS.SavedVariables.isAccountWide then
     BS.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Defaults)
   end
 

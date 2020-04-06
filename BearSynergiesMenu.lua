@@ -6,6 +6,16 @@ function BS.BuildMenu()
   local OptionsTable = {
     {
       type = "header",
+      name = "|cFFFACDGeneral|r",
+    },
+    {
+      type = "checkbox",
+      name = "Account-Wide Settings",
+      getFunc = function() return BS.SavedVariables.isAccountWide end,
+      setFunc = function(value) BS.SavedVariables.isAccountWide = value end,
+    },
+    {
+      type = "header",
       name = "|cFFFACDModule Settings|r",
     },
     {
