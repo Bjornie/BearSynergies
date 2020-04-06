@@ -1,5 +1,5 @@
 BearSynergies.Track = {
-  Default = {
+  Defaults = {
     left = 0,
     top = 0,
 
@@ -201,7 +201,11 @@ function T.OnMoveStop()
 end
 
 function T.Initialise()
-  T.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.Default)
+  if BS.isAccountWide then
+    T.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Track", T.Defaults)
+  else
+    T.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Track", T.Defaults)
+  end
 
   CreateControls()
   RestorePosition()

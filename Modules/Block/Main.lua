@@ -1,5 +1,5 @@
 BearSynergies.Block = {
-  Default = {
+  Defaults = {
     isLokke = false,
     isAlkosh = false,
     isResource = false,
@@ -131,7 +131,11 @@ local function BarswapRefresh(_, didBarswap)
 end
 
 function B.Initialise()
-  B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Default)
+  if BS.isAccountWide then
+    B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Defaults)
+  else
+    B.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Block", B.Defaults)
+  end
 
   -- Confirmation dialog for Destructive Outbreak
   LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
