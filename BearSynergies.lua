@@ -2,9 +2,9 @@ BearSynergies = {
 	name = "BearSynergies",
 	version = "1.1.0",
 	svName = "BearSynergiesSV",
-  svVersion = 4,
+  svVersion = 5,
   
-	Defaults = {
+	Default = {
     isAccountWide = true,
     isBlock = true,
     isTrack = true,
@@ -31,10 +31,10 @@ function BS.GetSynergyId(abilityName)
 end
 
 local function Initialise()
-  BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Defaults)
+  BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Default)
   
   if not BS.SavedVariables.isAccountWide then
-    BS.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Defaults)
+    BS.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Default)
   end
 
   if BS.SavedVariables.isBlock then BS.Block.Initialise() end

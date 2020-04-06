@@ -1,5 +1,5 @@
 BearSynergies.Block = {
-  Defaults = {
+  Default = {
     isLokke = false,
     isAlkosh = false,
     isResource = false,
@@ -132,9 +132,9 @@ end
 
 function B.Initialise()
   if BS.SavedVariables.isAccountWide then
-    B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Defaults)
+    B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Default)
   else
-    B.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Block", B.Defaults)
+    B.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Block", B.Default)
   end
 
   -- Confirmation dialog for Destructive Outbreak
