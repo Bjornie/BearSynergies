@@ -109,8 +109,10 @@ local iconControl = nil
 local timerControl = nil
 local iconControlCD = nil
 local timerControlCD = nil
+local iconControlEM = nil
+local timerControlEM = nil
 
--- Creates the UI for each synergy
+-- Creates the UI for each cooldown
 local function CreateControls()
   for i, _ in ipairs(T.SavedVariables.Synergies) do
     WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
@@ -125,27 +127,28 @@ function T.SetPosition()
   local counter = 0
   
   for i, v in ipairs(T.SavedVariables.Synergies) do
+    iconControl = BearSynergiesTrackUI:GetNamedChild("IconControl" .. i)
+    timerControl = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i)
+
     if v then
-      iconControl = BearSynergiesTrackUI:GetNamedChild("IconControl" .. i)
       iconControl:SetHidden(false)
       iconControl:ClearAnchors()
       iconControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, 5 + counter * 53, 5)
 
-      timerControl = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i)
       timerControl:SetHidden(false)
       timerControl:ClearAnchors()
       timerControl:SetAnchor(CENTER, iconControl, CENTER)
 
       counter = counter + 1
     else
-      BearSynergiesTrackUI:GetNamedChild("IconControl" .. i):SetHidden(true)
-      BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i):SetHidden(true)
+      iconControl:SetHidden(true)
+      timerControl:SetHidden(true)
     end
   end
 
   if counter ~= 0 then
     BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(false)
-    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetDimensions( 5 + counter * 53, 58)
+    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetDimensions(5 + counter * 53, 58)
   else
     BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(true)
   end
@@ -156,9 +159,7 @@ local function UpdateCooldown(abilityId)
   iconControlCD = BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber)
   timerControlCD = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber)
 
-  if timerControlCD:GetText() ~= "0.0" then
-    timerControlCD:SetText(string.format("%.1f", (tonumber(timerControlCD:GetText()) - 0.1)))
-  end
+  if timerControlCD:GetText() ~= "0.0" then timerControlCD:SetText(string.format("%.1f", (tonumber(timerControlCD:GetText()) - 0.1))) end
 
   if timerControlCD:GetText() == "0.0" then
     iconControlCD:SetTexture(icons[D[abilityId].trackingNumber].ready)
@@ -168,16 +169,15 @@ local function UpdateCooldown(abilityId)
 end
 
 -- Initiates cooldown for synergies
-local function StartCooldown(_, _, _, _, _, _, _, sourceType, _, _, _, _, _, _, _, _, abilityId)
-  if sourceType == COMBAT_UNIT_TYPE_GROUP or sourceType == COMBAT_UNIT_TYPE_PLAYER then
-    if D[abilityId] then
-      if D[abilityId].trackingNumber then
-        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber):SetText("20")
-        BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber):SetColor(255, 0, 0, 1)
-        BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber):SetTexture(icons[D[abilityId].trackingNumber].cooldown)
-        EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
-      end
-    end
+local function StartCooldown(_, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, _, _, abilityId) 
+  if sourceType == COMBAT_UNIT_TYPE_PLAYER or sourceType == COMBAT_UNIT_TYPE_GROUP then
+    iconControlEM = BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber)
+    timerControlEM = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber)
+
+    iconControlEM:SetTexture(icons[D[abilityId].trackingNumber].cooldown)
+    timerControlEM:SetText("20")
+    timerControlEM:SetColor(255, 0, 0, 1)
+    EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
   end
 end
 
@@ -215,5 +215,10 @@ function T.Initialise()
   SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", ToggleUI)
   SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", ToggleUI)
 
-  EVENT_MANAGER:RegisterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, StartCooldown)
+  for k, v in pairs(D) do
+    if v.trackingNumber then
+      EVENT_MANAGER:RegisterForEvent(BS.name .. "Track" .. k, EVENT_COMBAT_EVENT, StartCooldown)
+      EVENT_MANAGER:AddFilterForEvent(BS.name .. "Track" .. k, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, k)
+    end
+  end
 end

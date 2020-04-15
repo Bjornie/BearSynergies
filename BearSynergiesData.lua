@@ -1,7 +1,7 @@
 BearSynergies.Data = {
   -- Shackle
-  [1] = {
-    name = GetAbilityName(1),
+  [67717] = {
+    name = GetAbilityName(32905),
     trackingNumber = 1,
   },
   -- Ignite
@@ -15,148 +15,148 @@ BearSynergies.Data = {
     trackingNumber = 3,
   },
   -- Pure Agony
-  [118614] = {
-    name = GetAbilityName(118614),
+  [118610] = {
+    name = GetAbilityName(118610),
     trackingNumber = 4,
   },
   -- Hidden Refresh
-  [1] = {
-    name = GetAbilityName(1),
+  [37729] = {
+    name = GetAbilityName(37729),
     trackingNumber = 5,
   },
   -- Soul Leech
-  [1] = {
-    name = GetAbilityName(1),
+  [25170] = {
+    name = GetAbilityName(25170),
     trackingNumber = 6,
   },
   -- Charged Lightning
-  [1] = {
-    name = GetAbilityName(1),
+  [121059] = {
+    name = GetAbilityName(121059),
     trackingNumber = 7,
   },
   -- Conduit
-  [1] = {
-    name = GetAbilityName(1),
+  [43769] = {
+    name = GetAbilityName(23196),
     trackingNumber = 8,
   },
   -- Blessed Shards
-  [26832] = {
-    name = GetAbilityName(26832),
+  [94973] = {
+    name = GetAbilityName(94973),
     trackingNumber = 18,
   },
   -- Holy Shards
-  [1] = {
-    name = GetAbilityName(1),
+  [95928] = {
+    name = GetAbilityName(95928),
     trackingNumber = 18,
   },
   --Supernova
-  [1] = {
-    name = GetAbilityName(1),
+  [48939] = {
+    name = GetAbilityName(48939),
     trackingNumber = 9,
   },
   -- Gravity Crush
-  [1] = {
-    name = GetAbilityName(1),
+  [31603] = {
+    name = GetAbilityName(31603),
     trackingNumber = 9,
   },
   -- Purify
-  [1] = {
-    name = GetAbilityName(1),
+  [22270] = {
+    name = GetAbilityName(22270),
     trackingNumber = 10,
   },
   -- Harvest
-  [1] = {
-    name = GetAbilityName(1),
+  [85572] = {
+    name = GetAbilityName(85572),
     trackingNumber = 11,
   },
   -- Icy Escape
-  [1] = {
-    name = GetAbilityName(1),
+  [88892] = {
+    name = GetAbilityName(110374),
     trackingNumber = 12,
   },
   -- Feeding Frenzy
-  [1] = {
-    name = GetAbilityName(1),
+  [58813] = {
+    name = GetAbilityName(58813),
     trackingNumber = 13,
   },
   -- Blood Funnel
-  [1] = {
-    name = GetAbilityName(1),
+  [39519] = {
+    name = GetAbilityName(39519),
     trackingNumber = 14,
   },
   -- Blood Feast
-  [1] = {
-    name = GetAbilityName(1),
+  [41966] = {
+    name = GetAbilityName(41966),
     trackingNumber = 14,
   },
   -- Spawn Broodling
-  [1] = {
-    name = GetAbilityName(1),
+  [39451] = {
+    name = GetAbilityName(39451),
     trackingNumber = 15,
   },
   -- Black Widow
-  [1] = {
-    name = GetAbilityName(1),
+  [41997] = {
+    name = GetAbilityName(41997),
     trackingNumber = 15,
   },
   -- Arachnophobia
-  [1] = {
-    name = GetAbilityName(1),
+  [42019] = {
+    name = GetAbilityName(42019),
     trackingNumber = 15,
   },
   -- Radiate
-  [1] = {
-    name = GetAbilityName(1),
+  [41838] = {
+    name = GetAbilityName(41838),
     trackingNumber = 16,
   },
   -- Bone Wall
-  [1] = {
-    name = GetAbilityName(1),
+  [39379] = {
+    name = GetAbilityName(39379),
     trackingNumber = 17,
   },
   -- Spinal Surge
-  [1] = {
-    name = GetAbilityName(1),
+  [42198] = {
+    name = GetAbilityName(42198),
     trackingNumber = 17,
   },
   -- Combustion
-  [1] = {
-    name = GetAbilityName(1),
+  [39301] = {
+    name = GetAbilityName(39301),
     trackingNumber = 18,
   },
   -- Healing Combustion
-  [1] = {
-    name = GetAbilityName(1),
+  [63507] = {
+    name = GetAbilityName(63507),
     trackingNumber = 18,
   },
   -- Sigil of Defense
-  [1] = {
-    name = GetAbilityName(1),
+  [71951] = {
+    name = GetAbilityName(71951),
     trackingNumber = nil,
   },
   -- Sigil of Haste
-  [1] = {
-    name = GetAbilityName(1),
+  [71953] = {
+    name = GetAbilityName(71953),
     trackingNumber = nil,
   },
   -- Sigil of Healing
-  [1] = {
-    name = GetAbilityName(1),
+  [71949] = {
+    name = GetAbilityName(71949),
     trackingNumber = nil,
   },
   -- Sigil of Power
-  [1] = {
-    name = GetAbilityName(1),
+  [71902] = {
+    name = GetAbilityName(71902),
     trackingNumber = nil,
   },
   -- Sigil of Resurrection
-  [1] = {
-    name = GetAbilityName(1),
+  [112909] = {
+    name = GetAbilityName(112909),
     trackingNumber = nil,
   },
   -- Sigil of Sustain
-  [1] = {
-    name = GetAbilityName(1),
+  [112872] = {
+    name = GetAbilityName(112872),
     trackingNumber = nil,
   },
   -- Destructive Outbreak, HRC break fossilize
@@ -164,41 +164,53 @@ BearSynergies.Data = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  --[[
   -- Remove Bolt, SO Ozara & SS portal
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
+  --[[
   -- Celestial Purge, MoL lunar phase
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
+  --[[
   -- Levitate, HoF 2nd boss upstairs
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
+  --[[
   -- Power Switch, HoF 2nd boss button
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
   -- Gateway, CR portal
   [103489] = {
     name = GetAbilityName(103489),
     trackingNumber = nil,
   },
+  --[[
   -- Malevolent Core, CR downstairs orbs
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
+  --[[
   -- Shed Hoarfrost
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
   -- Welkynar's Light, CR spears
   [104036] = {
     name = GetAbilityName(104036),
@@ -209,9 +221,11 @@ BearSynergies.Data = {
     name = GetAbilityName(104111),
     trackingNumber = nil,
   },
+  --[[
   -- Time Breach, SS portal
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
 }

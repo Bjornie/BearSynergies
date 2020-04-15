@@ -13,6 +13,7 @@ BearSynergies = {
 
 local BS = BearSynergies
 
+-- Easy creation of PanelData for each module
 function BS.GetModulePanelData(name)
 	return {
 		type = "panel",
@@ -24,6 +25,7 @@ function BS.GetModulePanelData(name)
 	}
 end
 
+-- Fetch abilityId with abilityName. Only support for synergies
 function BS.GetSynergyId(abilityName)
   for k, v in pairs(BS.Data) do
     if v.name == abilityName then return k end
@@ -35,6 +37,7 @@ local function Initialise()
   
   if not BS.SavedVariables.isAccountWide then
     BS.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Default)
+    BS.SavedVariables.isAccountWide = false
   end
 
   if BS.SavedVariables.isBlock then BS.Block.Initialise() end

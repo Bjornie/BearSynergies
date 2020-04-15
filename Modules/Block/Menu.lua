@@ -59,8 +59,8 @@ function B.BuildMenu()
           name = "Shackle",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Shackle synergy, provided by the Dragonknight Standard skill.",
-          getFunc = function() return B.SavedVariables[98437] end,
-          setFunc = function(value) B.SavedVariables[98437] = value end,
+          getFunc = function() return B.SavedVariables[67717] end,
+          setFunc = function(value) B.SavedVariables[67717] = value end,
         },
         {
           type = "checkbox",
@@ -89,8 +89,8 @@ function B.BuildMenu()
           name = "Pure Agony",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Pure Agony synergy, provided by the Agony Totem skill.",
-          getFunc = function() return B.SavedVariables[118614] end,
-          setFunc = function(value) B.SavedVariables[118614] = value end,
+          getFunc = function() return B.SavedVariables[118610] end,
+          setFunc = function(value) B.SavedVariables[118610] = value end,
         },
 
         -- Nightblade Settings
@@ -103,16 +103,16 @@ function B.BuildMenu()
           name = "Hidden Refresh",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Hidden Refresh synergy, provided by the Consuming Darkness skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_nightblade_015.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_nightblade_015.dds"] = value end,
+          getFunc = function() return B.SavedVariables[37729] end,
+          setFunc = function(value) B.SavedVariables[37729] = value end,
         },
         {
           type = "checkbox",
           name = "Soul Leech",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Soul Leech synergy, provided by the Soul Shred skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_nightblade_018.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_nightblade_018.dds"] = value end,
+          getFunc = function() return B.SavedVariables[25170] end,
+          setFunc = function(value) B.SavedVariables[25170] = value end,
         },
 
         -- Sorcerer Settings
@@ -125,16 +125,16 @@ function B.BuildMenu()
           name = "Charged Lightning",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Charged Lightning synergy, provided by the Summon Storm Atronach skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_sorcerer_storm_atronach.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_sorcerer_storm_atronach.dds"] = value end,
+          getFunc = function() return B.SavedVariables[121059] end,
+          setFunc = function(value) B.SavedVariables[121059] = value end,
         },
         {
           type = "checkbox",
           name = "Conduit",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Conduit synergy, provided by the Lightning Splash skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_sorcerer_lightning_splash.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_sorcerer_lightning_splash.dds"] = value end,
+          getFunc = function() return B.SavedVariables[43769] end,
+          setFunc = function(value) B.SavedVariables[43769] = value end,
         },
 
         -- Templar Settings
@@ -147,18 +147,21 @@ function B.BuildMenu()
           name = "Spear Shards",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Blessed Shards and Holy Shards synergies, provided by the Spear Shards and morphs skills.",
-          getFunc = function() return B.SavedVariables[26832] end,
-          setFunc = function(value) B.SavedVariables[26832] = value end,
+          getFunc = function() return B.SavedVariables[94973], B.SavedVariables[95928] end,
+          setFunc = function(value)
+            B.SavedVariables[94973] = value
+            B.SavedVariables[95928] = value
+          end,
         },
         {
           type = "checkbox",
           name = "Nova",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Supernova and Gravity Crush synergies, provided by the Nova and morphs skills.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_templar_nova.dds"], B.SavedVariables["/esoui/art/icons/ability_templar_solar_prison.dds"] end,
+          getFunc = function() return B.SavedVariables[48939], B.SavedVariables[31603] end,
           setFunc = function(value)
-            B.SavedVariables["/esoui/art/icons/ability_templar_nova.dds"] = value
-            B.SavedVariables["/esoui/art/icons/ability_templar_solar_prison.dds"] = value
+            B.SavedVariables[48939] = value
+            B.SavedVariables[31603] = value
           end,
         },
         {
@@ -166,8 +169,8 @@ function B.BuildMenu()
           name = "Purify",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Purify synergy, provided by the Cleansing Ritual skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_templar_cleansing_ritual.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_templar_cleansing_ritual.dds"] = value end,
+          getFunc = function() return B.SavedVariables[22270] end,
+          setFunc = function(value) B.SavedVariables[22270] = value end,
         },
 
         -- Warden Settings
@@ -180,16 +183,16 @@ function B.BuildMenu()
           name = "Harvest",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Harvest synergy, provided by the Healing Seed skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_warden_007.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_warden_007.dds"] = value end,
+          getFunc = function() return B.SavedVariables[85572] end,
+          setFunc = function(value) B.SavedVariables[85572] = value end,
         },
         {
           type = "checkbox",
           name = "Icy Escape",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Icy Escape synergy, provided by the Frozen Retreat skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_warden_005_b.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_warden_005_b.dds"] = value end,
+          getFunc = function() return B.SavedVariables[88892] end,
+          setFunc = function(value) B.SavedVariables[88892] = value end,
         },
       },
     },
@@ -204,10 +207,10 @@ function B.BuildMenu()
           name = "Blood Altar",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Blood Funnel and Blood Feast synergies, provided by the Blood Altar and morphs skills.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_undaunted_001.dds"], B.SavedVariables["/esoui/art/icons/ability_undaunted_001_a.dds"] end,
+          getFunc = function() return B.SavedVariables[39519], B.SavedVariables[41966] end,
           setFunc = function(value)
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_001.dds"] = value
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_001_a.dds"] = value
+            B.SavedVariables[39519] = value
+            B.SavedVariables[41966] = value
           end,
         },
         {
@@ -215,10 +218,11 @@ function B.BuildMenu()
           name = "Spiders",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Spawn Broodlings, Black Widows and Arachnophobia synergies, provided by the Trapping Webs and morphs skills.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_undaunted_003.dds"], B.SavedVariables["/esoui/art/icons/crafting_light_armor_standard_f_005.dds"] end,
+          getFunc = function() return B.SavedVariables[39451], B.SavedVariables[41997], B.SavedVariables[42019] end,
           setFunc = function(value)
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_003.dds"] = value
-            B.SavedVariables["/esoui/art/icons/crafting_light_armor_standard_f_005.dds"] = value
+            B.SavedVariables[39451] = value
+            B.SavedVariables[41997] = value
+            B.SavedVariables[42019] = value
           end,
         },
         {
@@ -226,18 +230,18 @@ function B.BuildMenu()
           name = "Radiate",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Radiate synergy, provided by the Inner Fire skill.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_undaunted_002.dds"] end,
-          setFunc = function(value) B.SavedVariables["/esoui/art/icons/ability_undaunted_002.dds"] = value end,
+          getFunc = function() return B.SavedVariables[41838] end,
+          setFunc = function(value) B.SavedVariables[41838] = value end,
         },
         {
           type = "checkbox",
           name = "Bone Shield",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Bone Wall and Spinal Surge synergies, provided by the Bone Shield and morphs skills.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_undaunted_005.dds"], B.SavedVariables["/esoui/art/icons/ability_undaunted_005a.dds"] end,
+          getFunc = function() return B.SavedVariables[39379], B.SavedVariables[42198] end,
           setFunc = function(value)
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_005.dds"] = value
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_005a.dds"] = value
+            B.SavedVariables[39379] = value
+            B.SavedVariables[42198] = value
           end,
         },
         {
@@ -245,10 +249,10 @@ function B.BuildMenu()
           name = "Combustion",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Combustion and Healing Combustion synergies, provided by the Necrotic Orb and morphs skills.",
-          getFunc = function() return B.SavedVariables["/esoui/art/icons/ability_undaunted_004.dds"], B.SavedVariables["/esoui/art/icons/ability_undaunted_004b.dds"] end,
+          getFunc = function() return B.SavedVariables[39301], B.SavedVariables[63507] end,
           setFunc = function(value)
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_004.dds"] = value
-            B.SavedVariables["/esoui/art/icons/ability_undaunted_004b.dds"] = value
+            B.SavedVariables[39301] = value
+            B.SavedVariables[63507] = value
           end,
         },
       },
@@ -264,48 +268,48 @@ function B.BuildMenu()
           name = "Sigil of Defense",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Defense synergy, provided in Maelstrom Arena and Blackrose Prison.",
-          getFunc = function() return B.SavedVariables["Sigil of Defense"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Defense"] = value end,
+          getFunc = function() return B.SavedVariables[71951] end,
+          setFunc = function(value) B.SavedVariables[71951] = value end,
         },
         {
           type = "checkbox",
           name = "Sigil of Haste",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Haste synergy, provided in Maelstrom Arena.",
-          getFunc = function() return B.SavedVariables["Sigil of Haste"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Haste"] = value end,
+          getFunc = function() return B.SavedVariables[71953] end,
+          setFunc = function(value) B.SavedVariables[71953] = value end,
         },
         {
           type = "checkbox",
           name = "Sigil of Healing",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Healing synergy, provided in Maelstrom Arena and Blackrose Prison.",
-          getFunc = function() return B.SavedVariables["Sigil of Healing"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Healing"] = value end,
+          getFunc = function() return B.SavedVariables[71949] end,
+          setFunc = function(value) B.SavedVariables[71949] = value end,
         },
         {
           type = "checkbox",
           name = "Sigil of Power",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Power synergy, provided in Maelstrom Arena.",
-          getFunc = function() return B.SavedVariables["Sigil of Power"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Power"] = value end,
+          getFunc = function() return B.SavedVariables[71902] end,
+          setFunc = function(value) B.SavedVariables[71902] = value end,
         },
         {
           type = "checkbox",
           name = "Sigil of Resurrection",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Resurrection synergy, provided in Blackrose Prison.",
-          getFunc = function() return B.SavedVariables["Sigil of Resurrection"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Resurrection"] = value end,
+          getFunc = function() return B.SavedVariables[112909] end,
+          setFunc = function(value) B.SavedVariables[112909] = value end,
         },
         {
           type = "checkbox",
           name = "Sigil of Sustain",
           width = "half",
           tooltip = "Toggling this off will prevent you from being able to use the Sigil of Sustain synergy, provided in Blackrose Prison.",
-          getFunc = function() return B.SavedVariables["Sigil of Sustain"] end,
-          setFunc = function(value) B.SavedVariables["Sigil of Sustain"] = value end,
+          getFunc = function() return B.SavedVariables[112872] end,
+          setFunc = function(value) B.SavedVariables[112872] = value end,
         },
       },
     },
@@ -337,21 +341,23 @@ function B.BuildMenu()
           type = "checkbox",
           name = "Gateway",
           tooltip = "Toggling this off will prevent you from being able to use the portal synergy.",
-          getFunc = function() return B.SavedVariables["Gateway"] end,
-          setFunc = function(value) B.SavedVariables["Gateway"] = value end,
+          getFunc = function() return B.SavedVariables[103489] end,
+          setFunc = function(value) B.SavedVariables[103489] = value end,
         },
+      },
+    },
 
-        -- Sunspire Settings
-        {
-          type = "header",
-          name = "|cFFFACDSunspire|r",
-        },
+    -- Other
+    {
+      type = "submenu",
+      name = "|cFFFACDMiscellaneous|r",
+      controls = {
         {
           type = "checkbox",
-          name = "Time Breach",
-          tooltip = "Toggling this off will prevent you from being able to use the portal synergy.",
-          getFunc = function() return B.SavedVariables["Time Breach"] end,
-          setFunc = function(value) B.SavedVariables["Time Breach"] = value end,
+          name = "Feeding Frenzy",
+          tooltip = "Toggling this off will prevent you from being able to use the Feeding Frenzy synergy, provided by the Howl of Despair skill.",
+          getFunc = function() return B.SavedVariables[58813] end,
+          setFunc = function(value) B.SavedVariables[58813] = value end,
         },
       },
     },

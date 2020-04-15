@@ -1,7 +1,7 @@
 ## Title: Bear Synergies
 ## Version: 1.1.0
 ## APIVersion: 100030
-## Author: BjørnTheBurr
+## Author: |c00BFFFBjørnTheBurr|r
 ## SavedVariables: BearSynergiesSV
 ## DependsOn: LibAddonMenu-2.0 LibDialog
 
