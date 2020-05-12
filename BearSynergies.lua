@@ -1,9 +1,9 @@
 BearSynergies = {
 	name = "BearSynergies",
-	version = "1.1.0",
+	version = "1.1.2",
 	svName = "BearSynergiesSV",
   svVersion = 5,
-  
+
 	Default = {
     isAccountWide = true,
     isBlock = true,
@@ -34,7 +34,7 @@ end
 
 local function Initialise()
   BS.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Default)
-  
+
   if not BS.SavedVariables.isAccountWide then
     BS.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Default)
     BS.SavedVariables.isAccountWide = false

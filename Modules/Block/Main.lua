@@ -115,10 +115,12 @@ local function Intercept()
       if B.SavedVariables[synergyId] == false then return true end
     else return false end -- Always allow unknown synergy
 
+    --[[
     if synergyName == "Destructive Outbreak" and B.SavedVariables.blockDO then
       LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
       return false
     end
+    ]]
 
     if not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
     if not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
@@ -138,7 +140,7 @@ function B.Initialise()
   end
 
   -- Confirmation dialog for Destructive Outbreak
-  LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
+  --LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
   
   ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", Intercept)
   B.BuildMenu()

@@ -159,11 +159,13 @@ BearSynergies.Data = {
     name = GetAbilityName(112872),
     trackingNumber = nil,
   },
+  --[[
   -- Destructive Outbreak, HRC break fossilize
   [1] = {
     name = GetAbilityName(1),
     trackingNumber = nil,
   },
+  ]]
   --[[
   -- Remove Bolt, SO Ozara & SS portal
   [1] = {

@@ -1,5 +1,5 @@
 ## Title: Bear Synergies
-## Version: 1.1.0
+## Version: 1.1.2
 ## APIVersion: 100030
 ## Author: |c00BFFFBjørnTheBurr|r
 ## SavedVariables: BearSynergiesSV

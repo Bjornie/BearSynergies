@@ -320,6 +320,7 @@ function B.BuildMenu()
       name = "|cFFFACDTrial Synergies|r",
       controls = {
         -- Craglorn Settings
+        --[[
         {
           type = "header",
           name = "|cFFFACDCraglorn Trials|r",
@@ -331,6 +332,7 @@ function B.BuildMenu()
           getFunc = function() return B.SavedVariables.blockDO end,
           setFunc = function(value) B.SavedVariables.blockDO = value end,
         },
+        ]]
 
         -- Cloudrest Settings
         {
