@@ -2,6 +2,8 @@ BearSynergies.Track = {
   Default = {
     left = 0,
     top = 0,
+    orientation = "Horizontal",
+    size = 48,
 
     Synergies = {
       [1] = false, -- Shackle
@@ -25,10 +27,6 @@ BearSynergies.Track = {
     },
   },
 }
-
-local BS = BearSynergies
-local D = BS.Data
-local T = BS.Track
 
 local icons = {
   [1] = {
@@ -105,78 +103,92 @@ local icons = {
   },
 }
 
-local iconControl = nil
-local timerControl = nil
-local iconControlCD = nil
-local timerControlCD = nil
-local iconControlEM = nil
-local timerControlEM = nil
+local BS = BearSynergies
+local D = BS.Data
+local T = BS.Track
+
+local cooldownIconControl = nil
+local cooldownTimerControl = nil
 
 -- Creates the UI for each cooldown
 local function CreateControls()
   for i, _ in ipairs(T.SavedVariables.Synergies) do
-    WINDOW_MANAGER:CreateControlFromVirtual("$(parent)IconControl", BearSynergiesTrackUI, "BearSynergiesTrackIcon", i)
-    BearSynergiesTrackUI:GetNamedChild("IconControl" .. i):SetTexture(icons[i].ready)
-
-    WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TimerControl", BearSynergiesTrackUI, "BearSynergiesTrackTimer", i)
+    WINDOW_MANAGER:CreateControlFromVirtual("$(parent)Cooldown", BearSynergiesTrackUI, "BearSynergiesTrackCooldown", i)
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Icon"):SetTexture(icons[i].ready)
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Icon"):SetDimensions(T.SavedVariables.size, T.SavedVariables.size)
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Timer"):SetFont("$(GAMEPAD_MEDIUM_FONT)|" .. math.floor(T.SavedVariables.size / 2) .. "|thick-outline")
   end
 end
 
--- Hides UI for disabled synergies, unhides UI for enabled synergies and positions them 
-function T.SetPosition()
+-- Resize background
+local function UpdateBackGround(counter)
+  if counter > 0 and T.SavedVariables.orientation == "Horizontal" then
+    BearSynergiesTrackUI:GetNamedChild("Texture"):SetHidden(false)
+    BearSynergiesTrackUI:GetNamedChild("Texture"):SetDimensions(counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)) + math.floor(T.SavedVariables.size / 10), T.SavedVariables.size + 2 * math.floor(T.SavedVariables.size / 10))
+  elseif counter > 0 and T.SavedVariables.orientation == "Vertical" then
+    BearSynergiesTrackUI:GetNamedChild("Texture"):SetHidden(false)
+    BearSynergiesTrackUI:GetNamedChild("Texture"):SetDimensions(T.SavedVariables.size + 2 * math.floor(T.SavedVariables.size / 10), counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)) + math.floor(T.SavedVariables.size / 10))
+  else BearSynergiesTrackUI:GetNamedChild("Texture"):SetHidden(true) end
+end
+
+-- Resize icon and timer
+local function UpdateIconSize()
+  local cooldownControl = nil
+  for i, _ in ipairs(T.SavedVariables.Synergies) do
+    cooldownControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i)
+
+    cooldownControl:GetNamedChild("Icon"):SetDimensions(T.SavedVariables.size, T.SavedVariables.size)
+    cooldownControl:GetNamedChild("Timer"):SetFont("$(GAMEPAD_MEDIUM_FONT)|" .. math.floor(T.SavedVariables.size / 2) .. "|thick-outline")
+  end
+end
+
+-- Hides UI for disabled synergies, unhides UI for enabled synergies and positions them
+function T.UpdateUI()
   local counter = 0
-  
+  local cooldownControl = nil
+
   for i, v in ipairs(T.SavedVariables.Synergies) do
-    iconControl = BearSynergiesTrackUI:GetNamedChild("IconControl" .. i)
-    timerControl = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. i)
+    cooldownControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i)
 
-    if v then
-      iconControl:SetHidden(false)
-      iconControl:ClearAnchors()
-      iconControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, 5 + counter * 53, 5)
-
-      timerControl:SetHidden(false)
-      timerControl:ClearAnchors()
-      timerControl:SetAnchor(CENTER, iconControl, CENTER)
+    if v and T.SavedVariables.orientation == "Horizontal" then
+      cooldownControl:SetHidden(false)
+      cooldownControl:ClearAnchors()
+      cooldownControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, math.floor(T.SavedVariables.size / 10) + counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)), math.floor(T.SavedVariables.size / 10))
 
       counter = counter + 1
-    else
-      iconControl:SetHidden(true)
-      timerControl:SetHidden(true)
-    end
+    elseif v and T.SavedVariables.orientation == "Vertical" then
+      cooldownControl:SetHidden(false)
+      cooldownControl:ClearAnchors()
+      cooldownControl:SetAnchor(TOPLEFT, BearSynergiesTrackUI, TOPLEFT, math.floor(T.SavedVariables.size / 10), math.floor(T.SavedVariables.size / 10) + counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)))
+
+      counter = counter + 1
+    else cooldownControl:SetHidden(true) end
   end
 
-  if counter ~= 0 then
-    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(false)
-    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetDimensions(5 + counter * 53, 58)
-  else
-    BearSynergiesTrackUI:GetNamedChild("Backdrop"):SetHidden(true)
-  end
+  UpdateBackGround(counter)
+  UpdateIconSize()
 end
 
 -- Updates the timer for synergies on cooldown
 local function UpdateCooldown(abilityId)
-  iconControlCD = BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber)
-  timerControlCD = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber)
+  cooldownIconControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[abilityId].trackingNumber .. "Icon")
+  cooldownTimerControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[abilityId].trackingNumber .. "Timer")
 
-  if timerControlCD:GetText() ~= "0.0" then timerControlCD:SetText(string.format("%.1f", (tonumber(timerControlCD:GetText()) - 0.1))) end
+  if cooldownTimerControl:GetText() ~= "0.0" then cooldownTimerControl:SetText(string.format("%.1f", tonumber(cooldownTimerControl:GetText()) - 0.1 )) end
 
-  if timerControlCD:GetText() == "0.0" then
-    iconControlCD:SetTexture(icons[D[abilityId].trackingNumber].ready)
-    timerControlCD:SetColor(0, 255, 0, 1)
+  if cooldownTimerControl:GetText() == "0.0" then
+    cooldownIconControl:SetTexture(icons[D[abilityId].trackingNumber].ready)
+    cooldownTimerControl:SetColor(0, 255, 0)
     EVENT_MANAGER:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber)
   end
 end
 
 -- Initiates cooldown for synergies
-local function StartCooldown(_, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, _, _, abilityId) 
+local function StartCooldown(_, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, _, _, abilityId)
   if sourceType == COMBAT_UNIT_TYPE_PLAYER or sourceType == COMBAT_UNIT_TYPE_GROUP then
-    iconControlEM = BearSynergiesTrackUI:GetNamedChild("IconControl" .. D[abilityId].trackingNumber)
-    timerControlEM = BearSynergiesTrackUI:GetNamedChild("TimerControl" .. D[abilityId].trackingNumber)
-
-    iconControlEM:SetTexture(icons[D[abilityId].trackingNumber].cooldown)
-    timerControlEM:SetText("20")
-    timerControlEM:SetColor(255, 0, 0, 1)
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[abilityId].trackingNumber .. "Icon"):SetTexture(icons[D[abilityId].trackingNumber].cooldown)
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[abilityId].trackingNumber .. "Timer"):SetText("20")
+    BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[abilityId].trackingNumber .. "Timer"):SetColor(255, 0, 0)
     EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[abilityId].trackingNumber, 100, function() UpdateCooldown(abilityId) end)
   end
 end
@@ -209,7 +221,7 @@ function T.Initialise()
 
   CreateControls()
   RestorePosition()
-  T.SetPosition()
+  T.UpdateUI()
   T.BuildMenu()
 
   SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", ToggleUI)

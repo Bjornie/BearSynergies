@@ -62,7 +62,7 @@ local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
 local function GetLokke()
   if B.SavedVariables.isLokke == false then return true end
-  
+
   local imperfEquipped, perfEquipped = 0
   local _, _, _, imperfEquipped = GetItemLinkSetInfo(imperfLokke, true)
   local _, _, _, perfEquipped = GetItemLinkSetInfo(perfLokke, true)
@@ -76,10 +76,10 @@ end
 -- Checks whether or not Roar of Alkosh is equipped.
 local function GetAlkosh()
   if B.SavedVariables.isAlkosh == false then return true end
-  
+
   local alkoshEquipped = 0
   local _, _, _, alkoshEquipped = GetItemLinkSetInfo(alkosh, true)
-  
+
   -- If Alkosh Mode is enabled but no Alkosh pieces are equipped don't block synergies
   if alkoshEquipped == 0 then return true end
   if alkoshEquipped == 5 then return true 
@@ -89,17 +89,17 @@ end
 -- Checks resource percentage and compares with defined options value
 local function IsResourceLow()
   if B.SavedVariables.isResource == false then return true end
-  
+
   local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)
   local magCurrent, magMax = GetUnitPower("player", POWERTYPE_MAGICKA)
   local percentage = 100
-  
+
   if stamMax > magMax then
     percentage = stamCurrent / stamMax * 100
   else
     percentage = magCurrent / magMax * 100
   end
-  
+
   if percentage <= B.SavedVariables.resourceThreshold then return true
   else return false end
 end
@@ -141,7 +141,7 @@ function B.Initialise()
 
   -- Confirmation dialog for Destructive Outbreak
   --LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
-  
+
   ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", Intercept)
   B.BuildMenu()
 

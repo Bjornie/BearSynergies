@@ -6,6 +6,33 @@ function T.BuildMenu()
 
   local OptionsTable = {
     {
+      type = "header",
+      name = "|cFFFACDGeneral|r",
+    },
+    {
+      type = "dropdown",
+      name = "Orientation",
+      choices = {"Horizontal", "Vertical"},
+      getFunc = function() return T.SavedVariables.orientation end,
+      setFunc = function(var)
+                  T.SavedVariables.orientation = var
+                  T.UpdateUI()
+                end,
+    },
+    {
+      type = "slider",
+      name = "Size",
+      min = 0,
+      max = 100,
+      step = 1,
+      getFunc = function() return T.SavedVariables.size end,
+      setFunc = function(value)
+                  T.SavedVariables.size = value
+                  T.UpdateUI()
+                end,
+      default = 50,
+    },
+    {
       type = "submenu",
       name = "|cFFFACDSynergies|r",
       controls = {
@@ -16,7 +43,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[1] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[1] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -31,9 +58,9 @@ function T.BuildMenu()
           name = "Ignite",
           width = "half",
           getFunc = function() return T.SavedVariables.Synergies[2] end,
-          setFunc = function(value) 
+          setFunc = function(value)
                       T.SavedVariables.Synergies[2] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -48,9 +75,9 @@ function T.BuildMenu()
           name = "Grave Robber",
           width = "half",
           getFunc = function() return T.SavedVariables.Synergies[3] end,
-          setFunc = function(value) 
+          setFunc = function(value)
                       T.SavedVariables.Synergies[3] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -67,7 +94,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[4] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[4] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -84,7 +111,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[5] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[5] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -101,7 +128,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[6] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[6] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -118,7 +145,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[7] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[7] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -135,7 +162,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[8] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[8] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -152,7 +179,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[9] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[9] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -169,7 +196,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[10] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[10] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -186,7 +213,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[11] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[11] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -203,7 +230,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[12] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[12] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -220,7 +247,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[13] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[13] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -237,7 +264,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[14] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[14] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -254,7 +281,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[15] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[15] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -271,7 +298,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[16] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[16] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -288,7 +315,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[17] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[17] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
@@ -305,7 +332,7 @@ function T.BuildMenu()
           getFunc = function() return T.SavedVariables.Synergies[18] end,
           setFunc = function(value)
                       T.SavedVariables.Synergies[18] = value
-                      T.SetPosition()
+                      T.UpdateUI()
                     end,
         },
         {
