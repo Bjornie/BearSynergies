@@ -34,6 +34,19 @@ function BS.BuildMenu()
     },
     {
       type = "checkbox",
+      name = "Group Tracker",
+      width = "half",
+      getFunc = function() return BS.SavedVariables.isGroupTrack end,
+      setFunc = function(value) BS.SavedVariables.isGroupTrack = value end,
+      requiresReload = true,
+    },
+    {
+      type = "description",
+      width = "half",
+      text = "Enables tracking of synergy cooldowns for group members, uptime of Alkosh and alerts for when Alkosh user needs your synergies."
+    },
+    {
+      type = "checkbox",
       name = "Synergy Tracker",
       width = "half",
       getFunc = function() return BS.SavedVariables.isTrack end,

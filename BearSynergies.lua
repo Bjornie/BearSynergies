@@ -1,12 +1,13 @@
 BearSynergies = {
 	name = "BearSynergies",
-	version = "1.1.2",
+	version = "1.2.0",
 	svName = "BearSynergiesSV",
   svVersion = 5,
 
 	Default = {
     isAccountWide = true,
     isBlock = true,
+    isGroupTrack = true,
     isTrack = true,
 	},
 }
@@ -41,6 +42,7 @@ local function Initialise()
   end
 
   if BS.SavedVariables.isBlock then BS.Block.Initialise() end
+  if BS.SavedVariables.isGroupTrack then BS.GroupTrack.Initialise() end
   if BS.SavedVariables.isTrack then BS.Track.Initialise() end
 
 	BS.BuildMenu()

@@ -1,0 +1,44 @@
+<GuiXml>
+  <Controls>
+    <TopLevelControl name="BearSynergiesGroupTrackUI" mouseEnabled="true" movable="true" clampedToScreen="true" resizeToFitDescendents="true" hidden="true">
+      <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" />
+      <Controls>
+        <Texture name="$(parent)Texture" color="000000" alpha="0.8">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+        </Texture>
+      </Controls>
+      <Controls>
+        <Label name="$(parent)Players" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_18)" text="Players">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10" offsetY="10" />
+        </Label>
+      </Controls>
+      <OnMoveStop>
+        BearSynergies.GroupTrack.OnMoveStop()
+      </OnMoveStop>
+    </TopLevelControl>
+
+    <Control name="BearSynergiesGroupTrackPlayer" hidden="true" virtual="true">
+      <Controls>
+        <Texture name="$(parent)DisplayName" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_18)" text="" hidden="true" virtual="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+        </Texture>
+        <Label name="$(parent)RoleIcon" textureFile="esoui/art/lfg/gamepad/lfg_roleicon_dps.dds" hidden="true" virtual="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+          <Dimensions x="32" y="32" />
+        </Label>
+      </Controls>
+    </Control>
+
+    <Control name="BearSynergiesGroupTrackCooldown" hidden="true" virtual="true">
+      <Controls>
+        <Texture name="$(parent)Icon" texturefile="esoui/art/icons/ability_undaunted_004.dds">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+          <Dimensions x="32" y="32" />
+        </Texture>
+        <Label name="$(parent)Timer" font="$(GAMEPAD_MEDIUM_FONT)|$(KB_18)" color="FFFFFF" text="0">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+        </Label>
+      </Controls>
+    </Control>
+  </Controls>
+</GuiXml>

@@ -1,8 +1,8 @@
 local BS = BearSynergies
-local T = BS.Track
+local GT = BS.GroupTrack
 
-function T.BuildMenu()
-  local PanelData = BS.GetModulePanelData("Track")
+function GT.BuildMenu()
+  local PanelData = BS.GetModulePanelData("Group Track")
 
   local OptionsTable = {
     {
@@ -10,27 +10,16 @@ function T.BuildMenu()
       name = "|cFFFACDGeneral|r",
     },
     {
-      type = "dropdown",
-      name = "Orientation",
-      choices = {"Horizontal", "Vertical"},
-      getFunc = function() return T.SavedVariables.orientation end,
-      setFunc = function(var)
-                  T.SavedVariables.orientation = var
-                  T.UpdateUI()
-                end,
-    },
-    {
       type = "slider",
-      name = "Size",
+      name = "Transparency",
       min = 0,
       max = 100,
-      step = 1,
-      getFunc = function() return T.SavedVariables.size end,
+      step = 10,
+      getFunc = function() return GT.SavedVariables.transparency end,
       setFunc = function(value)
-                  T.SavedVariables.size = value
-                  T.UpdateUI()
+                  GT.SavedVariables.transparency = value
+                  GT.SetPosition()
                 end,
-      default = 48,
     },
     {
       type = "submenu",
@@ -40,10 +29,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Shackle",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[1] end,
+          getFunc = function() return GT.SavedVariables.Synergies[1] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[1] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[1] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -57,10 +46,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Ignite",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[2] end,
+          getFunc = function() return GT.SavedVariables.Synergies[2] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[2] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[2] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -74,10 +63,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Grave Robber",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[3] end,
+          getFunc = function() return GT.SavedVariables.Synergies[3] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[3] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[3] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -91,10 +80,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Pure Agony",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[4] end,
+          getFunc = function() return GT.SavedVariables.Synergies[4] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[4] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[4] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -108,10 +97,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Hidden Refresh",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[5] end,
+          getFunc = function() return GT.SavedVariables.Synergies[5] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[5] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[5] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -125,10 +114,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Soul Leech",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[6] end,
+          getFunc = function() return GT.SavedVariables.Synergies[6] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[6] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[6] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -142,10 +131,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Charged Lightning",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[7] end,
+          getFunc = function() return GT.SavedVariables.Synergies[7] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[7] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[7] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -159,16 +148,16 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Conduit",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[8] end,
+          getFunc = function() return GT.SavedVariables.Synergies[8] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[8] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[8] = value
+                      GT.SetPosition()
                     end,
         },
         {
           type = "texture",
           width = "half",
-         image = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
+          image = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
           imageWidth = 50,
           imageHeight = 50,
         },
@@ -176,10 +165,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Nova",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[9] end,
+          getFunc = function() return GT.SavedVariables.Synergies[9] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[9] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[9] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -193,10 +182,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Purify",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[10] end,
+          getFunc = function() return GT.SavedVariables.Synergies[10] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[10] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[10] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -210,10 +199,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Harvest",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[11] end,
+          getFunc = function() return GT.SavedVariables.Synergies[11] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[11] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[11] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -227,10 +216,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Icy Escape",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[12] end,
+          getFunc = function() return GT.SavedVariables.Synergies[12] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[12] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[12] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -244,10 +233,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Feeding Frenzy",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[13] end,
+          getFunc = function() return GT.SavedVariables.Synergies[13] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[13] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[13] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -261,10 +250,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Blood Altar",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[14] end,
+          getFunc = function() return GT.SavedVariables.Synergies[14] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[14] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[14] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -278,10 +267,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Spiders",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[15] end,
+          getFunc = function() return GT.SavedVariables.Synergies[15] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[15] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[15] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -295,10 +284,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Radiate",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[16] end,
+          getFunc = function() return GT.SavedVariables.Synergies[16] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[16] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[16] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -312,10 +301,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Bone Shield",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[17] end,
+          getFunc = function() return GT.SavedVariables.Synergies[17] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[17] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[17] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -329,10 +318,10 @@ function T.BuildMenu()
           type = "checkbox",
           name = "Spear Shards/Combustion",
           width = "half",
-          getFunc = function() return T.SavedVariables.Synergies[18] end,
+          getFunc = function() return GT.SavedVariables.Synergies[18] end,
           setFunc = function(value)
-                      T.SavedVariables.Synergies[18] = value
-                      T.UpdateUI()
+                      GT.SavedVariables.Synergies[18] = value
+                      GT.SetPosition()
                     end,
         },
         {
@@ -341,11 +330,11 @@ function T.BuildMenu()
           image = "esoui/art/icons/ability_undaunted_004.dds",
           imageWidth = 50,
           imageHeight = 50,
-        },
+        },  
       },
     },
   }
 
-  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Track", PanelData)
-  LibAddonMenu2:RegisterOptionControls(BS.name .. "Track", OptionsTable)
+  LibAddonMenu2:RegisterAddonPanel(BS.name .. "Group Track", PanelData)
+  LibAddonMenu2:RegisterOptionControls(BS.name .. "Group Track", OptionsTable)
 end
