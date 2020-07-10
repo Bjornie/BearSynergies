@@ -194,7 +194,7 @@ local function StartCooldown(_, result, _, abilityName, _, _, _, sourceType, _, 
 end
 
 -- Hides/unhides the UI when a menu is opened/closed
-local function ToggleUI(oldState, newState)
+local function ToggleUI(_, newState)
   if newState == SCENE_SHOWN then
     BearSynergiesTrackUI:SetHidden(false)
   elseif newState == SCENE_HIDDEN then
