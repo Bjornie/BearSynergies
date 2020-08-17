@@ -41,6 +41,13 @@
         "d",
         "displayname",
         "ZO_ObjectPool_CreateControl",
-        "ZO_ObjectPool"
+        "ZO_ObjectPool",
+        "EVENT_GROUP_MEMBER_ROLE_CHANGED",
+        "GetGroupMemberAssignedRole",
+        "LFG_ROLE_TANK",
+        "LibDialog",
+        "REGISTER_FILTER_COMBAT_RESULT",
+        "ACTION_RESULT_EFFECT_GAINED_DURATION",
+        "REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE"
     ]
 }
