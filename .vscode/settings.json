@@ -48,6 +48,7 @@
         "LibDialog",
         "REGISTER_FILTER_COMBAT_RESULT",
         "ACTION_RESULT_EFFECT_GAINED_DURATION",
-        "REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE"
+        "REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE",
+        "GetGameTimeMilliseconds"
     ]
 }

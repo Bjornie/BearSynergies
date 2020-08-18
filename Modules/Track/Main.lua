@@ -118,6 +118,15 @@ local function CreateControls()
     end
 end
 
+-- Calculates x and y offset for cooldown controls
+local function GetControlAnchorOffset(counter)
+    local offsetX = math.floor(T.SavedVariables.size / 10) + counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10))
+    local offsetY = math.floor(T.SavedVariables.size / 10)
+
+    if T.SavedVariables.orientation == "Horizontal" then return offsetX, offsetY
+    else return offsetY, offsetX end
+end
+
 -- Calculates dimensions for background
 local function GetBackgroundDimensions(counter)
     local x = counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)) + math.floor(T.SavedVariables.size / 10)
@@ -140,22 +149,14 @@ end
 -- Resize icon and timer
 local function UpdateIconSize()
     local cooldownControl = nil
+    local fontSize = math.floor(T.SavedVariables.size / 2)
 
     for i, _ in ipairs(T.SavedVariables.Synergies) do
         cooldownControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i)
 
         cooldownControl:GetNamedChild("Icon"):SetDimensions(T.SavedVariables.size, T.SavedVariables.size)
-        cooldownControl:GetNamedChild("Timer"):SetFont("$(GAMEPAD_MEDIUM_FONT)|" .. math.floor(T.SavedVariables.size / 2) .. "|thick-outline")
+        cooldownControl:GetNamedChild("Timer"):SetFont("$(GAMEPAD_MEDIUM_FONT)|" .. fontSize .. "|thick-outline")
     end
-end
-
--- Calculates x and y offset for cooldown controls
-local function GetControlAnchorOffset(counter)
-    local offsetX = math.floor(T.SavedVariables.size / 10) + counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10))
-    local offsetY = math.floor(T.SavedVariables.size / 10)
-
-    if T.SavedVariables.orientation == "Horizontal" then return offsetX, offsetY
-    else return offsetY, offsetX end
 end
 
 -- Hides UI for disabled synergies, unhides UI for enabled synergies and positions them
@@ -209,7 +210,7 @@ end
 -- Hides/unhides the UI when a menu is opened/closed
 local function ToggleUI(_, newState)
     if newState == SCENE_SHOWN then BearSynergiesTrackUI:SetHidden(false)
-    elseif newState == SCENE_HIDDEN then BearSynergiesTrackUI:SetHidden(true) end
+    else BearSynergiesTrackUI:SetHidden(true) end
 end
 
 local function RestorePosition()
