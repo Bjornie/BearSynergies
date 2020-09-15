@@ -198,7 +198,7 @@ end
 local function StartCooldown(_, _, _, abilityName)
     local synergyId = BS.GetSynergyId(abilityName)
 
-    if synergyId then
+    if synergyId and D[synergyId].trackingNumber then
         BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Icon"):SetTexture(icons[D[synergyId].trackingNumber].cooldown)
         BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer"):SetText("20")
         BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer"):SetColor(255, 0, 0)

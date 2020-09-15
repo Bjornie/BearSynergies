@@ -249,4 +249,8 @@ BearSynergies.Data = {
         name = GetAbilityName(134005),
         trackingNumber = nil,
     },
+    [141920] = {
+        name = GetAbilityName(141920),
+        trackingNumber = nil,
+    }
 }

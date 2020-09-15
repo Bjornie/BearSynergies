@@ -45,6 +45,7 @@ BearSynergies.Block = {
         [118604] = true,
         [129936] = true,
         [134005] = true,
+        [141920] = true,
     },
 }
 

@@ -1,23 +1,8 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="BearSynergiesGroupTrackUI" clampedToScreen="true" hidden="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
+        <TopLevelControl name="BearSynergiesGroupTrackUI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
             <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
-            <Controls>
-                <Label name="$(parent)Header" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" text="Header">
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
-                </Label>
-            </Controls>
-            <OnMoveStop>
-                BearSynergies.GroupTrack.OnMoveStop()
-            </OnMoveStop>
-        </TopLevelControl>
 
-        <Control name="BearSynergiesGroupTrackRow" hidden="true" virtual="true">
-            <Controls>
-                <Label name="$(parent)Name" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" text="@Player">
-                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
-                </Label>
-            </Controls>
-        </Control>
+        </TopLevelControl>
     </Controls>
 </GuiXml>

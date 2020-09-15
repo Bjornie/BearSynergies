@@ -372,10 +372,19 @@ function B.BuildMenu()
                 {
                     type = "checkbox",
                     name = "Feeding Frenzy",
+                    width = "half",
                     tooltip = "Toggling this off will prevent you from being able to use the Feeding Frenzy synergy, provided by the Howl of Despair skill.",
                     getFunc = function() return B.SavedVariables[58775] end,
                     setFunc = function(value) B.SavedVariables[58775] = value end,
                 },
+                {
+                    type = "checkbox",
+                    name = "Sanguine Burst",
+                    width = "half",
+                    tooltip = "Toggling this off will prevent you from being able to use the Sanguine Burst synergy, provided by the Lady Thorn monster set.",
+                    getFunc = function() return B.SavedVariables[141920] end,
+                    setFunc = function(value) B.SavedVariables[141920] = value end,
+                }
             },
         },
     }
