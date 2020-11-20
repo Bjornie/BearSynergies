@@ -37,11 +37,12 @@ BearSynergies.Block = {
         [88884] = true,
         [95922] = true,
         [103489] = true,
+        [111437] = true,
         [112890] = true,
         [112901] = true,
         [112909] = true,
         [112872] = true,
-        [1155489] = true,
+        [115548] = true,
         [118604] = true,
         [129936] = true,
         [134005] = true,
@@ -51,6 +52,7 @@ BearSynergies.Block = {
 
 local BS = BearSynergies
 local B = BS.Block
+local EM = GetEventManager()
 
 local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -93,23 +95,24 @@ end
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 -- If the intercept function returns true the target function won't run
 local function Intercept()
-    local synergyName, iconFilename = GetSynergyInfo()
+    local synergyName = GetSynergyInfo()
+
+    if not synergyName then return end
+
     local synergyId = BS.GetSynergyId(synergyName)
 
-    if synergyId then
-        if B.SavedVariables[synergyId] ~= nil then
-            if B.SavedVariables[synergyId] == false then return true end
-        else return false end -- Always allow unknown synergy
+    if B.SavedVariables[synergyId] ~= nil then
+        if B.SavedVariables[synergyId] == false then return true end
+    else return false end -- Always allow unknown synergy
 
-        if B.SavedVariables.blockDO and synergyId == 56667 then
-            LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
-            return false
-        end
-
-        if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-        if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-        if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.blockDO and synergyId == 56667 then
+        LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+        return false
     end
+
+    if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 end
 
 local function BarswapRefresh(_, didBarswap)
@@ -126,5 +129,5 @@ function B.Initialise()
     ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", Intercept)
     B.BuildMenu()
 
-    EVENT_MANAGER:RegisterForEvent(BS.name .. "Block", EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BarswapRefresh)
+    EM:RegisterForEvent(BS.name .. "Block", EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BarswapRefresh)
 end

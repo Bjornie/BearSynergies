@@ -74,9 +74,9 @@ function T.BuildMenu()
                     type = "checkbox",
                     name = "Grave Robber",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[17] end,
+                    getFunc = function() return T.SavedVariables.Synergies[18] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[17] = value
+                        T.SavedVariables.Synergies[18] = value
                         T.UpdateUI()
                     end,
                 },
@@ -91,9 +91,9 @@ function T.BuildMenu()
                     type = "checkbox",
                     name = "Pure Agony",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[18] end,
+                    getFunc = function() return T.SavedVariables.Synergies[19] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[18] = value
+                        T.SavedVariables.Synergies[19] = value
                         T.UpdateUI()
                     end,
                 },
@@ -254,6 +254,23 @@ function T.BuildMenu()
                     type = "texture",
                     width = "half",
                     image = "esoui/art/icons/ability_werewolf_005_b.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Shield of Ursus",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[17] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[17] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_warden_005_b.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },

@@ -194,6 +194,11 @@ BearSynergies.Data = {
         name = GetAbilityName(110531),
         trackingNumber = nil,
     },
+    -- Shield of Ursus
+    [111437] = {
+        name = GetAbilityName(111437),
+        trackingNumber = nil,
+    },
     -- Sigil of Defense, Blackrose Prison
     [112890] = {
         name = GetAbilityName(112890),
@@ -249,6 +254,7 @@ BearSynergies.Data = {
         name = GetAbilityName(134005),
         trackingNumber = nil,
     },
+    -- Sanguine Burst, Lady Thorn
     [141920] = {
         name = GetAbilityName(141920),
         trackingNumber = nil,

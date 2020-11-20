@@ -22,8 +22,9 @@ BearSynergies.Track = {
             [14] = false, -- Feeding Frenzy
             [15] = false, -- Harvest
             [16] = false, -- Icy Escape
-            [17] = false, -- Grave Robber
-            [18] = false, -- Pure Agony
+            [17] = false, -- Shield of Ursus
+            [18] = false, -- Grave Robber
+            [19] = false, -- Pure Agony
         },
     },
 }
@@ -94,10 +95,14 @@ local icons = {
         cooldown = "BearSynergies/Modules/Track/Images/Escape.dds",
     },
     [17] = {
+        ready = "esoui/art/icons/ability_warden_005_b.dds",
+        cooldown = "BearSynergies/Modules/Track/Images/Escape.dds",
+    },
+    [18] = {
         ready = "esoui/art/icons/ability_necromancer_004.dds",
         cooldown = "BearSynergies/Modules/Track/Images/Boneyard.dds",
     },
-    [18] = {
+    [19] = {
         ready = "esoui/art/icons/ability_necromancer_010_b.dds",
         cooldown = "BearSynergies/Modules/Track/Images/Totem.dds",
     },
@@ -106,6 +111,7 @@ local icons = {
 local BS = BearSynergies
 local D = BS.Data
 local T = BS.Track
+local EM = GetEventManager()
 
 -- Creates the UI for each synergy
 local function CreateControls()
@@ -113,8 +119,6 @@ local function CreateControls()
         WINDOW_MANAGER:CreateControlFromVirtual("$(parent)Cooldown", BearSynergiesTrackUI, "BearSynergiesTrackCooldown", i)
 
         BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Icon"):SetTexture(icons[i].ready)
-        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Icon"):SetDimensions(T.SavedVariables.size, T.SavedVariables.size)
-        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i .. "Timer"):SetFont("$(GAMEPAD_MEDIUM_FONT)|" .. math.floor(T.SavedVariables.size / 2) .. "|thick-outline")
     end
 end
 
@@ -130,7 +134,7 @@ end
 -- Calculates dimensions for background
 local function GetBackgroundDimensions(counter)
     local x = counter * (T.SavedVariables.size + math.floor(T.SavedVariables.size / 10)) + math.floor(T.SavedVariables.size / 10)
-    local y = T.SavedVariables.size + 2 * math.floor(T.SavedVariables.size / 10)
+    local y = T.SavedVariables.size + math.floor(T.SavedVariables.size / 5)
 
     if T.SavedVariables.orientation == "Horizontal" then return x, y
     else return y, x end
@@ -149,7 +153,7 @@ end
 -- Resize icon and timer
 local function UpdateIconSize()
     local cooldownControl = nil
-    local fontSize = math.floor(T.SavedVariables.size / 2)
+    local fontSize = math.floor(T.SavedVariables.size / 1.5)
 
     for i, _ in ipairs(T.SavedVariables.Synergies) do
         cooldownControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. i)
@@ -184,26 +188,30 @@ end
 local function UpdateCooldown(synergyId)
     local cooldownTimerControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer")
 
-    if cooldownTimerControl:GetText() ~= "0.0" then cooldownTimerControl:SetText(string.format("%.1f", tonumber(cooldownTimerControl:GetText()) - 0.1 )) end
+    if cooldownTimerControl:GetText() ~= "0" then cooldownTimerControl:SetText(tonumber(cooldownTimerControl:GetText()) - 1) end
 
-    if cooldownTimerControl:GetText() == "0.0" then
+    if cooldownTimerControl:GetText() == "0" then
         BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Icon"):SetTexture(icons[D[synergyId].trackingNumber].ready)
+        cooldownTimerControl:SetHidden(true)
         cooldownTimerControl:SetColor(0, 255, 0)
 
-        EVENT_MANAGER:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. D[synergyId].trackingNumber)
+        EM:UnregisterForUpdate(BS.name .. "UpdateCooldown" .. D[synergyId].trackingNumber)
     end
 end
 
 -- Initiates cooldown for synergies
-local function StartCooldown(_, _, _, abilityName)
+local function StartCooldown(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
     local synergyId = BS.GetSynergyId(abilityName)
 
-    if synergyId and D[synergyId].trackingNumber then
-        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Icon"):SetTexture(icons[D[synergyId].trackingNumber].cooldown)
-        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer"):SetText("20")
-        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer"):SetColor(255, 0, 0)
+    if D[synergyId] and D[synergyId].trackingNumber then
+        local cooldownTimerControl = BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Timer")
 
-        EVENT_MANAGER:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[synergyId].trackingNumber, 100, function() UpdateCooldown(synergyId) end)
+        BearSynergiesTrackUI:GetNamedChild("Cooldown" .. D[synergyId].trackingNumber .. "Icon"):SetTexture(icons[D[synergyId].trackingNumber].cooldown)
+        cooldownTimerControl:SetHidden(false)
+        cooldownTimerControl:SetText("20")
+        cooldownTimerControl:SetColor(255, 0, 0)
+
+        EM:RegisterForUpdate(BS.name .. "UpdateCooldown" .. D[synergyId].trackingNumber, 1000, function() UpdateCooldown(synergyId) end)
     end
 end
 
@@ -235,7 +243,6 @@ function T.Initialise()
     SCENE_MANAGER:GetScene("hud"):RegisterCallback("StateChange", ToggleUI)
     SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", ToggleUI)
 
-    EVENT_MANAGER:RegisterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, StartCooldown)
-    EVENT_MANAGER:AddFilterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED_DURATION)
-    EVENT_MANAGER:AddFilterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER)
+    EM:RegisterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, StartCooldown)
+    EM:AddFilterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER, REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER)
 end

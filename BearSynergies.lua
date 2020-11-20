@@ -20,7 +20,7 @@ function BS.GetModulePanelData(name)
         type = "panel",
         name = name and string.format("Bear Synergies - %s", name) or "Bear Synergies",
         displayname = name and string.format("Bear Synergies - %s", name) or "Bear Synergies",
-        author = "|c00BFFFBjørnTheBurr|r",
+        author = "|c00BFFFBjørn|r",
         version = BS.version,
         registerForRefresh = true,
     }
@@ -29,7 +29,7 @@ end
 -- Fetch abilityId with abilityName. Only support for synergies
 function BS.GetSynergyId(abilityName)
     for k, v in pairs(BS.Data) do
-        if v.name == abilityName then return k end
+        if string.find(abilityName, v.name) then return k end
     end
 end
 
