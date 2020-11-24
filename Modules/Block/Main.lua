@@ -64,8 +64,8 @@ local function GetLokke()
     local _, _, _, perfEquipped = GetItemLinkSetInfo(perfLokke, true)
 
     -- If Lokke Mode is enabled but no Lokke pieces are equipped don't block synergies
-    if imperfEquipped == 0 and perfEquipped == 0 then return true end
-    if imperfEquipped >= 5 or perfEquipped >= 5 then return true
+    if imperfEquipped == 0 and perfEquipped == 0 then return true
+    elseif imperfEquipped >= 5 or perfEquipped >= 5 then return true
     else return false end
 end
 
@@ -74,8 +74,8 @@ local function GetAlkosh()
     local _, _, _, alkoshEquipped = GetItemLinkSetInfo(alkosh, true)
 
     -- If Alkosh Mode is enabled but no Alkosh pieces are equipped don't block synergies
-    if alkoshEquipped == 0 then return true end
-    if alkoshEquipped >= 5 then return true
+    if alkoshEquipped == 0 then return true
+    elseif alkoshEquipped >= 5 then return true
     else return false end
 end
 
@@ -95,24 +95,22 @@ end
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 -- If the intercept function returns true the target function won't run
 local function Intercept()
-    local synergyName = GetSynergyInfo()
+    local synergyId = BS.NameID[GetSynergyInfo()]
 
-    if not synergyName then return end
+    if synergyId then
+        if B.SavedVariables.Synergies[synergyId] ~= nil then
+            if B.SavedVariables.Synergies[synergyId] == false then return true end
+        else return false end -- Always allow unknown synergy
 
-    local synergyId = BS.GetSynergyId(synergyName)
+        if B.SavedVariables.blockDO and synergyId == 56667 then
+            LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+            return false
+        end
 
-    if B.SavedVariables[synergyId] ~= nil then
-        if B.SavedVariables[synergyId] == false then return true end
-    else return false end -- Always allow unknown synergy
-
-    if B.SavedVariables.blockDO and synergyId == 56667 then
-        LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
-        return false
+        if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+        if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+        if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
     end
-
-    if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-    if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-    if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 end
 
 local function BarswapRefresh(_, didBarswap)

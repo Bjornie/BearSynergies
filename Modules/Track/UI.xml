@@ -1,9 +1,9 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="BearSynergiesTrackUI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
+        <TopLevelControl name="BearSynergies_Track_UI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
             <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
             <Controls>
-                <Texture name="$(parent)Texture" color="000000">
+                <Texture name="$(parent)_Texture" color="000000">
                     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
                 </Texture>
             </Controls>
@@ -12,13 +12,13 @@
             </OnMoveStop>
         </TopLevelControl>
 
-        <Control name="BearSynergiesTrackCooldown" hidden="true" virtual="true">
+        <Control name="BearSynergies_Track_Cooldown" hidden="true" virtual="true">
             <Controls>
-                <Texture name="$(parent)Icon" textureFile="esoui/art/icons/ability_undaunted_004.dds">
+                <Texture name="$(parent)_Icon" textureFile="esoui/art/icons/ability_undaunted_004.dds">
                     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
                     <Dimensions x="48" y="48" />
                 </Texture>
-                <Label name="$(parent)Timer" color="00FF00" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" hidden="true" text="0">
+                <Label name="$(parent)_Timer" color="00FF00" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" hidden="true" text="0">
                     <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="CENTER" />
                 </Label>
             </Controls>

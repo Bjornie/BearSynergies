@@ -13,6 +13,7 @@ BearSynergies = {
 }
 
 local BS = BearSynergies
+local EM = GetEventManager()
 
 -- Easy creation of PanelData for each module
 function BS.GetModulePanelData(name)
@@ -24,13 +25,6 @@ function BS.GetModulePanelData(name)
         version = BS.version,
         registerForRefresh = true,
     }
-end
-
--- Fetch abilityId with abilityName. Only support for synergies
-function BS.GetSynergyId(abilityName)
-    for k, v in pairs(BS.Data) do
-        if string.find(abilityName, v.name) then return k end
-    end
 end
 
 local function Initialise()
@@ -48,9 +42,9 @@ local function Initialise()
     BS.BuildMenu()
 end
 
-EVENT_MANAGER:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, function(_, addonName)
+EM:RegisterForEvent(BS.name, EVENT_ADD_ON_LOADED, function(_, addonName)
     if addonName == BS.name then
-        EVENT_MANAGER:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
+        EM:UnregisterForEvent(BS.name, EVENT_ADD_ON_LOADED)
         Initialise()
     end
 end)
