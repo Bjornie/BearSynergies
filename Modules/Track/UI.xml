@@ -19,7 +19,7 @@
                     <Dimensions x="48" y="48" />
                 </Texture>
                 <Label name="$(parent)_Timer" color="00FF00" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" hidden="true" text="0">
-                    <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="CENTER" />
+                    <Anchor point="CENTER" relativeTo="$(parent)_Icon" relativePoint="CENTER" />
                 </Label>
             </Controls>
         </Control>

@@ -38,6 +38,91 @@ function T.BuildMenu()
             controls = {
                 {
                     type = "checkbox",
+                    name = "Purify",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[1] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[1] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Conduit",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[2] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[2] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                 image = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Soul Leech",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[3] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[3] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_nightblade_018.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Spear Shards/Combustion",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[4] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[4] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_undaunted_004.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Nova",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[5] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[5] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_templar_nova.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
                     name = "Shackle",
                     width = "half",
                     getFunc = function() return T.SavedVariables.Synergies[6] end,
@@ -72,40 +157,6 @@ function T.BuildMenu()
                 },
                 {
                     type = "checkbox",
-                    name = "Grave Robber",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[18] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[18] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_necromancer_004.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Pure Agony",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[19] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[19] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_necromancer_010_b.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
                     name = "Hidden Refresh",
                     width = "half",
                     getFunc = function() return T.SavedVariables.Synergies[8] end,
@@ -123,18 +174,69 @@ function T.BuildMenu()
                 },
                 {
                     type = "checkbox",
-                    name = "Soul Leech",
+                    name = "Bone Shield",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[3] end,
+                    getFunc = function() return T.SavedVariables.Synergies[9] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[3] = value
+                        T.SavedVariables.Synergies[9] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
                     width = "half",
-                    image = "esoui/art/icons/ability_nightblade_018.dds",
+                    image = "esoui/art/icons/ability_undaunted_005.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Spiders",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[10] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[10] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_undaunted_003.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Blood Altar",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[11] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[11] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_undaunted_001.dds",
+                    imageWidth = 50,
+                    imageHeight = 50,
+                },
+                {
+                    type = "checkbox",
+                    name = "Radiate",
+                    width = "half",
+                    getFunc = function() return T.SavedVariables.Synergies[12] end,
+                    setFunc = function(value)
+                        T.SavedVariables.Synergies[12] = value
+                        T.UpdateUI()
+                    end,
+                },
+                {
+                    type = "texture",
+                    width = "half",
+                    image = "esoui/art/icons/ability_undaunted_002.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
@@ -157,52 +259,18 @@ function T.BuildMenu()
                 },
                 {
                     type = "checkbox",
-                    name = "Conduit",
+                    name = "Feeding Frenzy",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[2] end,
+                    getFunc = function() return T.SavedVariables.Synergies[14] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[2] = value
+                        T.SavedVariables.Synergies[14] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
                     width = "half",
-                 image = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Nova",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[5] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[5] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_templar_nova.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Purify",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[1] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[1] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
+                    image = "esoui/art/icons/ability_werewolf_005_b.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
@@ -242,23 +310,6 @@ function T.BuildMenu()
                 },
                 {
                     type = "checkbox",
-                    name = "Feeding Frenzy",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[14] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[14] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_werewolf_005_b.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
                     name = "Shield of Ursus",
                     width = "half",
                     getFunc = function() return T.SavedVariables.Synergies[17] end,
@@ -270,92 +321,75 @@ function T.BuildMenu()
                 {
                     type = "texture",
                     width = "half",
-                    image = "esoui/art/icons/ability_warden_005_b.dds",
+                    image = "esoui/art/icons/ability_warden_018_c.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
                 {
                     type = "checkbox",
-                    name = "Blood Altar",
+                    name = "Grave Robber",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[11] end,
+                    getFunc = function() return T.SavedVariables.Synergies[18] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[11] = value
+                        T.SavedVariables.Synergies[18] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
                     width = "half",
-                    image = "esoui/art/icons/ability_undaunted_001.dds",
+                    image = "esoui/art/icons/ability_necromancer_004.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
                 {
                     type = "checkbox",
-                    name = "Spiders",
+                    name = "Pure Agony",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[10] end,
+                    getFunc = function() return T.SavedVariables.Synergies[19] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[10] = value
+                        T.SavedVariables.Synergies[19] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
                     width = "half",
-                    image = "esoui/art/icons/ability_undaunted_003.dds",
+                    image = "esoui/art/icons/ability_necromancer_010_b.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
                 {
                     type = "checkbox",
-                    name = "Radiate",
+                    name = "Sanguine Burst",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[12] end,
+                    getFunc = function() return T.SavedVariables.Synergies[20] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[12] = value
+                        T.SavedVariables.Synergies[20] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
                     width = "half",
-                    image = "esoui/art/icons/ability_undaunted_002.dds",
+                    image = "esoui/art/icons/ability_u23_bloodball_chokeonit.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },
                 {
                     type = "checkbox",
-                    name = "Bone Shield",
+                    name = "Heed the Call",
                     width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[9] end,
+                    getFunc = function() return T.SavedVariables.Synergies[21] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[9] = value
+                        T.SavedVariables.Synergies[21] = value
                         T.UpdateUI()
                     end,
                 },
                 {
                     type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_005.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Spear Shards/Combustion",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[4] end,
-                    setFunc = function(value)
-                        T.SavedVariables.Synergies[4] = value
-                        T.UpdateUI()
-                    end,
-                },
-                {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_004.dds",
+                    width ="half",
+                    image = "esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds",
                     imageWidth = 50,
                     imageHeight = 50,
                 },

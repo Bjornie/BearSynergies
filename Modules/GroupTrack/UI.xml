@@ -1,8 +1,7 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="BearSynergiesGroupTrackUI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
+        <TopLevelControl name="BearSynergies_GroupTrack_UI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
             <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
-
         </TopLevelControl>
     </Controls>
 </GuiXml>

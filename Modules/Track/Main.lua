@@ -97,8 +97,8 @@ local icons = {
         cooldown = "BearSynergies/Modules/Track/Images/Escape.dds",
     },
     [17] = {
-        ready = "",
-        cooldown = "",
+        ready = "esoui/art/icons/ability_warden_018_c.dds",
+        cooldown = "BearSynergies/Modules/Track/Images/Ursus.dds",
     },
     [18] = {
         ready = "esoui/art/icons/ability_necromancer_004.dds",
@@ -109,12 +109,12 @@ local icons = {
         cooldown = "BearSynergies/Modules/Track/Images/Totem.dds",
     },
     [20] = {
-        ready = "",
-        cooldown = "",
+        ready = "esoui/art/icons/ability_u23_bloodball_chokeonit.dds",
+        cooldown = "BearSynergies/Modules/Track/Images/Thorn.dds",
     },
     [21] = {
-        ready = "",
-        cooldown = "",
+        ready = "esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds",
+        cooldown = "BearSynergies/Modules/Track/Images/Kraglen.dds",
     },
 }
 
@@ -240,5 +240,5 @@ function T.Initialise()
     SCENE_MANAGER:GetScene("hudui"):RegisterCallback("StateChange", ToggleUI)
 
     EM:RegisterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, StartCooldown)
-    EM:AddFilterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER, REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER)
+    EM:AddFilterForEvent(BS.name .. "Track", EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED_DURATION, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER, REGISTER_FILTER_TARGET_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_PLAYER)
 end

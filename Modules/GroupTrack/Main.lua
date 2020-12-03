@@ -2,6 +2,7 @@ BearSynergies.GroupTrack = {}
 
 local BS = BearSynergies
 local GT = BS.GroupTrack
+local EM = GetEventManager()
 
 local playerPool
 
@@ -11,4 +12,6 @@ end
 
 function GT.Initialise()
     playerPool = ZO_ObjectPool:New(CreatePlayer)
+
+    EM:RegisterForEvent()
 end

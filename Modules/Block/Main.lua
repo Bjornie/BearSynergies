@@ -95,22 +95,20 @@ end
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 -- If the intercept function returns true the target function won't run
 local function Intercept()
-    local synergyId = BS.NameID[GetSynergyInfo()]
+    local synergyId = BS.NameId[GetSynergyInfo()]
 
-    if synergyId then
-        if B.SavedVariables.Synergies[synergyId] ~= nil then
-            if B.SavedVariables.Synergies[synergyId] == false then return true end
-        else return false end -- Always allow unknown synergy
+    if B.SavedVariables[synergyId] ~= nil then
+        if B.SavedVariables[synergyId] == false then return true end
+    else return false end -- Always allow unknown synergy
 
-        if B.SavedVariables.blockDO and synergyId == 56667 then
-            LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
-            return false
-        end
-
-        if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-        if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-        if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.blockDO and synergyId == 56667 then
+        LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+        return false
     end
+
+    if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 end
 
 local function BarswapRefresh(_, didBarswap)
