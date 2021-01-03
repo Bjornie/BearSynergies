@@ -44,7 +44,7 @@ function B.BuildMenu()
             min = 0,
             max = 100,
             autoSelect = true,
-            disabled = function() return not B.SV.isResource end,
+            disabled = not B.SV.isResource,
             default = B.Default.resourceThreshold,
         },
         {
