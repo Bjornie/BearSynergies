@@ -10,9 +10,5 @@
                 <Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
             </Label>
         </Control>
-
-        <Label name="BearSynergies_GroupTrack_Cooldown" hidden="true" virtual="true">
-            <Dimensions x="50" y="50" />
-        </Label>
     </Controls>
 </GuiXml>
