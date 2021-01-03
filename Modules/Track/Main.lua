@@ -9,25 +9,25 @@ BearSynergies.Track = {
         showOnlyInCombat = false,
 
         Synergies = {
-            [1] = false, -- Shackle
-            [2] = false, -- Ignite
-            [3] = false, -- Charged Lightning
-            [4] = false, -- Conduit
-            [5] = false, -- Hidden Refresh
-            [6] = false, -- Soul Leech
-            [7] = false, -- Orb & Shards
-            [8] = false, -- Nova
-            [9] = false, -- Purify
-            [10] = false, -- Harvest
-            [11] = false, -- Icy Escape
-            [12] = false, -- Grave Robber
-            [13] = false, -- Pure Agony
-            [14] = false, -- Blood Altar
-            [15] = false, -- Spiders
-            [16] = false, -- Radiate
-            [17] = false, -- Bone Shield
-            [18] = false, -- Feeding Frenzy
-            [19] = false, -- Shield of Ursus
+            [1] = false, -- Purify
+            [2] = false, -- Soul Leech
+            [3] = false, -- Hidden Refresh
+            [4] = false, -- Bone Shield
+            [5] = false, -- Spiders
+            [6] = false, -- Blood Altar
+            [7] = false, -- Radiate
+            [8] = false, -- Conduit
+            [9] = false, -- Ignite
+            [10] = false, -- Orbs & Shards
+            [11] = false, -- Charged Lightning
+            [12] = false, -- Nova
+            [13] = false, -- Feeding Frenzy
+            [14] = false, -- Shackle
+            [15] = false, -- Harvest
+            [16] = false, -- Icy Escape
+            [17] = false, -- Shield of Ursus
+            [18] = false, -- Grave Robber
+            [19] = false, -- Pure Agony
             [20] = false, -- Sanguine Burst
             [21] = false, -- Heed the Call
         },
@@ -36,40 +36,60 @@ BearSynergies.Track = {
 
 local Icons = {
     {
-        ready = 'esoui/art/icons/ability_dragonknight_006.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Standard.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_dragonknight_010.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Talons.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_sorcerer_storm_atronach.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Atronach.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_sorcerer_lightning_splash.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Conduit.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_nightblade_015.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Refresh.dds',
+        ready = 'esoui/art/icons/ability_templar_cleansing_ritual.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Ritual.dds',
     },
     {
         ready = 'esoui/art/icons/ability_nightblade_018.dds',
         cooldown = 'BearSynergies/Modules/Track/Images/Leech.dds',
     },
     {
+        ready = 'esoui/art/icons/ability_nightblade_015.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Refresh.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_undaunted_005.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Shield.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_undaunted_003.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Spider.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_undaunted_001.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Altar.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_undaunted_002.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Radiate.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_sorcerer_lightning_splash.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Conduit.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_dragonknight_010.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Talons.dds',
+    },
+    {
         ready = 'esoui/art/icons/ability_undaunted_004.dds',
         cooldown = 'BearSynergies/Modules/Track/Images/Orb.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_sorcerer_storm_atronach.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Atronach.dds',
     },
     {
         ready = 'esoui/art/icons/ability_templar_nova.dds',
         cooldown = 'BearSynergies/Modules/Track/Images/Nova.dds',
     },
     {
-        ready = 'esoui/art/icons/ability_templar_cleansing_ritual.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Ritual.dds',
+        ready = 'esoui/art/icons/ability_werewolf_005_b.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Howl.dds',
+    },
+    {
+        ready = 'esoui/art/icons/ability_dragonknight_006.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Standard.dds',
     },
     {
         ready = 'esoui/art/icons/ability_warden_007.dds',
@@ -80,36 +100,16 @@ local Icons = {
         cooldown = 'BearSynergies/Modules/Track/Images/Escape.dds',
     },
     {
+        ready = 'esoui/art/icons/ability_warden_018_c.dds',
+        cooldown = 'BearSynergies/Modules/Track/Images/Ursus.dds',
+    },
+    {
         ready = 'esoui/art/icons/ability_necromancer_004.dds',
         cooldown = 'BearSynergies/Modules/Track/Images/Boneyard.dds',
     },
     {
         ready = 'esoui/art/icons/ability_necromancer_010_b.dds',
         cooldown = 'BearSynergies/Modules/Track/Images/Totem.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_001.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Altar.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_003.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Spider.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_002.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Radiate.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_005.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Shield.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_werewolf_005_b.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Howl.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_warden_018_c.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Ursus.dds',
     },
     {
         ready = 'esoui/art/icons/ability_u23_bloodball_chokeonit.dds',

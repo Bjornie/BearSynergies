@@ -43,6 +43,7 @@ function BS.GetModulePanelData(name)
         author = '|c00BFFFBjørn|r',
         version = BS.version,
         registerForRefresh = true,
+        registerForDefaults = true,
     }
 end
 
