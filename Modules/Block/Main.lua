@@ -1,4 +1,6 @@
 BearSynergies.Block = {
+    name = 'BearSynergies_Block',
+
     Default = {
         isLokke = false,
         isAlkosh = false,
@@ -38,10 +40,10 @@ BearSynergies.Block = {
         [95922] = true,
         [103489] = true,
         [111437] = true,
+        [112872] = true,
         [112890] = true,
         [112901] = true,
         [112909] = true,
-        [112872] = true,
         [115548] = true,
         [118604] = true,
         [129936] = true,
@@ -53,10 +55,11 @@ BearSynergies.Block = {
 local BS = BearSynergies
 local B = BS.Block
 local EM = GetEventManager()
+local LD = LibDialog
 
-local imperfLokke = "|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
-local perfLokke = "|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
-local alkosh = "|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+local imperfLokke = '|H1:item:149795:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h'
+local perfLokke = '|H1:item:150996:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h'
+local alkosh = '|H1:item:73058:370:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h'
 
 -- Checks whether or not Tooth of Lokkestiiz is equipped.
 local function GetLokke()
@@ -81,14 +84,14 @@ end
 
 -- Checks resource percentage and compares with defined options value
 local function IsResourceLow()
-    local stamCurrent, stamMax = GetUnitPower("player", POWERTYPE_STAMINA)
-    local magCurrent, magMax = GetUnitPower("player", POWERTYPE_MAGICKA)
+    local stamCurrent, stamMax = GetUnitPower('player', POWERTYPE_STAMINA)
+    local magCurrent, magMax = GetUnitPower('player', POWERTYPE_MAGICKA)
     local percentage = 100
 
     if stamMax > magMax then percentage = stamCurrent / stamMax * 100
     else percentage = magCurrent / magMax * 100 end
 
-    if percentage <= B.SavedVariables.resourceThreshold then return true
+    if percentage <= B.SV.resourceThreshold then return true
     else return false end
 end
 
@@ -97,19 +100,19 @@ end
 local function Intercept()
     local synergyId = BS.NameId[GetSynergyInfo()]
 
-    if B.SavedVariables[synergyId] ~= nil then
-        if B.SavedVariables[synergyId] == false then return true end
+    if B.SV[synergyId] ~= nil then
+        if B.SV[synergyId] == false then return true end
     else return false end -- Always allow unknown synergy
 
     -- Destructive Outbreak
-    if B.SavedVariables.blockDO and synergyId == 56667 then
-        LibDialog:ShowDialog(BS.name .. "DODialog", "DOConfirmation")
+    if B.SV.blockDO and synergyId == 56667 then
+        LD:ShowDialog(BS.name .. 'DODialog', 'DOConfirmation')
         return false
     end
 
-    if B.SavedVariables.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-    if B.SavedVariables.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
-    if B.SavedVariables.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SV.isLokke and not GetLokke() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SV.isAlkosh and not GetAlkosh() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+    if B.SV.isResource and not IsResourceLow() then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 end
 
 local function BarswapRefresh(_, didActiveHotbarChange)
@@ -117,14 +120,14 @@ local function BarswapRefresh(_, didActiveHotbarChange)
 end
 
 function B.Initialise()
-    if BS.SavedVariables.isAccountWide then B.SavedVariables = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, "Block", B.Default)
-    else B.SavedVariables = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, "Block", B.Default) end
+    if BS.SV.isAccountWide then B.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Block', B.Default)
+    else B.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Block', B.Default) end
 
-    -- Confirmation dialog for Destructive Outbreak
-    LibDialog:RegisterDialog(BS.name .. "DODialog", "DOConfirmation", "|cFF0000Warning!|r", "Destructive Outbreak can kill the group! Press Confirm to continue.")
-
-    ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", Intercept)
+    ZO_PreHook(SYNERGY, 'OnSynergyAbilityChanged', Intercept)
     B.BuildMenu()
 
-    EM:RegisterForEvent(BS.name .. "Block", EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BarswapRefresh)
+    -- Confirmation dialog for Destructive Outbreak
+    LD:RegisterDialog(BS.name .. 'DODialog', 'DOConfirmation', '|cFF0000Warning!|r', 'Destructive Outbreak can kill the group! Press Confirm to continue.')
+
+    EM:RegisterForEvent(B.name, EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BarswapRefresh)
 end

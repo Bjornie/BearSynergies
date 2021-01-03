@@ -1,10 +1,10 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="BearSynergies_Track_UI" clampedToScreen="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
-            <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
+        <TopLevelControl name="BearSynergies_Track_UI" clampedToScreen="true" hidden="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
+            <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetX="200" />
             <Controls>
-                <Texture name="$(parent)_Texture" color="000000">
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+                <Texture name="$(parent)_Background" color="000000">
+                    <Anchor point="TOPELFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
                 </Texture>
             </Controls>
             <OnMoveStop>
@@ -18,7 +18,7 @@
                     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
                     <Dimensions x="48" y="48" />
                 </Texture>
-                <Label name="$(parent)_Timer" color="00FF00" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" hidden="true" text="0">
+                <Label name="$(parent)_Timer" color="FF0000" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" hidden="true" text="0">
                     <Anchor point="CENTER" relativeTo="$(parent)_Icon" relativePoint="CENTER" />
                 </Label>
             </Controls>

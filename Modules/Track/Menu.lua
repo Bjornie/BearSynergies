@@ -1,402 +1,344 @@
 local BS = BearSynergies
 local T = BS.Track
+local LAM = LibAddonMenu2
 
 function T.BuildMenu()
-    local PanelData = BS.GetModulePanelData("Track")
+    local PanelData = BS.GetModulePanelData('Track')
 
     local OptionsTable = {
         {
-            type = "header",
-            name = "|cFFFACDGeneral|r",
+            type = 'header',
+            name = '|cFFFACDGeneral|r',
         },
         {
-            type = "dropdown",
-            name = "Orientation",
-            choices = {"Horizontal", "Vertical"},
-            getFunc = function() return T.SavedVariables.orientation end,
+            type = 'dropdown',
+            name = 'Orientation',
+            choices = {'Horizontal', 'Vertical'},
+            getFunc = function() return T.SV.Orientation end,
             setFunc = function(var)
-                T.SavedVariables.orientation = var
+                T.SV.Orientation = var
                 T.UpdateUI()
             end,
+            default = T.Default.orientation,
         },
         {
-            type = "slider",
-            name = "Size",
+            type = 'slider',
+            name = 'Size',
+            getFunc = function() return T.SV.size end,
+            setFunc = function(value)
+                T.SV.size = value
+                T.UpdateUI()
+            end,
             min = 0,
             max = 100,
-            step = 1,
-            getFunc = function() return T.SavedVariables.size end,
-            setFunc = function(value)
-                T.SavedVariables.size = value
-                T.UpdateUI()
-            end,
-            default = 48,
+            default = T.Default.size,
         },
         {
-            type = "submenu",
-            name = "|cFFFACDSynergies|r",
+            type = 'checkbox',
+            name = 'Show Only During Combat',
+            getFunc = function() return T.SV.showOnlyInCombat end,
+            setFunc = function(value)
+                T.SV.showOnlyInCombat = value
+                T.PlayerCombatState()
+            end,
+            default = T.Default.showOnlyInCombat,
+        },
+        {
+            type = 'submenu',
+            name = '|cFFFACDClass Synergies|r',
             controls = {
                 {
-                    type = "checkbox",
-                    name = "Purify",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[1] end,
+                    type = 'header',
+                    name = '|cFFFACDDragonknight|r',
+                },
+                {
+                    type = 'checkbox',
+                    name = 'Shackle',
+                    getFunc = function() return T.SV.Synergies[1] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[1] = value
+                        T.SV.Synergies[1] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Dragonknight Standard skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[1],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_templar_cleansing_ritual.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Conduit",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[2] end,
+                    type = 'checkbox',
+                    name = 'Ignite',
+                    getFunc = function() return T.SV.Synergies[2] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[2] = value
+                        T.SV.Synergies[2] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Dark Talons skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[2],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                 image = "esoui/art/icons/ability_sorcerer_lightning_splash.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    type = 'header',
+                    name = '|cFFFACDSorcerer|r',
                 },
                 {
-                    type = "checkbox",
-                    name = "Soul Leech",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[3] end,
+                    type = 'checkbox',
+                    name = 'Charged Lightning',
+                    getFunc = function() return T.SV.Synergies[3] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[3] = value
+                        T.SV.Synergies[3] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Summon Storm Atronach skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[3],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_nightblade_018.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Spear Shards/Combustion",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[4] end,
+                    type = 'checkbox',
+                    name = 'Conduit',
+                    getFunc = function() return T.SV.Synergies[4] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[4] = value
+                        T.SV.Synergies[4] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Lightning Splash skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[4],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_004.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    type = 'header',
+                    name = '|cFFFACDNightblade|r',
                 },
                 {
-                    type = "checkbox",
-                    name = "Nova",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[5] end,
+                    type = 'checkbox',
+                    name = 'Hidden Refresh',
+                    getFunc = function() return T.SV.Synergies[5] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[5] = value
+                        T.SV.Synergies[5] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Consuming Darkness skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[5],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_templar_nova.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Shackle",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[6] end,
+                    type = 'checkbox',
+                    name = 'Soul Leech',
+                    getFunc = function() return T.SV.Synergies[6] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[6] = value
+                        T.SV.Synergies[6] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Soul Shred skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[6],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_dragonknight_006.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    type = 'header',
+                    name = '|cFFFACDTemplar|r',
                 },
                 {
-                    type = "checkbox",
-                    name = "Ignite",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[7] end,
+                    type = 'checkbox',
+                    name = 'Orb & Shards',
+                    getFunc = function() return T.SV.Synergies[7] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[7] = value
+                        T.SV.Synergies[7] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Spear Shards and morphs skills and the Necrotic Orb and morphs skills.',
+                    width = 'half',
+                    default = T.Default.Synergies[7],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_dragonknight_010.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Hidden Refresh",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[8] end,
+                    type = 'checkbox',
+                    name = 'Nova',
+                    getFunc = function() return T.SV.Synergies[8] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[8] = value
+                        T.SV.Synergies[8] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Nova and morphs skills.',
+                    width = 'half',
+                    default = T.Default.Synergies[8],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_nightblade_015.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Bone Shield",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[9] end,
+                    type = 'checkbox',
+                    name = 'Purify',
+                    getFunc = function() return T.SV.Synergies[9] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[9] = value
+                        T.SV.Synergies[9] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Cleansing Ritual skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[9],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_005.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    type = 'header',
+                    name = '|cFFFACDWarden|r',
                 },
                 {
-                    type = "checkbox",
-                    name = "Spiders",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[10] end,
+                    type = 'checkbox',
+                    name = 'Harvest',
+                    getFunc = function() return T.SV.Synergies[10] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[10] = value
+                        T.SV.Synergies[10] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Healing Seed skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[10],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_003.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Blood Altar",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[11] end,
+                    type = 'checkbox',
+                    name = 'Icy Escape',
+                    getFunc = function() return T.SV.Synergies[11] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[11] = value
+                        T.SV.Synergies[11] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Frozen Retreat skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[11],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_001.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    type = 'header',
+                    name = '|cFFFACDNecromancer|r',
                 },
                 {
-                    type = "checkbox",
-                    name = "Radiate",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[12] end,
+                    type = 'checkbox',
+                    name = 'Grave Robber',
+                    getFunc = function() return T.SV.Synergies[12] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[12] = value
+                        T.SV.Synergies[12] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Boneyard skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[12],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_undaunted_002.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Charged Lightning",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[13] end,
+                    type = 'checkbox',
+                    name = 'Pure Agony',
+                    getFunc = function() return T.SV.Synergies[13] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[13] = value
+                        T.SV.Synergies[13] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Agony Totem skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[13],
                 },
+            },
+        },
+        {
+            type = 'submenu',
+            name = '|cFFFACDUndaunted Synergies|r',
+            controls = {
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_sorcerer_storm_atronach.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Feeding Frenzy",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[14] end,
+                    type = 'checkbox',
+                    name = 'Blood Altar',
+                    getFunc = function() return T.SV.Synergies[14] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[14] = value
+                        T.SV.Synergies[14] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Blood Altar and morphs skills.',
+                    width = 'half',
+                    default = T.Default.Synergies[14],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_werewolf_005_b.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Harvest",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[15] end,
+                    type = 'checkbox',
+                    name = 'Spiders',
+                    getFunc = function() return T.SV.Synergies[15] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[15] = value
+                        T.SV.Synergies[15] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Trapping Webs and morphs skills.',
+                    width = 'half',
+                    default = T.Default.Synergies[15],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_warden_007.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Icy Escape",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[16] end,
+                    type = 'checkbox',
+                    name = 'Radiate',
+                    getFunc = function() return T.SV.Synergies[16] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[16] = value
+                        T.SV.Synergies[16] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Inner Fire skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[16],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_warden_005_b.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Shield of Ursus",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[17] end,
+                    type = 'checkbox',
+                    name = 'Bone Shield',
+                    getFunc = function() return T.SV.Synergies[17] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[17] = value
+                        T.SV.Synergies[17] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Bone Shield and morphs skills.',
+                    width = 'half',
+                    default = T.Default.Synergies[17],
                 },
+            },
+        },
+        {
+            type = 'submenu',
+            name = '|cFFFACDMiscellaneous|r',
+            controls = {
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_warden_018_c.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Grave Robber",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[18] end,
+                    type = 'checkbox',
+                    name = 'Feeding Frenzy',
+                    getFunc = function() return T.SV.Synergies[18] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[18] = value
+                        T.SV.Synergies[18] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Howl of Despair skill.',
+                    width = 'half',
+                    default = T.Default.Synergies[18],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_necromancer_004.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Pure Agony",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[19] end,
+                    type = 'checkbox',
+                    name = 'Shield of Ursus',
+                    getFunc = function() return T.SV.Synergies[19] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[19] = value
+                        T.SV.Synergies[19] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Haven of Ursus set.',
+                    width = 'half',
+                    default = T.Default.Synergies[19],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_necromancer_010_b.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Sanguine Burst",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[20] end,
+                    type = 'checkbox',
+                    name = 'Sanguine Burst',
+                    getFunc = function() return T.SV.Synergies[20] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[20] = value
+                        T.SV.Synergies[20] = value
                         T.UpdateUI()
                     end,
+                    tooltip = 'Provided by the Lady Thorn monster set.',
+                    width = 'half',
+                    default = T.Default.Synergies[20],
                 },
                 {
-                    type = "texture",
-                    width = "half",
-                    image = "esoui/art/icons/ability_u23_bloodball_chokeonit.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
-                },
-                {
-                    type = "checkbox",
-                    name = "Heed the Call",
-                    width = "half",
-                    getFunc = function() return T.SavedVariables.Synergies[21] end,
+                    type = 'checkbox',
+                    name = 'Heed the Call',
+                    getFunc = function() return T.SV.Synergies[21] end,
                     setFunc = function(value)
-                        T.SavedVariables.Synergies[21] = value
+                        T.SV.Synergies[21] = value
                         T.UpdateUI()
                     end,
-                },
-                {
-                    type = "texture",
-                    width ="half",
-                    image = "esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds",
-                    imageWidth = 50,
-                    imageHeight = 50,
+                    tooltip = 'Provided by the Kraglen\'s Howl set.',
+                    width = 'half',
+                    default = T.Default.Synergies[21],
                 },
             },
         },
     }
 
-    LibAddonMenu2:RegisterAddonPanel(BS.name .. "Track", PanelData)
-    LibAddonMenu2:RegisterOptionControls(BS.name .. "Track", OptionsTable)
+    LAM:RegisterAddonPanel(T.name, PanelData)
+    LAM:RegisterOptionControls(T.name, OptionsTable)
 end
