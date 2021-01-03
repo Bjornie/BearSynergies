@@ -5,10 +5,16 @@
         </TopLevelControl>
 
         <Control name="BearSynergies_GroupTrack_User" hidden="true" resizeToFitDescendents="true" virtual="true">
-            <Label name="$(parent)_Name" horizontalAlignment="LEFT" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" text="accountName">
-                <Dimensions x="200" />
-                <Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
-            </Label>
+            <Controls>
+                <Label name="$(parent)_Name" horizontalAlignment="LEFT" font="$(GAMEPAD_MEDIUM_FONT)|29|thick-outline" text="accountName">
+                    <Dimensions x="200" />
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
+                </Label>
+            </Controls>
         </Control>
+
+        <Label name="BearSynergies_GroupTrack_Cooldown" hidden="true" virtual="true">
+            <Dimensions x="50" y="50" />
+        </Label>
     </Controls>
 </GuiXml>
