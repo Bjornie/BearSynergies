@@ -63,7 +63,7 @@ local function RefreshUnits()
     local tag
 
     for i = 1, GetGroupSize() do
-        tag = GetGoupUnitTagByIndex(i)
+        tag = GetGroupUnitTagByIndex(i)
         UnitList[tag] = {
             unitId = 0,
             isOnline = IsUnitOnline(tag),
