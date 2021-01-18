@@ -4,7 +4,7 @@ BearSynergies = {
     svName = 'BearSynergiesSV',
     svVersion = 5,
 
-    Default = {
+    defaults = {
         isAccountWide = true,
         isBlock = true,
         isGroupTrack = true,
@@ -48,8 +48,8 @@ function BS.GetModulePanelData(name)
 end
 
 local function Initialise()
-    BS.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.Default)
-    if not BS.SV.isAccountWide then BS.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.Default) end
+    BS.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, nil, BS.defaults)
+    if not BS.SV.isAccountWide then BS.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, nil, BS.defaults) end
 
     BS.CallbackManager = ZO_CallbackObject:New()
 

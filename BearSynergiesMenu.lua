@@ -2,9 +2,9 @@ local BS = BearSynergies
 local LAM = LibAddonMenu2
 
 function BS.BuildMenu()
-    local PanelData = BS.GetModulePanelData()
+    local panelData = BS.GetModulePanelData()
 
-    local OptionsTable = {
+    local optionsTable = {
         {
             type = 'header',
             name = '|cFFFACDGeneral|r',
@@ -12,10 +12,10 @@ function BS.BuildMenu()
         {
             type = 'checkbox',
             name = 'Account-Wide Settings',
-            getFunc = function() return BearSynergiesSV.Default[GetDisplayName()]['$AccountWide'].isAccountWide end,
-            setFunc = function(value) BearSynergiesSV.Default[GetDisplayName()]['$AccountWide'].isAccountWide = value end,
+            getFunc = function() return BearSynergiesSV.defaults[GetDisplayName()]['$AccountWide'].isAccountWide end,
+            setFunc = function(value) BearSynergiesSV.defaults[GetDisplayName()]['$AccountWide'].isAccountWide = value end,
             requiresReload = true,
-            default = BS.Default.isAccountWide,
+            default = BS.defaults.isAccountWide,
         },
         {
             type = 'header',
@@ -28,7 +28,7 @@ function BS.BuildMenu()
             setFunc = function(value) BS.SV.isBlock = value end,
             width = 'half',
             requiresReload = true,
-            default = BS.Default.isBlock,
+            default = BS.defaults.isBlock,
         },
         {
             type = 'description',
@@ -42,7 +42,7 @@ function BS.BuildMenu()
             setFunc = function(value) BS.SV.isGroupTrack = value end,
             width = 'half',
             requiresReload = true,
-            default = BS.Default.isGroupTrack,
+            default = BS.defaults.isGroupTrack,
         },
         {
             type = 'description',
@@ -56,7 +56,7 @@ function BS.BuildMenu()
             setFunc = function(value) BS.SV.isTrack = value end,
             width = 'half',
             requiresReload = true,
-            default = BS.Default.isTrack,
+            default = BS.defaults.isTrack,
         },
         {
             type = 'description',
@@ -65,6 +65,6 @@ function BS.BuildMenu()
         },
     }
 
-    LAM:RegisterAddonPanel(BS.name .. 'Main', PanelData)
-    LAM:RegisterOptionControls(BS.name .. 'Main', OptionsTable)
+    LAM:RegisterAddonPanel(BS.name .. 'Main', panelData)
+    LAM:RegisterOptionControls(BS.name .. 'Main', optionsTable)
 end

@@ -1,4 +1,4 @@
-BearSynergies.NameId = {
+BearSynergies.nameId = {
     [GetAbilityName(22269)] = 22269, -- Purify, Templar
     [GetAbilityName(23196)] = 23196, -- Conduit, Sorcerer
     [GetAbilityName(25170)] = 25170, -- Soul Leech, Nightblade
@@ -54,7 +54,7 @@ BearSynergies.NameId = {
     [GetAbilityName(142775)] = 142775, -- Heed the Call, Kraglen's Howl
 }
 
-BearSynergies.CooldownId = {
+BearSynergies.cooldownId = {
     [22270] = 1, -- Purify, Templar
     [25172] = 2, -- Soul Leech, Nightblade
     [37733] = 3, -- Hidden Refresh, Nightblade

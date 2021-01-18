@@ -108,7 +108,7 @@ function GT.Initialise()
 
     BS.CallbackManager:RegisterCallback(BS_EVENT_GROUP_CHANGED, RefreshUnits)
 
-    for k in pairs(BS.CooldownId) do
+    for k in pairs(BS.cooldownId) do
         EM:RegisterForEvent(GT.name, EVENT_COMBAT_EVENT, StartCooldown)
         EM:AddFilterForEvent(GT.name, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, k)
     end

@@ -1,7 +1,7 @@
 BearSynergies.Block = {
     name = 'BearSynergies_Block',
 
-    Default = {
+    defaults = {
         isLokke = false,
         isAlkosh = false,
         isResource = false,
@@ -98,7 +98,7 @@ end
 -- This function runs before synergy prompt on-screen and determines whether or not the prompt appears
 -- If the intercept function returns true the target function won't run
 local function Intercept()
-    local synergyId = BS.NameId[GetSynergyInfo()]
+    local synergyId = BS.nameId[GetSynergyInfo()]
 
     if B.SV[synergyId] ~= nil then
         if B.SV[synergyId] == false then return true end
@@ -120,8 +120,8 @@ local function BarswapRefresh(_, didActiveHotbarChange)
 end
 
 function B.Initialise()
-    if BS.SV.isAccountWide then B.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Block', B.Default)
-    else B.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Block', B.Default) end
+    if BS.SV.isAccountWide then B.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Block', B.defaults)
+    else B.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Block', B.defaults) end
 
     ZO_PreHook(SYNERGY, 'OnSynergyAbilityChanged', Intercept)
     B.BuildMenu()

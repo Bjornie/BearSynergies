@@ -1,14 +1,14 @@
 BearSynergies.Track = {
     name = 'BearSynergies_Track',
 
-    Default = {
+    defaults = {
         left = 0,
         top = 0,
         size = 48,
         orientation = 'Horizontal',
         showOnlyInCombat = false,
 
-        Synergies = {
+        synergies = {
             [1] = false, -- Purify
             [2] = false, -- Soul Leech
             [3] = false, -- Hidden Refresh
@@ -34,91 +34,28 @@ BearSynergies.Track = {
     },
 }
 
-local Icons = {
-    {
-        ready = 'esoui/art/icons/ability_templar_cleansing_ritual.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Ritual.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_nightblade_018.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Leech.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_nightblade_015.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Refresh.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_005.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Shield.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_003.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Spider.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_001.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Altar.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_002.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Radiate.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_sorcerer_lightning_splash.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Conduit.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_dragonknight_010.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Talons.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_undaunted_004.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Orb.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_sorcerer_storm_atronach.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Atronach.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_templar_nova.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Nova.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_werewolf_005_b.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Howl.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_dragonknight_006.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Standard.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_warden_007.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Harvest.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_warden_005_b.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Escape.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_warden_018_c.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Ursus.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_necromancer_004.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Boneyard.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_necromancer_010_b.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Totem.dds',
-    },
-    {
-        ready = 'esoui/art/icons/ability_u23_bloodball_chokeonit.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Thorn.dds',
-    },
-    {
-        ready = 'esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds',
-        cooldown = 'BearSynergies/Modules/Track/Images/Kraglen.dds',
-    },
+local icons = {
+    [1] = 'esoui/art/icons/ability_templar_cleansing_ritual.dds',
+    [2] = 'esoui/art/icons/ability_nightblade_018.dds',
+    [3] = 'esoui/art/icons/ability_nightblade_015.dds',
+    [4] = 'esoui/art/icons/ability_undaunted_005.dds',
+    [5] = 'esoui/art/icons/ability_undaunted_003.dds',
+    [6] = 'esoui/art/icons/ability_undaunted_001.dds',
+    [7] = 'esoui/art/icons/ability_undaunted_002.dds',
+    [8] = 'esoui/art/icons/ability_sorcerer_lightning_splash.dds',
+    [9] = 'esoui/art/icons/ability_dragonknight_010.dds',
+    [10] = 'esoui/art/icons/ability_undaunted_004.dds',
+    [11] = 'esoui/art/icons/ability_sorcerer_storm_atronach.dds',
+    [12] = 'esoui/art/icons/ability_templar_nova.dds',
+    [13] = 'esoui/art/icons/ability_werewolf_005_b.dds',
+    [14] = 'esoui/art/icons/ability_dragonknight_006.dds',
+    [15] = 'esoui/art/icons/ability_warden_007.dds',
+    [16] = 'esoui/art/icons/ability_warden_005_b.dds',
+    [17] = 'esoui/art/icons/ability_warden_018_c.dds',
+    [18] = 'esoui/art/icons/ability_necromancer_004.dds',
+    [19] = 'esoui/art/icons/ability_necromancer_010_b.dds',
+    [20] = 'esoui/art/icons/ability_u23_bloodball_chokeonit.dds',
+    [21] = 'esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds',
 }
 
 local BS = BearSynergies
@@ -136,15 +73,14 @@ local function CreateSceneFragment()
 
     COOLDOWN_FRAGMENT = ZO_SimpleSceneFragment:New(BearSynergies_Track_UI)
     COOLDOWN_FRAGMENT:SetConditional(CooldownFragmentCondition)
-
     HUD_SCENE:AddFragment(COOLDOWN_FRAGMENT)
     HUD_UI_SCENE:AddFragment(COOLDOWN_FRAGMENT)
 end
 
 local function CreateControls()
-    for i in ipairs(T.SV.Synergies) do
+    for i in ipairs(T.SV.synergies) do
         WM:CreateControlFromVirtual('$(parent)_Cooldown', BearSynergies_Track_UI, 'BearSynergies_Track_Cooldown', i)
-        BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. i .. '_Icon'):SetTexture(Icons[i].ready)
+        BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. i .. '_Icon'):SetTexture(icons[i])
     end
 end
 
@@ -157,7 +93,7 @@ local function UpdateCooldown(trackingNumber, cooldownTimerControl)
     cooldownTimerControl:SetText(tonumber(cooldownTimerControl:GetText()) - 1)
 
     if cooldownTimerControl:GetText() == '0' then
-        BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. trackingNumber .. '_Icon'):SetTexture(Icons[trackingNumber].ready)
+        BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. trackingNumber .. '_Icon'):SetDesaturation(0)
         cooldownTimerControl:SetHidden(true)
 
         EM:UnregisterForUpdate(T.name .. 'UpdateCooldown' .. trackingNumber)
@@ -165,10 +101,10 @@ local function UpdateCooldown(trackingNumber, cooldownTimerControl)
 end
 
 local function StartCooldown(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, abilityId)
-    local trackingNumber = BS.CooldownId[abilityId]
+    local trackingNumber = BS.cooldownId[abilityId]
     local cooldownTimerControl = BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. trackingNumber .. '_Timer')
 
-    BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. trackingNumber .. '_Icon'):SetTexture(Icons[trackingNumber].cooldown)
+    BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. trackingNumber .. '_Icon'):SetDesaturation(1)
     cooldownTimerControl:SetHidden(false)
     cooldownTimerControl:SetText('20')
 
@@ -205,7 +141,7 @@ function T.UpdateUI()
     local fontSize = T.SV.size / 1.5
     local cooldownControl
 
-    for i, v in ipairs(T.SV.Synergies) do
+    for i, v in ipairs(T.SV.synergies) do
         cooldownControl = BearSynergies_Track_UI:GetNamedChild('_Cooldown' .. i)
 
         if v then
@@ -231,8 +167,8 @@ function T.OnMoveStop()
 end
 
 function T.Initialise()
-    if BS.SV.isAccountWide then T.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Track', T.Default)
-    else T.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Track', T.Default) end
+    if BS.SV.isAccountWide then T.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Track', T.defaults)
+    else T.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Track', T.defaults) end
 
     CreateSceneFragment()
     CreateControls()
@@ -241,7 +177,7 @@ function T.Initialise()
     T.BuildMenu()
 
     local eventName
-    for k in pairs(BS.CooldownId) do
+    for k in pairs(BS.cooldownId) do
         eventName = string.format('%s%d', T.name, k)
         EM:RegisterForEvent(eventName, EVENT_COMBAT_EVENT, StartCooldown)
         EM:AddFilterForEvent(eventName, EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED, REGISTER_FILTER_ABILITY_ID, k)

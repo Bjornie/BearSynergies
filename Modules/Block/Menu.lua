@@ -3,9 +3,9 @@ local B = BS.Block
 local LAM = LibAddonMenu2
 
 function B.BuildMenu()
-    local PanelData = BS.GetModulePanelData('Block')
+    local panelData = BS.GetModulePanelData('Block')
 
-    local OptionsTable = {
+    local optionsTable = {
         {
             type = 'header',
             name = '|cFFFACDGeneral|r',
@@ -17,7 +17,7 @@ function B.BuildMenu()
             setFunc = function(value) B.SV.isLokke = value end,
             tooltip = 'Toggling this on will prevent you from being able to use synergies if less than five pieces of Lokkestiiz is active. If no Lokke pieces equipped this setting will be ignored.',
             width = 'half',
-            default = B.Default.isLokke,
+            default = B.defaults.isLokke,
         },
         {
             type = 'checkbox',
@@ -26,7 +26,7 @@ function B.BuildMenu()
             setFunc = function(value) B.SV.isAlkosh = value end,
             tooltip = 'Toggling this on will prevent you from being able to use synergies if less than five pieces of Alkosh is active. If no Alkosh pieces equipped this setting will be ignored.',
             width = 'half',
-            default = B.Default.isAlkosh,
+            default = B.defaults.isAlkosh,
         },
         {
             type = 'checkbox',
@@ -34,7 +34,7 @@ function B.BuildMenu()
             getFunc = function() return B.SV.isResource end,
             setFunc = function(value) B.SV.isResource = value end,
             tooltip = 'Toggling this on will prevent you from being able to use synergies if your current main resource is higher than the threshold.',
-            default = B.Default.isResource,
+            default = B.defaults.isResource,
         },
         {
             type = 'slider',
@@ -45,7 +45,7 @@ function B.BuildMenu()
             max = 100,
             autoSelect = true,
             disabled = function() return not B.SV.isResource end,
-            default = B.Default.resourceThreshold,
+            default = B.defaults.resourceThreshold,
         },
         {
             type = 'submenu',
@@ -62,7 +62,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[32910] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Shackle synergy, provided by the Dragonknight Standard skill.',
                     width = 'half',
-                    default = B.Default[32910],
+                    default = B.defaults[32910],
                 },
                 {
                     type = 'checkbox',
@@ -71,7 +71,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[32974] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Ignite synergy, provided by the Dark Talons skill.',
                     width = 'half',
-                    default = B.Default[32974],
+                    default = B.defaults[32974],
                 },
                 {
                     type = 'header',
@@ -84,7 +84,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[48076] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Charged Lightning synergy, provided by the Summon Storm Atronach skill.',
                     width = 'half',
-                    default = B.Default[48076],
+                    default = B.defaults[48076],
                 },
                 {
                     type = 'checkbox',
@@ -93,7 +93,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[23196] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Conduit synergy, provided by the Lightning Splash skill.',
                     width = 'half',
-                    default = B.Default[23196],
+                    default = B.defaults[23196],
                 },
                 {
                     type = 'header',
@@ -106,7 +106,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[37729] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Hidden Refresh synergy, provided by the Consuming Darkness skill.',
                     width = 'half',
-                    default = B.Default[37729],
+                    default = B.defaults[37729],
                 },
                 {
                     type = 'checkbox',
@@ -115,7 +115,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[25170] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Soul Leech synergy, provided by the Soul Shred skill.',
                     width = 'half',
-                    default = B.Default[25170],
+                    default = B.defaults[25170],
                 },
                 {
                     type = 'header',
@@ -131,7 +131,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Blessed Shards and Holy Shards synergies, provided by the Spear Shards and morphs skills.',
                     width = 'half',
-                    default = B.Default[26832],
+                    default = B.defaults[26832],
                 },
                 {
                     type = 'checkbox',
@@ -143,7 +143,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Supernova and Gravity Crush synergies, provided by the Nova and morphs skills.',
                     width = 'half',
-                    default = B.Default[31538],
+                    default = B.defaults[31538],
                 },
                 {
                     type = 'checkbox',
@@ -152,7 +152,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[22269] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Purify synergy, provided by the Cleansing Ritual skill.',
                     width = 'half',
-                    default = B.Default[22269],
+                    default = B.defaults[22269],
                 },
                 {
                     type = 'header',
@@ -165,7 +165,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[85572] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Harvest synergy, provided by the Healing Seed skill.',
                     width = 'half',
-                    default = B.Default[85572],
+                    default = B.defaults[85572],
                 },
                 {
                     type = 'checkbox',
@@ -174,7 +174,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[88884] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Icy Escape synergy, provided by the Frozen Retreat skill.',
                     width = 'half',
-                    default = B.Default[88884],
+                    default = B.defaults[88884],
                 },
                 {
                     type = 'header',
@@ -187,7 +187,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[115548] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Grave Robber synergy, provided by the Boneyard skill.',
                     width = 'half',
-                    default = B.Default[115548],
+                    default = B.defaults[115548],
                 },
                 {
                     type = 'checkbox',
@@ -196,7 +196,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[118604] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Pure Agony synergy, provided by the Agony Totem skill.',
                     width = 'half',
-                    default = B.Default[118604],
+                    default = B.defaults[118604],
                 },
             },
         },
@@ -214,7 +214,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Blood Funnel and Blood Feast synergies, provided by the Blood Altar and morphs skills.',
                     width = 'half',
-                    default = B.Default[39500],
+                    default = B.defaults[39500],
                 },
                 {
                     type = 'checkbox',
@@ -227,7 +227,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Spawn Broodling, Black Widow and Arachnophobia synergies, provided by the Trapping Webs and morphs skills.',
                     width = 'half',
-                    default = B.Default[39429],
+                    default = B.defaults[39429],
                 },
                 {
                     type = 'checkbox',
@@ -236,7 +236,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[41838] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Radiate synergy, provided by the Inner Fire skill.',
                     width = 'half',
-                    default = B.Default[41838],
+                    default = B.defaults[41838],
                 },
                 {
                     type = 'checkbox',
@@ -248,7 +248,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Bone Wall and Spinal Surge synergies, provided by the Bone Shield and morphs skills.',
                     width = 'half',
-                    default = B.Default[39377],
+                    default = B.defaults[39377],
                 },
                 {
                     type = 'checkbox',
@@ -260,7 +260,7 @@ function B.BuildMenu()
                     end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Combustion and Healing Combustion synergies, provided by the Necrotic Orb and morphs skills.',
                     width = 'half',
-                    default = B.Default[39301],
+                    default = B.defaults[39301],
                 },
             },
         },
@@ -279,7 +279,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[71902] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Power Synergy, provided in Maelstrom Arena.',
                     width = 'half',
-                    default = B.Default[71902],
+                    default = B.defaults[71902],
                 },
                 {
                     type = 'checkbox',
@@ -288,7 +288,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[71949] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Healing Synergy, provided in Maelstrom Arena.',
                     width = 'half',
-                    default = B.Default[71949],
+                    default = B.defaults[71949],
                 },
                 {
                     type = 'checkbox',
@@ -297,7 +297,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[71951] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Defense Synergy, provided in Maelstrom Arena.',
                     width = 'half',
-                    default = B.Default[71951],
+                    default = B.defaults[71951],
                 },
                 {
                     type = 'checkbox',
@@ -306,7 +306,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[71953] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Haste Synergy, provided in Maelstrom Arena.',
                     width = 'half',
-                    default = B.Default[71953],
+                    default = B.defaults[71953],
                 },
                 {
                     type = 'header',
@@ -319,7 +319,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[112872] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Sustain Synergy, provided in Blackrose Prison.',
                     width = 'half',
-                    default = B.Default[112872]
+                    default = B.defaults[112872]
                 },
                 {
                     type = 'checkbox',
@@ -328,7 +328,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[112890] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Defense Synergy, provided in Blackrose Prison.',
                     width = 'half',
-                    default = B.Default[112890],
+                    default = B.defaults[112890],
                 },
                 {
                     type = 'checkbox',
@@ -337,7 +337,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[112901] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Healing Synergy, provided in Blackrose Prison.',
                     width = 'half',
-                    default = B.Default[112901],
+                    default = B.defaults[112901],
                 },
                 {
                     type = 'checkbox',
@@ -346,7 +346,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[112909] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sigil of Resurrection Synergy, provided in Blackrose Prison.',
                     width = 'half',
-                    default = B.Default[112909],
+                    default = B.defaults[112909],
                 },
             },
         },
@@ -361,7 +361,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV.blockDO = value end,
                     tooltip = 'Toggling this on will prompt a message on-screen whenever you get the fossilize mechanic on the last boss in Hel Ra Citadel, warning you of the danger it poses.',
                     width = 'half',
-                    default = B.Default.blockDO,
+                    default = B.defaults.blockDO,
                 },
                 {
                     type = 'checkbox',
@@ -370,7 +370,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[103489] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the portal synergy in Cloudrest.',
                     width = 'half',
-                    default = B.Default[103489],
+                    default = B.defaults[103489],
                 },
                 {
                     type = 'checkbox',
@@ -379,7 +379,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[134005] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the portal synergy on the 2nd boss.',
                     width = 'half',
-                    default = B.Default[134005],
+                    default = B.defaults[134005],
                 },
                 {
                     type = 'checkbox',
@@ -388,7 +388,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[129936] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the synergy on the last boss.',
                     width = 'half',
-                    default = B.Default[129936],
+                    default = B.defaults[129936],
                 },
             },
         },
@@ -403,7 +403,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[58775] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Feeding Frenzy synergy, provided by the Howl of Despair skill.',
                     width = 'half',
-                    default = B.Default[58775],
+                    default = B.defaults[58775],
                 },
                 {
                     type = 'checkbox',
@@ -412,7 +412,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[111437] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Shield of Ursus synergy, provided by the Haven of Ursus set.',
                     width = 'half',
-                    default = B.Default[111437],
+                    default = B.defaults[111437],
                 },
                 {
                     type = 'checkbox',
@@ -421,7 +421,7 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[141920] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Sanguine Burst synergy, provided by the Lady Thorn monster set.',
                     width = 'half',
-                    default = B.Default[141920],
+                    default = B.defaults[141920],
                 },
                 {
                     type = 'checkbox',
@@ -430,12 +430,12 @@ function B.BuildMenu()
                     setFunc = function(value) B.SV[142775] = value end,
                     tooltip = 'Toggling this off will prevent you from being able to use the Heed the Call synergy, provided by the Kraglen\'s Howl set.',
                     width = 'half',
-                    default = B.Default[142775],
+                    default = B.defaults[142775],
                 },
             },
         },
     }
 
-    LAM:RegisterAddonPanel(B.name, PanelData)
-    LAM:RegisterOptionControls(B.name, OptionsTable)
+    LAM:RegisterAddonPanel(B.name, panelData)
+    LAM:RegisterOptionControls(B.name, optionsTable)
 end

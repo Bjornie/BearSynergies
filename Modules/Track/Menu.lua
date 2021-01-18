@@ -3,9 +3,9 @@ local T = BS.Track
 local LAM = LibAddonMenu2
 
 function T.BuildMenu()
-    local PanelData = BS.GetModulePanelData('Track')
+    local panelData = BS.GetModulePanelData('Track')
 
-    local OptionsTable = {
+    local optionsTable = {
         {
             type = 'header',
             name = '|cFFFACDGeneral|r',
@@ -19,7 +19,7 @@ function T.BuildMenu()
                 T.SV.Orientation = var
                 T.UpdateUI()
             end,
-            default = T.Default.orientation,
+            default = T.defaults.orientation,
         },
         {
             type = 'slider',
@@ -31,7 +31,7 @@ function T.BuildMenu()
             end,
             min = 0,
             max = 100,
-            default = T.Default.size,
+            default = T.defaults.size,
         },
         {
             type = 'checkbox',
@@ -41,7 +41,7 @@ function T.BuildMenu()
                 T.SV.showOnlyInCombat = value
                 T.PlayerCombatState()
             end,
-            default = T.Default.showOnlyInCombat,
+            default = T.defaults.showOnlyInCombat,
         },
         {
             type = 'submenu',
@@ -54,26 +54,26 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Shackle',
-                    getFunc = function() return T.SV.Synergies[14] end,
+                    getFunc = function() return T.SV.synergies[14] end,
                     setFunc = function(value)
-                        T.SV.Synergies[14] = value
+                        T.SV.synergies[14] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Dragonknight Standard skill.',
                     width = 'half',
-                    default = T.Default.Synergies[14],
+                    default = T.defaults.synergies[14],
                 },
                 {
                     type = 'checkbox',
                     name = 'Ignite',
-                    getFunc = function() return T.SV.Synergies[9] end,
+                    getFunc = function() return T.SV.synergies[9] end,
                     setFunc = function(value)
-                        T.SV.Synergies[9] = value
+                        T.SV.synergies[9] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Dark Talons skill.',
                     width = 'half',
-                    default = T.Default.Synergies[9],
+                    default = T.defaults.synergies[9],
                 },
                 {
                     type = 'header',
@@ -82,26 +82,26 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Charged Lightning',
-                    getFunc = function() return T.SV.Synergies[11] end,
+                    getFunc = function() return T.SV.synergies[11] end,
                     setFunc = function(value)
-                        T.SV.Synergies[11] = value
+                        T.SV.synergies[11] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Summon Storm Atronach skill.',
                     width = 'half',
-                    default = T.Default.Synergies[11],
+                    default = T.defaults.synergies[11],
                 },
                 {
                     type = 'checkbox',
                     name = 'Conduit',
-                    getFunc = function() return T.SV.Synergies[8] end,
+                    getFunc = function() return T.SV.synergies[8] end,
                     setFunc = function(value)
-                        T.SV.Synergies[8] = value
+                        T.SV.synergies[8] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Lightning Splash skill.',
                     width = 'half',
-                    default = T.Default.Synergies[8],
+                    default = T.defaults.synergies[8],
                 },
                 {
                     type = 'header',
@@ -110,26 +110,26 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Hidden Refresh',
-                    getFunc = function() return T.SV.Synergies[3] end,
+                    getFunc = function() return T.SV.synergies[3] end,
                     setFunc = function(value)
-                        T.SV.Synergies[3] = value
+                        T.SV.synergies[3] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Consuming Darkness skill.',
                     width = 'half',
-                    default = T.Default.Synergies[3],
+                    default = T.defaults.synergies[3],
                 },
                 {
                     type = 'checkbox',
                     name = 'Soul Leech',
-                    getFunc = function() return T.SV.Synergies[2] end,
+                    getFunc = function() return T.SV.synergies[2] end,
                     setFunc = function(value)
-                        T.SV.Synergies[2] = value
+                        T.SV.synergies[2] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Soul Shred skill.',
                     width = 'half',
-                    default = T.Default.Synergies[2],
+                    default = T.defaults.synergies[2],
                 },
                 {
                     type = 'header',
@@ -138,38 +138,38 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Orbs & Shards',
-                    getFunc = function() return T.SV.Synergies[10] end,
+                    getFunc = function() return T.SV.synergies[10] end,
                     setFunc = function(value)
-                        T.SV.Synergies[10] = value
+                        T.SV.synergies[10] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Spear Shards and morphs skills and the Necrotic Orb and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[10],
+                    default = T.defaults.synergies[10],
                 },
                 {
                     type = 'checkbox',
                     name = 'Nova',
-                    getFunc = function() return T.SV.Synergies[12] end,
+                    getFunc = function() return T.SV.synergies[12] end,
                     setFunc = function(value)
-                        T.SV.Synergies[12] = value
+                        T.SV.synergies[12] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Nova and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[12],
+                    default = T.defaults.synergies[12],
                 },
                 {
                     type = 'checkbox',
                     name = 'Purify',
-                    getFunc = function() return T.SV.Synergies[1] end,
+                    getFunc = function() return T.SV.synergies[1] end,
                     setFunc = function(value)
-                        T.SV.Synergies[1] = value
+                        T.SV.synergies[1] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Cleansing Ritual skill.',
                     width = 'half',
-                    default = T.Default.Synergies[1],
+                    default = T.defaults.synergies[1],
                 },
                 {
                     type = 'header',
@@ -178,26 +178,26 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Harvest',
-                    getFunc = function() return T.SV.Synergies[15] end,
+                    getFunc = function() return T.SV.synergies[15] end,
                     setFunc = function(value)
-                        T.SV.Synergies[15] = value
+                        T.SV.synergies[15] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Healing Seed skill.',
                     width = 'half',
-                    default = T.Default.Synergies[15],
+                    default = T.defaults.synergies[15],
                 },
                 {
                     type = 'checkbox',
                     name = 'Icy Escape',
-                    getFunc = function() return T.SV.Synergies[16] end,
+                    getFunc = function() return T.SV.synergies[16] end,
                     setFunc = function(value)
-                        T.SV.Synergies[16] = value
+                        T.SV.synergies[16] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Frozen Retreat skill.',
                     width = 'half',
-                    default = T.Default.Synergies[16],
+                    default = T.defaults.synergies[16],
                 },
                 {
                     type = 'header',
@@ -206,26 +206,26 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Grave Robber',
-                    getFunc = function() return T.SV.Synergies[18] end,
+                    getFunc = function() return T.SV.synergies[18] end,
                     setFunc = function(value)
-                        T.SV.Synergies[18] = value
+                        T.SV.synergies[18] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Boneyard skill.',
                     width = 'half',
-                    default = T.Default.Synergies[18],
+                    default = T.defaults.synergies[18],
                 },
                 {
                     type = 'checkbox',
                     name = 'Pure Agony',
-                    getFunc = function() return T.SV.Synergies[19] end,
+                    getFunc = function() return T.SV.synergies[19] end,
                     setFunc = function(value)
-                        T.SV.Synergies[19] = value
+                        T.SV.synergies[19] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Agony Totem skill.',
                     width = 'half',
-                    default = T.Default.Synergies[19],
+                    default = T.defaults.synergies[19],
                 },
             },
         },
@@ -236,62 +236,62 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Blood Altar',
-                    getFunc = function() return T.SV.Synergies[6] end,
+                    getFunc = function() return T.SV.synergies[6] end,
                     setFunc = function(value)
-                        T.SV.Synergies[6] = value
+                        T.SV.synergies[6] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Blood Altar and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[6],
+                    default = T.defaults.synergies[6],
                 },
                 {
                     type = 'checkbox',
                     name = 'Spiders',
-                    getFunc = function() return T.SV.Synergies[5] end,
+                    getFunc = function() return T.SV.synergies[5] end,
                     setFunc = function(value)
-                        T.SV.Synergies[5] = value
+                        T.SV.synergies[5] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Trapping Webs and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[5],
+                    default = T.defaults.synergies[5],
                 },
                 {
                     type = 'checkbox',
                     name = 'Radiate',
-                    getFunc = function() return T.SV.Synergies[7] end,
+                    getFunc = function() return T.SV.synergies[7] end,
                     setFunc = function(value)
-                        T.SV.Synergies[7] = value
+                        T.SV.synergies[7] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Inner Fire skill.',
                     width = 'half',
-                    default = T.Default.Synergies[7],
+                    default = T.defaults.synergies[7],
                 },
                 {
                     type = 'checkbox',
                     name = 'Bone Shield',
-                    getFunc = function() return T.SV.Synergies[4] end,
+                    getFunc = function() return T.SV.synergies[4] end,
                     setFunc = function(value)
-                        T.SV.Synergies[4] = value
+                        T.SV.synergies[4] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Bone Shield and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[4],
+                    default = T.defaults.synergies[4],
                 },
                 {
                     type = 'checkbox',
                     name = 'Orbs & Shards',
-                    getFunc = function() return T.SV.Synergies[10] end,
+                    getFunc = function() return T.SV.synergies[10] end,
                     setFunc = function(value)
-                        T.SV.Synergies[10] = value
+                        T.SV.synergies[10] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Spear Shards and morphs skills and the Necrotic Orb and morphs skills.',
                     width = 'half',
-                    default = T.Default.Synergies[10],
+                    default = T.defaults.synergies[10],
                 },
             },
         },
@@ -302,55 +302,55 @@ function T.BuildMenu()
                 {
                     type = 'checkbox',
                     name = 'Feeding Frenzy',
-                    getFunc = function() return T.SV.Synergies[13] end,
+                    getFunc = function() return T.SV.synergies[13] end,
                     setFunc = function(value)
-                        T.SV.Synergies[13] = value
+                        T.SV.synergies[13] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Howl of Despair skill.',
                     width = 'half',
-                    default = T.Default.Synergies[13],
+                    default = T.defaults.synergies[13],
                 },
                 {
                     type = 'checkbox',
                     name = 'Shield of Ursus',
-                    getFunc = function() return T.SV.Synergies[17] end,
+                    getFunc = function() return T.SV.synergies[17] end,
                     setFunc = function(value)
-                        T.SV.Synergies[17] = value
+                        T.SV.synergies[17] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Haven of Ursus set.',
                     width = 'half',
-                    default = T.Default.Synergies[17],
+                    default = T.defaults.synergies[17],
                 },
                 {
                     type = 'checkbox',
                     name = 'Sanguine Burst',
-                    getFunc = function() return T.SV.Synergies[20] end,
+                    getFunc = function() return T.SV.synergies[20] end,
                     setFunc = function(value)
-                        T.SV.Synergies[20] = value
+                        T.SV.synergies[20] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Lady Thorn monster set.',
                     width = 'half',
-                    default = T.Default.Synergies[20],
+                    default = T.defaults.synergies[20],
                 },
                 {
                     type = 'checkbox',
                     name = 'Heed the Call',
-                    getFunc = function() return T.SV.Synergies[21] end,
+                    getFunc = function() return T.SV.synergies[21] end,
                     setFunc = function(value)
-                        T.SV.Synergies[21] = value
+                        T.SV.synergies[21] = value
                         T.UpdateUI()
                     end,
                     tooltip = 'Provided by the Kraglen\'s Howl set.',
                     width = 'half',
-                    default = T.Default.Synergies[21],
+                    default = T.defaults.synergies[21],
                 },
             },
         },
     }
 
-    LAM:RegisterAddonPanel(T.name, PanelData)
-    LAM:RegisterOptionControls(T.name, OptionsTable)
+    LAM:RegisterAddonPanel(T.name, panelData)
+    LAM:RegisterOptionControls(T.name, optionsTable)
 end
