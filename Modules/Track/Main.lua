@@ -1,5 +1,6 @@
 BearSynergies.Track = {
     name = 'BearSynergies_Track',
+    isUILocked = true,
 
     defaults = {
         left = 0,
@@ -63,18 +64,18 @@ local T = BS.Track
 local EM = GetEventManager()
 local WM = GetWindowManager()
 
-local COOLDOWN_FRAGMENT
+local cooldownFragment
 
 local function CreateSceneFragment()
     local function CooldownFragmentCondition()
-        if T.SV.showOnlyInCombat then return IsUnitInCombat('player')
+        if T.SV.showOnlyInCombat and T.isUILocked then return IsUnitInCombat('player')
         else return true end
     end
 
-    COOLDOWN_FRAGMENT = ZO_SimpleSceneFragment:New(BearSynergies_Track_UI)
-    COOLDOWN_FRAGMENT:SetConditional(CooldownFragmentCondition)
-    HUD_SCENE:AddFragment(COOLDOWN_FRAGMENT)
-    HUD_UI_SCENE:AddFragment(COOLDOWN_FRAGMENT)
+    cooldownFragment = ZO_SimpleSceneFragment:New(BearSynergies_Track_UI)
+    cooldownFragment:SetConditional(CooldownFragmentCondition)
+    HUD_SCENE:AddFragment(cooldownFragment)
+    HUD_UI_SCENE:AddFragment(cooldownFragment)
 end
 
 local function CreateControls()
@@ -157,8 +158,20 @@ function T.UpdateUI()
     UpdateBackground(counter)
 end
 
+function T.ToggleUI()
+    T.isUILocked = not T.isUILocked
+
+    if not T.isUILocked then
+        BearSynergies_Track_UI:SetMouseEnabled(true)
+        BearSynergies_Track_UI:SetMovable(true)
+    else
+        BearSynergies_Track_UI:SetMouseEnabled(false)
+        BearSynergies_Track_UI:SetMovable(false)
+    end
+end
+
 function T.PlayerCombatState()
-    COOLDOWN_FRAGMENT:Refresh()
+    cooldownFragment:Refresh()
 end
 
 function T.OnMoveStop()

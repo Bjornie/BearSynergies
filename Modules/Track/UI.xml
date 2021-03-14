@@ -1,6 +1,6 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="BearSynergies_Track_UI" clampedToScreen="true" hidden="true" mouseEnabled="true" movable="true" resizeToFitDescendents="true">
+        <TopLevelControl name="BearSynergies_Track_UI" clampedToScreen="true" hidden="true" mouseEnabled="false" movable="false" resizeToFitDescendents="true">
             <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetX="200" />
             <Controls>
                 <Texture name="$(parent)_Background" color="000000">

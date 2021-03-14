@@ -11,6 +11,17 @@ function T.BuildMenu()
             name = '|cFFFACDGeneral|r',
         },
         {
+            type = 'button',
+            name = 'Unlock UI',
+            func = function(control)
+                T.ToggleUI()
+
+                if not T.isUILocked then control:SetText('Lock UI')
+                else control:SetText('Unlock UI') end
+            end,
+            width = 'half',
+        },
+        {
             type = 'dropdown',
             name = 'Orientation',
             choices = {'Horizontal', 'Vertical'},
