@@ -119,8 +119,8 @@ local function BarswapRefresh(_, didActiveHotbarChange)
     if didActiveHotbarChange then SYNERGY:OnSynergyAbilityChanged() end
 end
 
-function B.Initialise()
-    if BS.SV.isAccountWide then B.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Block', B.defaults)
+function BS:InitialiseBlock()
+    if BS.sv.isAccountWide then B.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Block', B.defaults)
     else B.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Block', B.defaults) end
 
     ZO_PreHook(SYNERGY, 'OnSynergyAbilityChanged', Intercept)

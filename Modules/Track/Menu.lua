@@ -3,7 +3,7 @@ local T = BS.Track
 local LAM = LibAddonMenu2
 
 function T.BuildMenu()
-    local panelData = BS.GetModulePanelData('Track')
+    local panelData = BS:GetModulePanelData('Track')
 
     local optionsTable = {
         {

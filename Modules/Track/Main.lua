@@ -180,7 +180,7 @@ function T.OnMoveStop()
 end
 
 function T.Initialise()
-    if BS.SV.isAccountWide then T.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Track', T.defaults)
+    if BS.sv.isAccountWide then T.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'Track', T.defaults)
     else T.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'Track', T.defaults) end
 
     CreateSceneFragment()

@@ -101,12 +101,12 @@ local function CreatePlayer(pool)
 end
 
 function GT.Initialise()
-    if BS.SV.isAccountWide then GT.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'GroupTrack', GT.Default)
+    if BS.sv.isAccountWide then GT.SV = ZO_SavedVars:NewAccountWide(BS.svName, BS.svVersion, 'GroupTrack', GT.Default)
     else GT.SV = ZO_SavedVars:NewCharacterIdSettings(BS.svName, BS.svVersion, 'GroupTrack', GT.Default) end
 
     playerPool = ZO_ObjectPool:New(CreatePlayer)
 
-    BS.CallbackManager:RegisterCallback(BS_EVENT_GROUP_CHANGED, RefreshUnits)
+    BS.callbackManager:RegisterCallback('GroupChanged', RefreshUnits)
 
     for k in pairs(BS.cooldownId) do
         EM:RegisterForEvent(GT.name, EVENT_COMBAT_EVENT, StartCooldown)

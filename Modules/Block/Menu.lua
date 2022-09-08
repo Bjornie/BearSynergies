@@ -3,7 +3,7 @@ local B = BS.Block
 local LAM = LibAddonMenu2
 
 function B.BuildMenu()
-    local panelData = BS.GetModulePanelData('Block')
+    local panelData = BS:GetModulePanelData('Block')
 
     local optionsTable = {
         {

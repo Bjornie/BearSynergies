@@ -2,7 +2,7 @@ local BS = BearSynergies
 local GT = BS.GroupTrack
 
 function GT.BuildMenu()
-    local PanelData = BS.GetModulePanelData('GroupTrack')
+    local PanelData = BS:GetModulePanelData('GroupTrack')
 
     local OptionsTable = {
         {

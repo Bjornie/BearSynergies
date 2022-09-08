@@ -2,7 +2,7 @@ local BS = BearSynergies
 local LAM = LibAddonMenu2
 
 function BS.BuildMenu()
-    local panelData = BS.GetModulePanelData()
+    local panelData = BS:GetModulePanelData()
 
     local optionsTable = {
         {
@@ -24,8 +24,8 @@ function BS.BuildMenu()
         {
             type = 'checkbox',
             name = 'Synergy Block',
-            getFunc = function() return BS.SV.isBlock end,
-            setFunc = function(value) BS.SV.isBlock = value end,
+            getFunc = function() return BS.sv.isBlock end,
+            setFunc = function(value) BS.sv.isBlock = value end,
             width = 'half',
             requiresReload = true,
             default = BS.defaults.isBlock,
@@ -38,8 +38,8 @@ function BS.BuildMenu()
         {
             type = 'checkbox',
             name = 'Group Tracker',
-            getFunc = function() return BS.SV.isGroupTrack end,
-            setFunc = function(value) BS.SV.isGroupTrack = value end,
+            getFunc = function() return BS.sv.isGroupTrack end,
+            setFunc = function(value) BS.sv.isGroupTrack = value end,
             width = 'half',
             requiresReload = true,
             default = BS.defaults.isGroupTrack,
@@ -52,8 +52,8 @@ function BS.BuildMenu()
         {
             type = 'checkbox',
             name = 'Synergy Tracker',
-            getFunc = function() return BS.SV.isTrack end,
-            setFunc = function(value) BS.SV.isTrack = value end,
+            getFunc = function() return BS.sv.isTrack end,
+            setFunc = function(value) BS.sv.isTrack = value end,
             width = 'half',
             requiresReload = true,
             default = BS.defaults.isTrack,
